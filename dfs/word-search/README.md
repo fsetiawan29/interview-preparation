@@ -35,4 +35,4 @@ Steps
 ----------------------------------------
 
 Mistakes
-- Don't know the concept it will go deep first for the recursive process
+- Wrong position BASE CASE and PRUNE steps
