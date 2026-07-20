@@ -8,7 +8,7 @@ Difficulty: Medium
 
 # Pattern
 
-Hash Set
+Hash Set + Detect sequence starts
 
 ----------------------------------------
 

@@ -125,3 +125,20 @@ for s in strs:
 - [best-time-to-buy-and-sell-stock](./best-time-to-buy-and-sell-stock) —
   not hashing, but the same single-pass "running state" shape: track the
   minimum price seen so far and the best profit against it.
+- [intersection-of-two-arrays](./intersection-of-two-arrays) — hash set
+  membership check between two arrays; distinct values only.
+- [intersection-of-two-arrays-2](./intersection-of-two-arrays-2) —
+  frequency counter instead of a set, so each shared value appears as many
+  times as it's shared.
+- [happy-number](./happy-number) — hash set to detect a cycle in the
+  digit-square-sum sequence instead of a fixed iteration cap.
+- [isomorphic-strings](./isomorphic-strings) — two hash maps (one per
+  direction) to enforce a strict one-to-one character mapping.
+- [word-pattern](./word-pattern) — same one-to-one mapping idea as
+  isomorphic-strings, but mapping pattern characters to whole words.
+- [find-the-difference](./find-the-difference) — frequency counter over
+  the shorter string, decremented by the longer; the leftover char is the
+  extra letter.
+- [majority-element](./majority-element) — frequency counter (`O(n)`
+  space) vs. Boyer-Moore voting (`O(1)` space): a majority element cancels
+  out every other value pairwise, so the surviving candidate must be it.
