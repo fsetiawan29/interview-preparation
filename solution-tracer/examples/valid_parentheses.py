@@ -1,4 +1,4 @@
-"""Valid Parentheses, instrumented with the leetcode-tracer framework.
+"""Valid Parentheses, instrumented with the solution-tracer framework.
 
 A classic stack problem — gives the visualizer real `stack` snapshots.
 """

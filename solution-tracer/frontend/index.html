@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LeetCode Trace Visualizer</title>
+    <title>Solution Trace Visualizer</title>
     <script>
       (function () {
         try {
-          var stored = JSON.parse(localStorage.getItem("leetcode-tracer-theme"));
+          var stored = JSON.parse(localStorage.getItem("solution-tracer-theme"));
           var theme = (stored && stored.state && stored.state.theme) || "system";
           var resolved =
             theme === "system"

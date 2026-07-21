@@ -32,7 +32,7 @@ export const useThemeStore = create<ThemeState>()(
       },
     }),
     {
-      name: "leetcode-tracer-theme",
+      name: "solution-tracer-theme",
       onRehydrateStorage: () => (state) => {
         if (!state) return;
         const resolvedTheme = resolveTheme(state.theme);

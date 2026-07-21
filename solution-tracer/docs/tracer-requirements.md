@@ -2,7 +2,7 @@
 
 ## Goal
 
-Build a reusable Python SDK that instruments LeetCode algorithms and records execution.
+Build a reusable Python SDK that instruments algorithms and records execution.
 
 The SDK must never know anything about React.
 

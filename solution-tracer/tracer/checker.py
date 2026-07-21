@@ -1,4 +1,4 @@
-"""CLI: autotrace an unmodified LeetCode solution file directly.
+"""CLI: autotrace an unmodified solution file directly.
 
 Usage::
 

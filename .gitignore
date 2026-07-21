@@ -4,5 +4,5 @@
 *_trace.csv
 __pycache__/
 *.pyc
-leetcode-tracer/.venv/
-leetcode-tracer/*.egg-info/
+solution-tracer/.venv/
+solution-tracer/*.egg-info/

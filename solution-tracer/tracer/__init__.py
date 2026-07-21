@@ -1,4 +1,4 @@
-"""leetcode-tracer: educational execution tracing for LeetCode solutions."""
+"""solution-tracer: educational execution tracing for coding solutions."""
 
 from .autotrace import autotrace
 from .config import TracerConfig

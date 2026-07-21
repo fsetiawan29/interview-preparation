@@ -1,4 +1,4 @@
-"""Course Schedule, instrumented with leetcode-tracer.
+"""Course Schedule, instrumented with solution-tracer.
 
 Kahn's algorithm (BFS topological sort) over a prerequisite graph — gives
 the visualizer real `graph` snapshots with a highlighted current node and

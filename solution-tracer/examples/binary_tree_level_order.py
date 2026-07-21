@@ -1,4 +1,4 @@
-"""Binary Tree Level Order Traversal, instrumented with leetcode-tracer.
+"""Binary Tree Level Order Traversal, instrumented with solution-tracer.
 
 A BFS over a binary tree — gives the visualizer real `tree` snapshots (with
 a highlighted current node) plus `queue` snapshots for the BFS frontier.

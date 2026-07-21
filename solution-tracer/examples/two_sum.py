@@ -1,4 +1,4 @@
-"""Two Sum, instrumented with the leetcode-tracer framework.
+"""Two Sum, instrumented with the solution-tracer framework.
 
 Mirrors the solution in arrays-hashing/easy/two-sum/two-sum.py — the
 algorithm logic is untouched, only a handful of `trace.*` calls were added.

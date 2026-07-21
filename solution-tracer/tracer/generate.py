@@ -1,6 +1,6 @@
 """CLI: generate a visualizer-ready JSON trace from a plain solution file.
 
-Unlike `tracer.checker`, this targets *unmodified* LeetCode-style solutions
+Unlike `tracer.checker`, this targets *unmodified* solutions
 (no `trace.*` calls needed) — it runs the chosen method under `autotrace`
 (see `tracer/autotrace.py`) and writes the resulting trace as JSON.
 
@@ -67,7 +67,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--harness", default="run_test", help="Name of the test-runner function to read examples from")
     parser.add_argument(
         "-o", "--out", type=Path, default=None,
-        help="Output JSON path (default: leetcode-tracer/generated_traces/<slug>_trace.json)",
+        help="Output JSON path (default: solution-tracer/generated_traces/<slug>_trace.json)",
     )
     parsed = parser.parse_args(argv)
 

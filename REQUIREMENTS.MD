@@ -1,18 +1,18 @@
-# LeetCode Tracer Framework Requirements
+# Solution Tracer Framework Requirements
 
 **Version:** 1.0  
 **Language:** Python 3.12+  
-**Purpose:** Educational algorithm tracing and visualization for LeetCode interview preparation.
+**Purpose:** Educational algorithm tracing and visualization for coding interview preparation.
 
 ---
 
 # 1. Project Goal
 
-Build a reusable Python library that instruments LeetCode algorithms and automatically generates detailed execution traces.
+Build a reusable Python library that instruments algorithms and automatically generates detailed execution traces.
 
 The framework should help developers understand **how** an algorithm works rather than simply seeing the final answer.
 
-It should be designed as a reusable library that can be imported into any LeetCode solution.
+It should be designed as a reusable library that can be imported into any coding solution.
 
 Example:
 
@@ -40,7 +40,7 @@ The framework should generate educational outputs such as:
 The project should be organized as a reusable library.
 
 ```
-leetcode-tracer/
+solution-tracer/
 │
 ├── tracer/
 │   │
@@ -624,13 +624,13 @@ Automatically compute
 - Clean API
 - Comprehensive documentation
 - Extensible formatter architecture
-- Easy to integrate into any LeetCode solution
+- Easy to integrate into any coding solution
 
 ---
 
 # 25. Success Criteria
 
-The framework should enable a developer to instrument a LeetCode solution with minimal code changes and produce a comprehensive, educational execution report that includes:
+The framework should enable a developer to instrument a solution with minimal code changes and produce a comprehensive, educational execution report that includes:
 
 - Variable traces
 - Iteration tables

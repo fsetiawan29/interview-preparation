@@ -3,7 +3,7 @@
 No `trace.*` calls are needed in the algorithm itself. `autotrace` runs the
 function under a line tracer, records a variable-trace step whenever local
 state changes, and tracks recursion depth from call/return events — so you
-can write a plain LeetCode-style solution and still get a full report.
+can write a plain, unmodified solution and still get a full report.
 """
 
 from __future__ import annotations

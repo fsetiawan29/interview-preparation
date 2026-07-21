@@ -30,9 +30,9 @@ export function EmptyState() {
   return (
     <div className="mx-auto flex max-w-lg flex-1 flex-col items-center justify-center gap-6 p-6">
       <div className="text-center">
-        <h1 className="text-2xl font-semibold">LeetCode Trace Visualizer</h1>
+        <h1 className="text-2xl font-semibold">Solution Trace Visualizer</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Load a trace JSON file exported by the leetcode-tracer SDK to step through an algorithm's
+          Load a trace JSON file exported by the solution-tracer SDK to step through an algorithm's
           execution.
         </p>
       </div>

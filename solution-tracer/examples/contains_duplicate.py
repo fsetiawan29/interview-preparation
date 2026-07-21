@@ -1,4 +1,4 @@
-"""Contains Duplicate, instrumented with the leetcode-tracer framework.
+"""Contains Duplicate, instrumented with the solution-tracer framework.
 
 Mirrors the solution in
 arrays-hashing/easy/contains-duplicate/contains-duplicate.py — the

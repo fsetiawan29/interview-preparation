@@ -1,4 +1,4 @@
-"""Reverse Linked List, instrumented with leetcode-tracer.
+"""Reverse Linked List, instrumented with solution-tracer.
 
 Iterative pointer-reversal — gives the visualizer real `linked-list`
 snapshots with a highlighted current node as the list is rebuilt.

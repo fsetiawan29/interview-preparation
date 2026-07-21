@@ -1,8 +1,8 @@
-# LeetCode Trace Visualizer - Frontend Requirements
+# Solution Trace Visualizer - Frontend Requirements
 
 **Version:** 1.0  
 **Framework:** React 19 + TypeScript + Vite  
-**Purpose:** Interactive web application for visualizing LeetCode algorithm execution from JSON trace files.
+**Purpose:** Interactive web application for visualizing algorithm execution from JSON trace files.
 
 ---
 

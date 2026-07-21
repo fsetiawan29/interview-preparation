@@ -1,6 +1,6 @@
-# leetcode-tracer
+# solution-tracer
 
-A reusable Python library that instruments LeetCode solutions and generates
+A reusable Python library that instruments coding solutions and generates
 educational execution traces — variable tables, decision logs, timelines,
 data-structure snapshots, and a final summary — without changing the
 algorithm's logic.
@@ -11,7 +11,7 @@ Homebrew/system Python refuses plain `pip install` (PEP 668), so use a
 project-local virtualenv:
 
 ```bash
-cd leetcode-tracer
+cd solution-tracer
 python3 -m venv .venv
 .venv/bin/pip install -e .                  # editable install of the tracer package
 .venv/bin/pip install -r requirements.txt   # optional: only needed for colored `rich` output
@@ -24,7 +24,7 @@ what lets example scripts do `from tracer import TraceRecorder` without any
 
 ## Checking a solution's logic (zero instrumentation)
 
-To sanity-check any plain, unmodified LeetCode-style solution file — no
+To sanity-check any plain, unmodified solution file — no
 `trace.*` calls, no copying — use the `checker` CLI. It imports the file,
 runs the given method under a line tracer, and prints/exports the same
 report:

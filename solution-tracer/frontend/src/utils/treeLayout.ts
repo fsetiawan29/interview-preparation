@@ -5,7 +5,7 @@ const LEVEL_HEIGHT = 96;
 
 /**
  * In-order slot placement: cheap, deterministic, and overlap-free for
- * LeetCode-sized binary trees (Reingold-Tilford is overkill at this scale).
+ * interview-sized binary trees (Reingold-Tilford is overkill at this scale).
  * Assumes the tree's root is always id 0, which the tracer SDK guarantees.
  */
 export function computeTreeLayout(nodes: TreeNode[]): Map<number, { x: number; y: number }> {

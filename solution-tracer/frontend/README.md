@@ -1,6 +1,6 @@
-# LeetCode Trace Visualizer
+# Solution Trace Visualizer
 
-A React app that loads a JSON trace exported by the `leetcode-tracer` Python
+A React app that loads a JSON trace exported by the `solution-tracer` Python
 SDK and lets you step through / play back an algorithm's execution —
 inspecting variables, decisions, and events while watching the underlying
 data structure (array, stack, queue, tree, graph, linked list) change at
@@ -26,7 +26,7 @@ from `../examples/*.py`) — one for each supported snapshot type.
 
 To visualize a solution of your own, run
 `python -m tracer.generate <path/to/solution.py> <method>` from
-`leetcode-tracer/` — it works on any unmodified LeetCode-style solution, no
+`solution-tracer/` — it works on any unmodified solution, no
 instrumentation needed (see the main [README](../README.md#generating-a-json-trace-for-the-visualizer)),
 though without manual `trace.decision`/`event`/`snapshot_*` calls the
 Visualization panel stays empty.
