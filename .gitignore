@@ -1,1 +1,8 @@
 .claude
+*_trace.md
+*_trace.json
+*_trace.csv
+__pycache__/
+*.pyc
+leetcode-tracer/.venv/
+leetcode-tracer/*.egg-info/

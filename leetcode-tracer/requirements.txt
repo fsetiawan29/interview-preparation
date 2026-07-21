@@ -1,0 +1,3 @@
+# Core library has zero required dependencies.
+# Install "rich" for colored console output; the tracer works without it.
+rich>=13

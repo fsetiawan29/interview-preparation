@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0.0",
+  "problem": "Two Sum",
+  "metadata": {
+    "problem": "Two Sum",
+    "difficulty": "Easy",
+    "language": "Python",
+    "algorithm": "Hash Map",
+    "time_complexity": "O(n)",
+    "space_complexity": "O(n)"
+  },
+  "input": {
+    "nums": [
+      2,
+      7,
+      11,
+      15
+    ],
+    "target": 9
+  },
+  "steps": [
+    {
+      "id": 1,
+      "title": "Store nums[0]=2",
+      "timestamp": 1.4707999071106315e-05,
+      "variables": {
+        "num": 2,
+        "complement": 7,
+        "seen": {
+          "2": 0
+        }
+      },
+      "decision": {
+        "condition": "7 in seen",
+        "result": false,
+        "action": "Store num"
+      },
+      "events": [
+        "Store nums[0]=2"
+      ],
+      "snapshot": {
+        "type": "array",
+        "values": [
+          2,
+          7,
+          11,
+          15
+        ],
+        "highlights": [],
+        "pointers": {
+          "i": 0
+        }
+      },
+      "statistics": {
+        "iterations_so_far": 1
+      }
+    },
+    {
+      "id": 2,
+      "title": "Found pair (seen[2]=0, i=1)",
+      "timestamp": 4.158299998380244e-05,
+      "variables": {
+        "num": 7,
+        "complement": 2,
+        "seen": {
+          "2": 0
+        }
+      },
+      "decision": {
+        "condition": "2 in seen",
+        "result": true,
+        "action": "Return pair"
+      },
+      "events": [
+        "Found pair (seen[2]=0, i=1)"
+      ],
+      "snapshot": {
+        "type": "array",
+        "values": [
+          2,
+          7,
+          11,
+          15
+        ],
+        "highlights": [],
+        "pointers": {
+          "j": 0,
+          "i": 1
+        }
+      },
+      "statistics": {
+        "iterations_so_far": 2
+      }
+    }
+  ],
+  "summary": {
+    "iterations": 2,
+    "skipped_iterations": 0,
+    "while_loops": 0,
+    "max_recursion_depth": 0,
+    "max_stack_size": 0,
+    "max_queue_size": 0,
+    "max_heap_size": 0,
+    "execution_time": 5.554201197810471e-05,
+    "answer": [
+      0,
+      1
+    ]
+  }
+}

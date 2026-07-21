@@ -1,0 +1,245 @@
+{
+  "schema_version": "1.0.0",
+  "problem": "Reverse Linked List",
+  "metadata": {
+    "problem": "Reverse Linked List",
+    "difficulty": "Easy",
+    "language": "Python",
+    "algorithm": "Iterative Pointer Reversal",
+    "time_complexity": "O(n)",
+    "space_complexity": "O(1)"
+  },
+  "input": {
+    "head": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "steps": [
+    {
+      "id": 1,
+      "title": "Reverse pointer at node 1",
+      "timestamp": 7.832975825294852e-06,
+      "variables": {
+        "current": 1,
+        "prev": null
+      },
+      "decision": {
+        "condition": "next node is None",
+        "result": false,
+        "action": "Advance to next node"
+      },
+      "events": [
+        "Reverse pointer at node 1"
+      ],
+      "snapshot": {
+        "type": "linked-list",
+        "nodes": [
+          {
+            "id": 0,
+            "val": 1,
+            "next": null
+          }
+        ],
+        "current": 0
+      },
+      "statistics": {
+        "iterations_so_far": 1
+      }
+    },
+    {
+      "id": 2,
+      "title": "Reverse pointer at node 2",
+      "timestamp": 2.4416978703811765e-05,
+      "variables": {
+        "current": 2,
+        "prev": 1
+      },
+      "decision": {
+        "condition": "next node is None",
+        "result": false,
+        "action": "Advance to next node"
+      },
+      "events": [
+        "Reverse pointer at node 2"
+      ],
+      "snapshot": {
+        "type": "linked-list",
+        "nodes": [
+          {
+            "id": 0,
+            "val": 2,
+            "next": 1
+          },
+          {
+            "id": 1,
+            "val": 1,
+            "next": null
+          }
+        ],
+        "current": 0
+      },
+      "statistics": {
+        "iterations_so_far": 2
+      }
+    },
+    {
+      "id": 3,
+      "title": "Reverse pointer at node 3",
+      "timestamp": 3.5999983083456755e-05,
+      "variables": {
+        "current": 3,
+        "prev": 2
+      },
+      "decision": {
+        "condition": "next node is None",
+        "result": false,
+        "action": "Advance to next node"
+      },
+      "events": [
+        "Reverse pointer at node 3"
+      ],
+      "snapshot": {
+        "type": "linked-list",
+        "nodes": [
+          {
+            "id": 0,
+            "val": 3,
+            "next": 1
+          },
+          {
+            "id": 1,
+            "val": 2,
+            "next": 2
+          },
+          {
+            "id": 2,
+            "val": 1,
+            "next": null
+          }
+        ],
+        "current": 0
+      },
+      "statistics": {
+        "iterations_so_far": 3
+      }
+    },
+    {
+      "id": 4,
+      "title": "Reverse pointer at node 4",
+      "timestamp": 4.345798515714705e-05,
+      "variables": {
+        "current": 4,
+        "prev": 3
+      },
+      "decision": {
+        "condition": "next node is None",
+        "result": false,
+        "action": "Advance to next node"
+      },
+      "events": [
+        "Reverse pointer at node 4"
+      ],
+      "snapshot": {
+        "type": "linked-list",
+        "nodes": [
+          {
+            "id": 0,
+            "val": 4,
+            "next": 1
+          },
+          {
+            "id": 1,
+            "val": 3,
+            "next": 2
+          },
+          {
+            "id": 2,
+            "val": 2,
+            "next": 3
+          },
+          {
+            "id": 3,
+            "val": 1,
+            "next": null
+          }
+        ],
+        "current": 0
+      },
+      "statistics": {
+        "iterations_so_far": 4
+      }
+    },
+    {
+      "id": 5,
+      "title": "Reverse pointer at node 5",
+      "timestamp": 5.0624978030100465e-05,
+      "variables": {
+        "current": 5,
+        "prev": 4
+      },
+      "decision": {
+        "condition": "next node is None",
+        "result": true,
+        "action": "Finish reversal"
+      },
+      "events": [
+        "Reverse pointer at node 5"
+      ],
+      "snapshot": {
+        "type": "linked-list",
+        "nodes": [
+          {
+            "id": 0,
+            "val": 5,
+            "next": 1
+          },
+          {
+            "id": 1,
+            "val": 4,
+            "next": 2
+          },
+          {
+            "id": 2,
+            "val": 3,
+            "next": 3
+          },
+          {
+            "id": 3,
+            "val": 2,
+            "next": 4
+          },
+          {
+            "id": 4,
+            "val": 1,
+            "next": null
+          }
+        ],
+        "current": 0
+      },
+      "statistics": {
+        "iterations_so_far": 5
+      }
+    }
+  ],
+  "summary": {
+    "iterations": 5,
+    "skipped_iterations": 0,
+    "while_loops": 0,
+    "max_recursion_depth": 0,
+    "max_stack_size": 0,
+    "max_queue_size": 0,
+    "max_heap_size": 0,
+    "execution_time": 5.962498835287988e-05,
+    "answer": [
+      5,
+      4,
+      3,
+      2,
+      1
+    ]
+  }
+}

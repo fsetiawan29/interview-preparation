@@ -1,0 +1,200 @@
+{
+  "schema_version": "1.0.0",
+  "problem": "Valid Parentheses",
+  "metadata": {
+    "problem": "Valid Parentheses",
+    "difficulty": "Easy",
+    "language": "Python",
+    "algorithm": "Stack",
+    "time_complexity": "O(n)",
+    "space_complexity": "O(n)"
+  },
+  "input": {
+    "s": "{[()]}"
+  },
+  "steps": [
+    {
+      "id": 1,
+      "title": "Pushed '{'",
+      "timestamp": 4.708010237663984e-06,
+      "variables": {
+        "char": "{",
+        "stack": [
+          "{"
+        ]
+      },
+      "decision": null,
+      "events": [
+        "Pushed '{'"
+      ],
+      "snapshot": {
+        "type": "stack",
+        "values": [
+          "{"
+        ],
+        "highlights": [
+          0
+        ]
+      },
+      "statistics": {
+        "iterations_so_far": 1
+      }
+    },
+    {
+      "id": 2,
+      "title": "Pushed '['",
+      "timestamp": 1.575000351294875e-05,
+      "variables": {
+        "char": "[",
+        "stack": [
+          "{",
+          "["
+        ]
+      },
+      "decision": null,
+      "events": [
+        "Pushed '['"
+      ],
+      "snapshot": {
+        "type": "stack",
+        "values": [
+          "{",
+          "["
+        ],
+        "highlights": [
+          1
+        ]
+      },
+      "statistics": {
+        "iterations_so_far": 2
+      }
+    },
+    {
+      "id": 3,
+      "title": "Pushed '('",
+      "timestamp": 2.316600875928998e-05,
+      "variables": {
+        "char": "(",
+        "stack": [
+          "{",
+          "[",
+          "("
+        ]
+      },
+      "decision": null,
+      "events": [
+        "Pushed '('"
+      ],
+      "snapshot": {
+        "type": "stack",
+        "values": [
+          "{",
+          "[",
+          "("
+        ],
+        "highlights": [
+          2
+        ]
+      },
+      "statistics": {
+        "iterations_so_far": 3
+      }
+    },
+    {
+      "id": 4,
+      "title": "Popped '(' for ')'",
+      "timestamp": 3.087500226683915e-05,
+      "variables": {
+        "char": ")",
+        "stack": [
+          "{",
+          "["
+        ]
+      },
+      "decision": {
+        "condition": "top of stack == match for ')'",
+        "result": true,
+        "action": "Pop matching bracket"
+      },
+      "events": [
+        "Popped '(' for ')'"
+      ],
+      "snapshot": {
+        "type": "stack",
+        "values": [
+          "{",
+          "["
+        ],
+        "highlights": []
+      },
+      "statistics": {
+        "iterations_so_far": 4
+      }
+    },
+    {
+      "id": 5,
+      "title": "Popped '[' for ']'",
+      "timestamp": 3.7165998946875334e-05,
+      "variables": {
+        "char": "]",
+        "stack": [
+          "{"
+        ]
+      },
+      "decision": {
+        "condition": "top of stack == match for ']'",
+        "result": true,
+        "action": "Pop matching bracket"
+      },
+      "events": [
+        "Popped '[' for ']'"
+      ],
+      "snapshot": {
+        "type": "stack",
+        "values": [
+          "{"
+        ],
+        "highlights": []
+      },
+      "statistics": {
+        "iterations_so_far": 5
+      }
+    },
+    {
+      "id": 6,
+      "title": "Popped '{' for '}'",
+      "timestamp": 4.25000034738332e-05,
+      "variables": {
+        "char": "}",
+        "stack": []
+      },
+      "decision": {
+        "condition": "top of stack == match for '}'",
+        "result": true,
+        "action": "Pop matching bracket"
+      },
+      "events": [
+        "Popped '{' for '}'"
+      ],
+      "snapshot": {
+        "type": "stack",
+        "values": [],
+        "highlights": []
+      },
+      "statistics": {
+        "iterations_so_far": 6
+      }
+    }
+  ],
+  "summary": {
+    "iterations": 6,
+    "skipped_iterations": 0,
+    "while_loops": 0,
+    "max_recursion_depth": 0,
+    "max_stack_size": 3,
+    "max_queue_size": 0,
+    "max_heap_size": 0,
+    "execution_time": 4.579100641421974e-05,
+    "answer": true
+  }
+}
