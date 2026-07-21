@@ -6,6 +6,65 @@ explaining the pattern with a general shape/template, a `PROGRESS.md`
 tracking what's done vs. queued, and per-problem subfolders under
 `easy/medium/hard`.
 
+## Roadmap
+
+The order below is the intended learning path — each pattern builds on
+intuition from the ones above it.
+
+```
+Arrays & Hashing
+        │
+        ▼
+Two Pointers
+        │
+        ▼
+Sliding Window
+        │
+        ▼
+Stack
+        │
+        ▼
+Binary Search
+        │
+        ▼
+Linked List
+        │
+        ▼
+Trees
+        │
+        ▼
+Heap / Priority Queue
+        │
+        ▼
+Backtracking
+        │
+        ▼
+Graphs
+        │
+        ▼
+Intervals
+        │
+        ▼
+Greedy
+        │
+        ▼
+Dynamic Programming
+```
+
+- [x] Arrays & Hashing — [arrays-hashing](./arrays-hashing)
+- [x] Two Pointers — [two-pointers](./two-pointers)
+- [ ] Sliding Window
+- [ ] Stack
+- [ ] Binary Search
+- [ ] Linked List
+- [ ] Trees — early traversal problems started in [dfs](./dfs)
+- [ ] Heap / Priority Queue
+- [ ] Backtracking — early problems started in [dfs](./dfs)
+- [ ] Graphs — early problems started in [dfs](./dfs)
+- [ ] Intervals
+- [ ] Greedy
+- [ ] Dynamic Programming
+
 ## Patterns
 
 - [arrays-hashing](./arrays-hashing) — hash sets/maps for `O(1)` membership,
