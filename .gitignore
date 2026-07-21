@@ -6,3 +6,4 @@ __pycache__/
 *.pyc
 solution-tracer/.venv/
 solution-tracer/*.egg-info/
+.DS_Store
