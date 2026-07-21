@@ -17,23 +17,23 @@
 | Container With Most Water | Medium | Greedy + opposite pointers | DONE |
 | 3Sum | Medium | Sort + two pointers | DONE |
 | 4Sum (Optional) | Medium | Extension of 3Sum | DONE |
-| Sort Colors | Medium | Dutch National Flag (three pointers) | |
+| Sort Colors | Medium | Dutch National Flag (three pointers) | DONE |
 | Trapping Rain Water | Hard | Advanced two pointers | |
 
 ## Level 1 – Basic Two Pointers (Easy)
 
 These teach the fundamental pointer movements.
 
-- [x] Valid Palindrome
-- [x] Reverse String
-- [x] Reverse Vowels of a String
-- [x] Merge Strings Alternately
-- [x] Move Zeroes
-- [x] Remove Element
-- [x] Remove Duplicates from Sorted Array
-- [ ] Remove Duplicates from Sorted List
-- [x] Is Subsequence
-- [x] Squares of a Sorted Array
+- [x] Valid Palindrome (Easy)
+- [x] Reverse String (Easy)
+- [x] Reverse Vowels of a String (Easy)
+- [x] Merge Strings Alternately (Easy)
+- [x] Move Zeroes (Easy)
+- [x] Remove Element (Easy)
+- [x] Remove Duplicates from Sorted Array (Easy)
+- [ ] Remove Duplicates from Sorted List (Easy)
+- [x] Is Subsequence (Easy)
+- [x] Squares of a Sorted Array (Easy)
 
 **Patterns learned:** opposite pointers, fast & slow pointers, in-place modification.
 
@@ -41,13 +41,13 @@ These teach the fundamental pointer movements.
 
 The classic interview pattern.
 
-- [ ] Two Sum II - Input Array Is Sorted
-- [x] 3Sum
-- [ ] 3Sum Closest
-- [x] 4Sum
-- [ ] Two Sum Less Than K
-- [ ] Count Pairs Whose Sum is Less than Target
-- [ ] Valid Triangle Number
+- [ ] Two Sum II - Input Array Is Sorted (Medium)
+- [x] 3Sum (Medium)
+- [ ] 3Sum Closest (Medium)
+- [x] 4Sum (Medium)
+- [ ] Two Sum Less Than K (Easy)
+- [ ] Count Pairs Whose Sum is Less than Target (Easy)
+- [ ] Valid Triangle Number (Medium)
 
 **Patterns learned:** sort first, left/right pointers, skip duplicates.
 
@@ -55,12 +55,12 @@ The classic interview pattern.
 
 Very common in interviews.
 
-- [ ] Backspace String Compare
-- [ ] One Edit Distance
-- [ ] Append Characters to String to Make Subsequence
-- [ ] Compare Version Numbers
-- [ ] Valid Word Abbreviation
-- [ ] Sentence Similarity III
+- [ ] Backspace String Compare (Easy)
+- [ ] One Edit Distance (Medium)
+- [ ] Append Characters to String to Make Subsequence (Medium)
+- [ ] Compare Version Numbers (Medium)
+- [ ] Valid Word Abbreviation (Easy)
+- [ ] Sentence Similarity III (Medium)
 
 **Patterns learned:** traverse two strings, ignore characters, compare efficiently.
 
@@ -68,11 +68,11 @@ Very common in interviews.
 
 These are asked surprisingly often.
 
-- [ ] Sort Colors
-- [ ] Partition Array According to Given Pivot
-- [ ] Duplicate Zeros
-- [ ] Wiggle Sort
-- [ ] Merge Sorted Array
+- [x] Sort Colors (Medium)
+- [ ] Partition Array According to Given Pivot (Medium)
+- [ ] Duplicate Zeros (Easy)
+- [ ] Wiggle Sort (Medium)
+- [ ] Merge Sorted Array (Easy)
 
 **Patterns learned:** three pointers, partitioning, stable rearrangement.
 
@@ -80,11 +80,11 @@ These are asked surprisingly often.
 
 These require deciding which pointer to move.
 
-- [x] Container With Most Water
-- [ ] Trapping Rain Water
-- [ ] Boats to Save People
-- [ ] Bag of Tokens
-- [ ] Rescue Boats
+- [x] Container With Most Water (Medium)
+- [ ] Trapping Rain Water (Hard)
+- [ ] Boats to Save People (Medium)
+- [ ] Bag of Tokens (Medium)
+- [ ] Rescue Boats (Medium)
 
 **Patterns learned:** greedy decisions, area optimization, pairing.
 
@@ -92,22 +92,22 @@ These require deciding which pointer to move.
 
 Fast & slow pointers on linked lists.
 
-- [ ] Linked List Cycle
-- [ ] Linked List Cycle II
-- [ ] Middle of the Linked List
-- [ ] Remove Nth Node From End of List
-- [ ] Reorder List
-- [ ] Palindrome Linked List
+- [ ] Linked List Cycle (Easy)
+- [ ] Linked List Cycle II (Medium)
+- [ ] Middle of the Linked List (Easy)
+- [ ] Remove Nth Node From End of List (Medium)
+- [ ] Reorder List (Medium)
+- [ ] Palindrome Linked List (Easy)
 
 **Patterns learned:** Floyd's cycle detection, find middle, reverse second half.
 
 ## Level 7 – Hard Interview Problems
 
-- [ ] Trapping Rain Water
-- [ ] Shortest Unsorted Continuous Subarray
-- [ ] Next Permutation
-- [ ] Dutch National Flag (Sort Colors)
-- [ ] First Missing Positive
-- [ ] Smallest Difference
-- [ ] Minimum Window Subsequence
-- [ ] Minimum Adjacent Swaps for K Consecutive Ones
+- [ ] Trapping Rain Water (Hard)
+- [ ] Shortest Unsorted Continuous Subarray (Medium)
+- [ ] Next Permutation (Medium)
+- [x] Dutch National Flag (Sort Colors) (Medium)
+- [ ] First Missing Positive (Hard)
+- [ ] Smallest Difference (Medium)
+- [ ] Minimum Window Subsequence (Hard)
+- [ ] Minimum Adjacent Swaps for K Consecutive Ones (Hard)

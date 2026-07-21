@@ -2,62 +2,60 @@
 
 ## Level 2: Frequency Counting
 
-| Problem | Concepts | Status |
-|---|---|---|
-| Group Anagrams | Frequency Signature | DONE |
-| Top K Frequent Elements | Frequency Map | DONE |
-| Sort Characters By Frequency | Frequency + Sorting | DONE |
-| Find All Anagrams in a String | Frequency Window | |
-| Ransom Note | Character Count | |
-| First Unique Character in a String | Frequency Count | |
-| Determine if Two Strings Are Close | Frequency Comparison | |
-| Custom Sort String | Character Mapping | |
+| Problem | Concepts | Difficulty | Status |
+|---|---|---|---|
+| Group Anagrams | Frequency Signature | Medium | DONE |
+| Top K Frequent Elements | Frequency Map | Medium | DONE |
+| Sort Characters By Frequency | Frequency + Sorting | Medium | DONE |
+| Find All Anagrams in a String | Frequency Window | Medium | |
+| Ransom Note | Character Count | Easy | |
+| First Unique Character in a String | Frequency Count | Easy | Done |
+| Determine if Two Strings Are Close | Frequency Comparison | Medium | |
+| Custom Sort String | Character Mapping | Medium | |
 
 - [x] Group Anagrams
 - [x] Top K Frequent Elements
 - [x] Sort Characters By Frequency
 - [ ] Find All Anagrams in a String
 - [ ] Ransom Note
-- [ ] First Unique Character in a String
+- [x] First Unique Character in a String
 - [ ] Determine if Two Strings Are Close
 - [ ] Custom Sort String
 
 ## Level 3: String Hashing & Mapping
 
-| Problem | Concepts | Status |
-|---|---|---|
-| Longest Palindrome | Character Counts | |
-| Valid Palindrome | String Cleaning | |
-| Is Subsequence | Character Matching | |
-| Buddy Strings | Character Mapping | |
-| Bulls and Cows | Multiple Frequency Maps | |
-| Encode and Decode TinyURL | Hash Map Design | |
-| Roman to Integer | Character Mapping | |
-| Integer to Roman | Mapping Rules | |
+| Problem | Concepts | Difficulty | Status |
+|---|---|---|---|
+| Longest Palindrome | Character Counts | Easy | Done |
+| Valid Palindrome | String Cleaning | Easy | Done |
+| Is Subsequence | Character Matching | Easy | Done |
+| Buddy Strings | Character Mapping | Easy | |
+| Bulls and Cows | Multiple Frequency Maps | Medium | |
+| Encode and Decode TinyURL | Hash Map Design | Medium | |
+| Roman to Integer | Character Mapping | Easy | |
+| Integer to Roman | Mapping Rules | Medium | |
 
-- [ ] Longest Palindrome
-- [ ] Valid Palindrome
-- [ ] Is Subsequence
+- [x] Longest Palindrome
+- [x] Valid Palindrome
+- [x] Is Subsequence
 - [ ] Buddy Strings
 - [ ] Bulls and Cows
 - [ ] Encode and Decode TinyURL
 - [ ] Roman to Integer
 - [ ] Integer to Roman
 
-> Note: Valid Palindrome and Is Subsequence are also tracked under [two-pointers](../two-pointers/PROGRESS.md) and are already DONE there.
-
 ## Level 4: Sliding Window + Hash Map
 
-| Problem | Concepts | Status |
-|---|---|---|
-| Longest Substring Without Repeating Characters | Hash Set | |
-| Longest Repeating Character Replacement | Frequency Window | |
-| Minimum Window Substring | Frequency Window | |
-| Permutation in String | Sliding Window | |
-| Find All Anagrams in a String | Sliding Window | |
-| Subarray Sum Equals K | Prefix Sum + Hash Map | |
-| Fruit Into Baskets | Hash Map | |
-| Maximum Erasure Value | Hash Set | |
+| Problem | Concepts | Difficulty | Status |
+|---|---|---|---|
+| Longest Substring Without Repeating Characters | Hash Set | Medium | |
+| Longest Repeating Character Replacement | Frequency Window | Medium | |
+| Minimum Window Substring | Frequency Window | Hard | |
+| Permutation in String | Sliding Window | Medium | |
+| Find All Anagrams in a String | Sliding Window | Medium | |
+| Subarray Sum Equals K | Prefix Sum + Hash Map | Medium | |
+| Fruit Into Baskets | Hash Map | Medium | |
+| Maximum Erasure Value | Hash Set | Medium | |
 
 - [ ] Longest Substring Without Repeating Characters
 - [ ] Longest Repeating Character Replacement
@@ -70,13 +68,13 @@
 
 ## Level 5: Design Problems Using Hash Maps
 
-| Problem | Concepts | Status |
-|---|---|---|
-| LRU Cache | Hash Map + Linked List | |
-| Insert Delete GetRandom O(1) | Hash Map + Array | |
-| Time Based Key Value Store | Hash Map | |
-| Design HashMap | Data Structure | |
-| Design HashSet | Data Structure | |
+| Problem | Concepts | Difficulty | Status |
+|---|---|---|---|
+| LRU Cache | Hash Map + Linked List | Medium | |
+| Insert Delete GetRandom O(1) | Hash Map + Array | Medium | |
+| Time Based Key Value Store | Hash Map | Medium | |
+| Design HashMap | Data Structure | Easy | |
+| Design HashSet | Data Structure | Easy | |
 
 - [ ] LRU Cache
 - [ ] Insert Delete GetRandom O(1)
@@ -88,23 +86,23 @@
 
 If I had to choose just 20, I'd pick:
 
-- [x] Two Sum
-- [x] Contains Duplicate
-- [x] Valid Anagram
-- [x] Group Anagrams
-- [x] Top K Frequent Elements
-- [x] Longest Consecutive Sequence
-- [ ] Ransom Note
-- [x] Isomorphic Strings
-- [x] Word Pattern
-- [x] Happy Number
-- [ ] First Unique Character in a String
-- [ ] Longest Palindrome
-- [ ] Roman to Integer
-- [ ] Find All Anagrams in a String
-- [ ] Longest Substring Without Repeating Characters
-- [ ] Minimum Window Substring
-- [ ] Subarray Sum Equals K
-- [ ] LRU Cache
-- [ ] Insert Delete GetRandom O(1)
-- [ ] Time Based Key Value Store
+- [x] Two Sum (Easy)
+- [x] Contains Duplicate (Easy)
+- [x] Valid Anagram (Easy)
+- [x] Group Anagrams (Medium)
+- [x] Top K Frequent Elements (Medium)
+- [x] Longest Consecutive Sequence (Medium)
+- [ ] Ransom Note (Easy)
+- [x] Isomorphic Strings (Easy)
+- [x] Word Pattern (Easy)
+- [x] Happy Number (Easy)
+- [x] First Unique Character in a String (Easy)
+- [x] Longest Palindrome (Easy)
+- [ ] Roman to Integer (Easy)
+- [ ] Find All Anagrams in a String (Medium)
+- [ ] Longest Substring Without Repeating Characters (Medium)
+- [ ] Minimum Window Substring (Hard)
+- [ ] Subarray Sum Equals K (Medium)
+- [ ] LRU Cache (Medium)
+- [ ] Insert Delete GetRandom O(1) (Medium)
+- [ ] Time Based Key Value Store (Medium)
