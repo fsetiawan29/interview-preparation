@@ -1,11 +1,19 @@
-import { Sparkles } from "lucide-react";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Sparkles, X } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardAction, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
-export function EventPanel({ events }: { events: string[] }) {
+export function EventPanel({ events, onClose }: { events: string[]; onClose?: () => void }) {
   return (
     <Card className="gap-0 py-0">
       <CardHeader className="border-b py-3">
         <CardTitle>Events</CardTitle>
+        {onClose && (
+          <CardAction>
+            <Button variant="ghost" size="icon-xs" onClick={onClose} aria-label="Hide events panel">
+              <X />
+            </Button>
+          </CardAction>
+        )}
       </CardHeader>
       <CardContent className="p-3">
         {events.length === 0 ? (

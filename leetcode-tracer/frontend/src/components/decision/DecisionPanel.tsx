@@ -1,13 +1,21 @@
 import { Check, X } from "lucide-react";
 import type { Decision } from "@/types/trace";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardAction, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
-export function DecisionPanel({ decision }: { decision: Decision | null }) {
+export function DecisionPanel({ decision, onClose }: { decision: Decision | null; onClose?: () => void }) {
   return (
     <Card className="flex h-full flex-col gap-0 py-0">
       <CardHeader className="border-b py-3">
         <CardTitle>Decision</CardTitle>
+        {onClose && (
+          <CardAction>
+            <Button variant="ghost" size="icon-xs" onClick={onClose} aria-label="Hide decision panel">
+              <X />
+            </Button>
+          </CardAction>
+        )}
       </CardHeader>
       <CardContent className="flex-1 overflow-y-auto p-3">
         {!decision ? (
