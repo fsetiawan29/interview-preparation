@@ -104,41 +104,48 @@ for s in strs:
 
 ## Problems in this folder
 
-- [contains-duplicate](./contains-duplicate) — hash set membership check,
-  the simplest form of "have I seen this before?"
-- [valid-anagram](./valid-anagram) — frequency counter over one string,
+### Easy
+
+- [contains-duplicate](./easy/contains-duplicate) — hash set membership
+  check, the simplest form of "have I seen this before?"
+- [valid-anagram](./easy/valid-anagram) — frequency counter over one string,
   decremented by the other; any nonzero count means it's not an anagram.
-- [two-sum](./two-sum) — hash map complement lookup, the canonical
+- [two-sum](./easy/two-sum) — hash map complement lookup, the canonical
   check-then-store problem.
-- [group-anagrams](./group-anagrams) — grouping by a derived key
-  (sorted string) instead of a single check/store.
-- [top-k-frequent-elements](./top-k-frequent-elements) — frequency counter
-  feeding a bucket sort (index = count) to avoid an `O(n log n)` sort.
-- [product-of-array-except-self](./product-of-array-except-self) — prefix/
-  suffix running products instead of hashing; two passes, `O(1)` extra space
-  (excluding the output array).
-- [valid-sudoku](./valid-sudoku) — one hash set per row, column, and 3x3 box;
-  check-then-store against all three before moving to the next cell.
-- [longest-consecutive-sequence](./longest-consecutive-sequence) — hash set
-  membership to detect sequence starts (`n-1` not present) in `O(n)`, then
-  walk each streak forward.
-- [best-time-to-buy-and-sell-stock](./best-time-to-buy-and-sell-stock) —
+- [best-time-to-buy-and-sell-stock](./easy/best-time-to-buy-and-sell-stock) —
   not hashing, but the same single-pass "running state" shape: track the
   minimum price seen so far and the best profit against it.
-- [intersection-of-two-arrays](./intersection-of-two-arrays) — hash set
+- [intersection-of-two-arrays](./easy/intersection-of-two-arrays) — hash set
   membership check between two arrays; distinct values only.
-- [intersection-of-two-arrays-2](./intersection-of-two-arrays-2) —
+- [intersection-of-two-arrays-2](./easy/intersection-of-two-arrays-2) —
   frequency counter instead of a set, so each shared value appears as many
   times as it's shared.
-- [happy-number](./happy-number) — hash set to detect a cycle in the
+- [happy-number](./easy/happy-number) — hash set to detect a cycle in the
   digit-square-sum sequence instead of a fixed iteration cap.
-- [isomorphic-strings](./isomorphic-strings) — two hash maps (one per
+- [isomorphic-strings](./easy/isomorphic-strings) — two hash maps (one per
   direction) to enforce a strict one-to-one character mapping.
-- [word-pattern](./word-pattern) — same one-to-one mapping idea as
+- [word-pattern](./easy/word-pattern) — same one-to-one mapping idea as
   isomorphic-strings, but mapping pattern characters to whole words.
-- [find-the-difference](./find-the-difference) — frequency counter over
+- [find-the-difference](./easy/find-the-difference) — frequency counter over
   the shorter string, decremented by the longer; the leftover char is the
   extra letter.
-- [majority-element](./majority-element) — frequency counter (`O(n)`
+- [majority-element](./easy/majority-element) — frequency counter (`O(n)`
   space) vs. Boyer-Moore voting (`O(1)` space): a majority element cancels
   out every other value pairwise, so the surviving candidate must be it.
+
+### Medium
+
+- [group-anagrams](./medium/group-anagrams) — grouping by a derived key
+  (sorted string) instead of a single check/store.
+- [top-k-frequent-elements](./medium/top-k-frequent-elements) — frequency
+  counter feeding a bucket sort (index = count) to avoid an `O(n log n)`
+  sort.
+- [product-of-array-except-self](./medium/product-of-array-except-self) —
+  prefix/suffix running products instead of hashing; two passes, `O(1)`
+  extra space (excluding the output array).
+- [valid-sudoku](./medium/valid-sudoku) — one hash set per row, column, and
+  3x3 box; check-then-store against all three before moving to the next
+  cell.
+- [longest-consecutive-sequence](./medium/longest-consecutive-sequence) —
+  hash set membership to detect sequence starts (`n-1` not present) in
+  `O(n)`, then walk each streak forward.
