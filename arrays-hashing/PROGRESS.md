@@ -8,7 +8,7 @@
 | Top K Frequent Elements | Frequency Map | Medium | DONE |
 | Sort Characters By Frequency | Frequency + Sorting | Medium | DONE |
 | Find All Anagrams in a String | Frequency Window | Medium | |
-| Ransom Note | Character Count | Easy | |
+| Ransom Note | Character Count | Easy | Done |
 | First Unique Character in a String | Frequency Count | Easy | Done |
 | Determine if Two Strings Are Close | Frequency Comparison | Medium | |
 | Custom Sort String | Character Mapping | Medium | |
@@ -17,7 +17,7 @@
 - [x] Top K Frequent Elements
 - [x] Sort Characters By Frequency
 - [ ] Find All Anagrams in a String
-- [ ] Ransom Note
+- [x] Ransom Note
 - [x] First Unique Character in a String
 - [ ] Determine if Two Strings Are Close
 - [ ] Custom Sort String
@@ -29,7 +29,7 @@
 | Longest Palindrome | Character Counts | Easy | Done |
 | Valid Palindrome | String Cleaning | Easy | Done |
 | Is Subsequence | Character Matching | Easy | Done |
-| Buddy Strings | Character Mapping | Easy | |
+| Buddy Strings | Character Mapping | Easy | Done |
 | Bulls and Cows | Multiple Frequency Maps | Medium | |
 | Encode and Decode TinyURL | Hash Map Design | Medium | |
 | Roman to Integer | Character Mapping | Easy | |
@@ -38,7 +38,7 @@
 - [x] Longest Palindrome
 - [x] Valid Palindrome
 - [x] Is Subsequence
-- [ ] Buddy Strings
+- [x] Buddy Strings
 - [ ] Bulls and Cows
 - [ ] Encode and Decode TinyURL
 - [ ] Roman to Integer
