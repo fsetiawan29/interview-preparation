@@ -53,7 +53,7 @@ Dynamic Programming
 
 - [x] Arrays & Hashing — [arrays-hashing](./arrays-hashing)
 - [x] Two Pointers — [two-pointers](./two-pointers)
-- [ ] Sliding Window
+- [x] Sliding Window — [sliding-window](./sliding-window)
 - [ ] Stack
 - [ ] Binary Search
 - [ ] Linked List
@@ -71,6 +71,9 @@ Dynamic Programming
   complement lookups, frequency counting, and grouping.
 - [two-pointers](./two-pointers) — opposite-ends or same-direction index
   pairs to avoid nested loops or extra space.
+- [sliding-window](./sliding-window) — fixed- or variable-size window over a
+  contiguous subarray/substring, updated incrementally instead of
+  recomputed from scratch.
 - [dfs](./dfs) — depth-first traversal and backtracking on trees, grids, and
   graphs.
 
@@ -87,6 +90,10 @@ interview-preparation/
 │   ├── PROGRESS.md      # tracker
 │   └── easy|medium|hard/<problem-name>/
 ├── two-pointers/
+│   ├── README.md
+│   ├── PROGRESS.md
+│   └── easy|medium|hard/<problem-name>/
+├── sliding-window/
 │   ├── README.md
 │   ├── PROGRESS.md
 │   └── easy|medium|hard/<problem-name>/

@@ -24,7 +24,7 @@ Use this pattern when the problem is about:
 ## The general shape
 
 **Fixed-size window** — slide by one, don't recompute:
-*(used by: [maximum-average-subarray-1](./easy/maximum-average-subarray-1), [contains-duplicate-2](./easy/contains-duplicate-2), [max-number-of-vowels](./medium/max-number-of-vowels), [number-of-sub-array-size-k](./medium/number-of-sub-array-size-k))*
+*(used by: [maximum-average-subarray-1](./easy/maximum-average-subarray-1), [contains-duplicate-2](./easy/contains-duplicate-2), [max-number-of-vowels](./medium/max-number-of-vowels), [number-of-sub-array-size-k](./medium/number-of-sub-array-size-k), [max-sum-of-distinct](./medium/max-sum-of-distinct))*
 
 ```python
 def solve(nums, k):
@@ -67,7 +67,7 @@ def solve(s):
 ## Common sub-patterns
 
 **Fixed window** (size k, slide by one)
-*(problems: [maximum-average-subarray-1](./easy/maximum-average-subarray-1), [contains-duplicate-2](./easy/contains-duplicate-2), [max-number-of-vowels](./medium/max-number-of-vowels), [number-of-sub-array-size-k](./medium/number-of-sub-array-size-k))*
+*(problems: [maximum-average-subarray-1](./easy/maximum-average-subarray-1), [contains-duplicate-2](./easy/contains-duplicate-2), [max-number-of-vowels](./medium/max-number-of-vowels), [number-of-sub-array-size-k](./medium/number-of-sub-array-size-k), [max-sum-of-distinct](./medium/max-sum-of-distinct))*
 ```python
 window_sum = sum(nums[:k])
 for right in range(k, len(nums)):
@@ -166,3 +166,7 @@ for i, n in enumerate(nums):
   fixed-size window counting how many windows meet a threshold; compare
   `window_sum >= k * threshold` instead of dividing every window to avoid
   floating-point division per step.
+- [max-sum-of-distinct](./medium/max-sum-of-distinct) — fixed-size window
+  tracking both a running sum and a frequency map; the window is
+  all-distinct exactly when `len(freq) == k`, so no separate set check is
+  needed.
