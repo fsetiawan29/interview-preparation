@@ -138,11 +138,15 @@ for n in nums_set:
 ### Easy
 
 - [contains-duplicate](./easy/contains-duplicate) — hash set membership
-  check, the simplest form of "have I seen this before?"
+  check, the simplest form of "have I seen this before?"; sliding-window's
+  [contains-duplicate-2](../sliding-window/easy/contains-duplicate-2) is the
+  same check bounded to a window of distance `k`.
 - [valid-anagram](./easy/valid-anagram) — frequency counter over one string,
   decremented by the other; any nonzero count means it's not an anagram.
 - [two-sum](./easy/two-sum) — hash map complement lookup, the canonical
-  check-then-store problem.
+  check-then-store problem; two-pointers'
+  [two-sum-ii](../two-pointers/medium/two-sum-ii) is the same problem on a
+  sorted array, trading the hash map for `O(1)` space.
 - [best-time-to-buy-and-sell-stock](./easy/best-time-to-buy-and-sell-stock) —
   not hashing, but the same single-pass "running state" shape: track the
   minimum price seen so far and the best profit against it.
@@ -183,7 +187,9 @@ for n in nums_set:
   (sorted string) instead of a single check/store.
 - [top-k-frequent-elements](./medium/top-k-frequent-elements) — frequency
   counter feeding a bucket sort (index = count) to avoid an `O(n log n)`
-  sort.
+  sort; two-pointers'
+  [sort-characters-by-frequency](../two-pointers/medium/sort-characters-by-frequency)
+  reuses the same frequency-bucket shape.
 - [product-of-array-except-self](./medium/product-of-array-except-self) —
   prefix/suffix running products instead of hashing; two passes, `O(1)`
   extra space (excluding the output array).

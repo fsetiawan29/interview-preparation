@@ -217,8 +217,8 @@ while mid <= high:
 ### Medium
 
 - [two-sum-ii](./medium/two-sum-ii) — opposite-ends pointers narrowing based
-  on comparison to target; the sorted-array counterpart to the hash-map
-  two-sum.
+  on comparison to target; the sorted-array counterpart to arrays-hashing's
+  hash-map [two-sum](../arrays-hashing/easy/two-sum).
 - [container-with-most-water](./medium/container-with-most-water) —
   opposite-ends pointers with a greedy narrow: always move the shorter
   wall, since moving the taller one can only shrink width without ever
@@ -234,4 +234,5 @@ while mid <= high:
   doesn't advance `mid`, since the swapped-in value is still unchecked.
 - [sort-characters-by-frequency](./medium/sort-characters-by-frequency) —
   not two pointers, but the same "frequency count feeding a bucket" shape
-  as arrays-hashing's top-k-frequent-elements.
+  as arrays-hashing's
+  [top-k-frequent-elements](../arrays-hashing/medium/top-k-frequent-elements).

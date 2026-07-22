@@ -155,7 +155,10 @@ for i, n in enumerate(nums):
 - [contains-duplicate-2](./easy/contains-duplicate-2) — fixed-size window
   (hash set or hash map) checking for a duplicate within distance `k`;
   clamp the initial window when `k > len(nums)`, and delete map keys once
-  their count hits `0` so stale zero-count entries don't linger.
+  their count hits `0` so stale zero-count entries don't linger. The
+  sliding-window sequel to arrays-hashing's
+  [contains-duplicate](../arrays-hashing/easy/contains-duplicate), which
+  checks for a duplicate anywhere in the array with no distance limit.
 
 ### Medium
 
