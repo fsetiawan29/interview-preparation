@@ -45,8 +45,8 @@ The classic interview pattern.
 - [x] 3Sum (Medium)
 - [ ] 3Sum Closest (Medium)
 - [x] 4Sum (Medium)
-- [ ] Two Sum Less Than K (Easy)
-- [ ] Count Pairs Whose Sum is Less than Target (Easy)
+- [x] Two Sum Less Than K (Easy)
+- [x] Count Pairs Whose Sum is Less than Target (Easy)
 - [ ] Valid Triangle Number (Medium)
 
 **Patterns learned:** sort first, left/right pointers, skip duplicates.

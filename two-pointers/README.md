@@ -66,7 +66,7 @@ while l < r:
 ```
 
 **Opposite ends — sorted two-sum** (narrow based on comparison to target)
-*(problems: [two-sum-ii](./medium/two-sum-ii))*
+*(problems: [two-sum-ii](./medium/two-sum-ii), [two-sum-less-than-k](./easy/two-sum-less-than-k), [count-pairs-whose-sum-less-than-target](./easy/count-pairs-whose-sum-less-than-target))*
 ```python
 left, right = 0, len(nums) - 1
 while left < right:
@@ -204,6 +204,15 @@ while mid <= high:
   same-direction pointers advancing through two strings in lockstep.
 - [is-subsequence](./easy/is-subsequence) — same-direction pointers where
   one advances every step and the other only on a match.
+- [two-sum-less-than-k](./easy/two-sum-less-than-k) — sort first, then
+  opposite-ends pointers narrowing based on comparison to `k`; unlike
+  two-sum-ii, keeps searching after a valid pair to maximize the sum instead
+  of returning immediately.
+- [count-pairs-whose-sum-less-than-target](./easy/count-pairs-whose-sum-less-than-target) —
+  sort first, then opposite-ends pointers; a valid pair at `(left, right)`
+  means every index between them also pairs validly with `left`, so add
+  `right - left` to the count in one shot instead of counting pairs
+  individually.
 
 ### Medium
 
