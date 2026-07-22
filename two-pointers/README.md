@@ -20,6 +20,7 @@ Use this pattern when the problem is about:
 ## The general shape
 
 **Opposite-ends pointers** — converge toward the middle:
+*(used by: [reverse-string](./easy/reverse-string), [valid-palindrome](./easy/valid-palindrome), [reverse-vowels-of-a-string](./easy/reverse-vowels-of-a-string), [two-sum-ii](./medium/two-sum-ii), [container-with-most-water](./medium/container-with-most-water), [3-sum](./medium/3-sum), [4sum](./medium/4sum))*
 
 ```python
 def solve(s):
@@ -38,6 +39,7 @@ def solve(s):
 ```
 
 **Read/write pointers** — same direction, different speeds:
+*(used by: [move-zeroes](./easy/move-zeroes), [remove-element](./easy/remove-element), [remove-duplicates-from-sorted-array](./easy/remove-duplicates-from-sorted-array), [squares-of-sorted-array](./easy/squares-of-sorted-array), [sort-colors](./medium/sort-colors))*
 
 ```python
 def solve(nums):
@@ -53,7 +55,8 @@ def solve(nums):
 
 ## Common sub-patterns
 
-**Opposite ends — converge and compare** (palindrome, reverse in place)
+**Opposite ends — converge and compare**
+*(problems: [reverse-string](./easy/reverse-string), [valid-palindrome](./easy/valid-palindrome), [reverse-vowels-of-a-string](./easy/reverse-vowels-of-a-string))*
 ```python
 l, r = 0, len(s) - 1
 while l < r:
@@ -63,6 +66,7 @@ while l < r:
 ```
 
 **Opposite ends — sorted two-sum** (narrow based on comparison to target)
+*(problems: [two-sum-ii](./medium/two-sum-ii))*
 ```python
 left, right = 0, len(nums) - 1
 while left < right:
@@ -75,7 +79,8 @@ while left < right:
         left += 1
 ```
 
-**Read/write — filter in place** (remove element, remove duplicates)
+**Read/write — filter in place**
+*(problems: [remove-element](./easy/remove-element), [remove-duplicates-from-sorted-array](./easy/remove-duplicates-from-sorted-array), [move-zeroes](./easy/move-zeroes))*
 ```python
 j = 0
 for i in range(len(nums)):
@@ -85,6 +90,7 @@ for i in range(len(nums)):
 ```
 
 **Same-direction — merge two sequences in lockstep**
+*(problems: [merge-strings-alternately](./easy/merge-strings-alternately), [is-subsequence](./easy/is-subsequence))*
 ```python
 i = j = 0
 res = []
@@ -93,6 +99,54 @@ while i < len(a) or j < len(b):
         res.append(a[i]); i += 1
     if j < len(b):
         res.append(b[j]); j += 1
+```
+
+**Opposite ends — greedy narrowing** (discard the shorter wall)
+*(problems: [container-with-most-water](./medium/container-with-most-water))*
+```python
+left, right = 0, len(height) - 1
+max_area = 0
+while left < right:
+    max_area = max(max_area, (right - left) * min(height[left], height[right]))
+    if height[left] < height[right]:
+        left += 1
+    else:
+        right -= 1
+```
+
+**Sort + fix index(es) — k-sum family** (skip duplicates at every level)
+*(problems: [3-sum](./medium/3-sum), [4sum](./medium/4sum))*
+```python
+nums.sort()
+for i in range(len(nums) - 2):
+    if i > 0 and nums[i] == nums[i - 1]:
+        continue
+    left, right = i + 1, len(nums) - 1
+    while left < right:
+        total = nums[i] + nums[left] + nums[right]
+        if total == 0:
+            left += 1; right -= 1
+            while left < right and nums[left] == nums[left - 1]:
+                left += 1
+        elif total < 0:
+            left += 1
+        else:
+            right -= 1
+```
+
+**Three pointers — partition into three buckets** (Dutch National Flag)
+*(problems: [sort-colors](./medium/sort-colors))*
+```python
+low, mid, high = 0, 0, len(nums) - 1
+while mid <= high:
+    if nums[mid] == 0:
+        nums[low], nums[mid] = nums[mid], nums[low]
+        low += 1; mid += 1
+    elif nums[mid] == 1:
+        mid += 1
+    else:
+        nums[mid], nums[high] = nums[high], nums[mid]
+        high -= 1
 ```
 
 ## Complexity
@@ -117,6 +171,14 @@ while i < len(a) or j < len(b):
 - **Using a hash set for membership when the input is already sorted** —
   two pointers gives the same `O(n)` result with `O(1)` space instead of
   `O(n)`.
+- **Skipping duplicates against the wrong neighbor** — in `3-sum`/`4sum`,
+  the second fixed index must skip duplicates relative to the *current*
+  outer index (`j > i + 1`), not globally (`j > 0`); after moving
+  `left`/`right` past a match, compare against the value just left behind
+  (`nums[left - 1]`), not the value ahead.
+- **Advancing `mid` after a swap with `high`** in a three-way partition
+  (`sort-colors`) — the swapped-in value hasn't been checked yet, so only
+  swaps with `low` are safe to advance past.
 
 ## Problems in this folder
 
@@ -148,6 +210,19 @@ while i < len(a) or j < len(b):
 - [two-sum-ii](./medium/two-sum-ii) — opposite-ends pointers narrowing based
   on comparison to target; the sorted-array counterpart to the hash-map
   two-sum.
+- [container-with-most-water](./medium/container-with-most-water) —
+  opposite-ends pointers with a greedy narrow: always move the shorter
+  wall, since moving the taller one can only shrink width without ever
+  raising the limiting height.
+- [3-sum](./medium/3-sum) — sort first, fix one index, then opposite-ends
+  two-pointer on the rest; skip duplicates at the fixed index and at both
+  pointers after every match.
+- [4sum](./medium/4sum) — same shape as 3-sum with a second fixed index;
+  duplicate-skipping and loop bounds get one level trickier (skip the
+  second index only relative to the current outer index, not globally).
+- [sort-colors](./medium/sort-colors) — three pointers (`low`, `mid`,
+  `high`) partitioning into three buckets in one pass; swapping with `high`
+  doesn't advance `mid`, since the swapped-in value is still unchecked.
 - [sort-characters-by-frequency](./medium/sort-characters-by-frequency) —
   not two pointers, but the same "frequency count feeding a bucket" shape
   as arrays-hashing's top-k-frequent-elements.

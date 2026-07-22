@@ -19,6 +19,7 @@ Use this pattern when the problem is about:
 ## The general shape
 
 Almost every problem here is a variation of this skeleton:
+*(used by: [contains-duplicate](./easy/contains-duplicate), [two-sum](./easy/two-sum), [valid-anagram](./easy/valid-anagram), [intersection-of-two-arrays](./easy/intersection-of-two-arrays), [intersection-of-two-arrays-2](./easy/intersection-of-two-arrays-2), [happy-number](./easy/happy-number), [isomorphic-strings](./easy/isomorphic-strings), [word-pattern](./easy/word-pattern), [find-the-difference](./easy/find-the-difference), [first-unique-character-in-a-string](./easy/first-unique-character-in-a-string), [longest-palindrome](./easy/longest-palindrome), [majority-element](./easy/majority-element), [group-anagrams](./medium/group-anagrams), [top-k-frequent-elements](./medium/top-k-frequent-elements), [valid-sudoku](./medium/valid-sudoku), [longest-consecutive-sequence](./medium/longest-consecutive-sequence); not [best-time-to-buy-and-sell-stock](./easy/best-time-to-buy-and-sell-stock), [product-of-array-except-self](./medium/product-of-array-except-self), or [integer-to-roman](./medium/integer-to-roman) — those don't hash)*
 
 ```python
 def solve(nums):
@@ -50,6 +51,7 @@ Two steps, always in this order:
 ## Common sub-patterns
 
 **Hash Set — membership / duplicates**
+*(problems: [contains-duplicate](./easy/contains-duplicate), [intersection-of-two-arrays](./easy/intersection-of-two-arrays), [happy-number](./easy/happy-number), [valid-sudoku](./medium/valid-sudoku))*
 ```python
 seen = set()
 for n in nums:
@@ -60,6 +62,7 @@ return False
 ```
 
 **Hash Map — complement lookup** (two-sum style)
+*(problems: [two-sum](./easy/two-sum))*
 ```python
 seen = {}
 for i, num in enumerate(nums):
@@ -70,17 +73,45 @@ for i, num in enumerate(nums):
 ```
 
 **Hash Map — frequency counter**
+*(problems: [valid-anagram](./easy/valid-anagram), [intersection-of-two-arrays-2](./easy/intersection-of-two-arrays-2), [find-the-difference](./easy/find-the-difference), [first-unique-character-in-a-string](./easy/first-unique-character-in-a-string), [longest-palindrome](./easy/longest-palindrome), [majority-element](./easy/majority-element), [top-k-frequent-elements](./medium/top-k-frequent-elements))*
 ```python
 from collections import Counter
 counts = Counter(nums)  # or build manually with counts[n] = counts.get(n, 0) + 1
 ```
 
 **Hash Map — grouping by derived key** (group anagrams style)
+*(problems: [group-anagrams](./medium/group-anagrams))*
 ```python
 groups = {}
 for s in strs:
     key = "".join(sorted(s))  # or tuple(char counts), any canonical form
     groups.setdefault(key, []).append(s)
+```
+
+**Hash Map — two-way bijection check** (isomorphic mapping)
+*(problems: [isomorphic-strings](./easy/isomorphic-strings), [word-pattern](./easy/word-pattern))*
+```python
+forward, backward = {}, {}
+for a, b in zip(seq_a, seq_b):
+    if a in forward and forward[a] != b:
+        return False
+    if b in backward and backward[b] != a:
+        return False
+    forward[a] = b
+    backward[b] = a
+```
+
+**Hash Set membership to find run starts** (longest consecutive sequence)
+*(problems: [longest-consecutive-sequence](./medium/longest-consecutive-sequence))*
+```python
+nums_set = set(nums)
+best = 0
+for n in nums_set:
+    if n - 1 not in nums_set:  # only walk forward from a true start
+        length = 0
+        while n + length in nums_set:
+            length += 1
+        best = max(best, length)
 ```
 
 ## Complexity
@@ -132,6 +163,12 @@ for s in strs:
 - [majority-element](./easy/majority-element) — frequency counter (`O(n)`
   space) vs. Boyer-Moore voting (`O(1)` space): a majority element cancels
   out every other value pairwise, so the surviving candidate must be it.
+- [first-unique-character-in-a-string](./easy/first-unique-character-in-a-string) —
+  frequency counter built in one pass, then a second pass in original
+  order returns the first character with count `1`.
+- [longest-palindrome](./easy/longest-palindrome) — frequency counter;
+  even counts are used in full, odd counts contribute `count - 1`, plus a
+  single `+1` if any odd count existed, for a center character.
 
 ### Medium
 
@@ -149,3 +186,7 @@ for s in strs:
 - [longest-consecutive-sequence](./medium/longest-consecutive-sequence) —
   hash set membership to detect sequence starts (`n-1` not present) in
   `O(n)`, then walk each streak forward.
+- [integer-to-roman](./medium/integer-to-roman) — not hashing, but a fixed
+  descending `(value, symbol)` table (including subtractive forms like
+  `900/CM`) walked greedily instead of searching for the largest fitting
+  value on every step.

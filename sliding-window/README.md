@@ -24,6 +24,7 @@ Use this pattern when the problem is about:
 ## The general shape
 
 **Fixed-size window** — slide by one, don't recompute:
+*(used by: [maximum-average-subarray-1](./easy/maximum-average-subarray-1), [contains-duplicate-2](./easy/contains-duplicate-2), [max-number-of-vowels](./medium/max-number-of-vowels), [number-of-sub-array-size-k](./medium/number-of-sub-array-size-k))*
 
 ```python
 def solve(nums, k):
@@ -38,6 +39,7 @@ def solve(nums, k):
 ```
 
 **Variable-size window** — expand right, shrink left while invalid:
+*(no solutions yet)*
 
 ```python
 def solve(s):
@@ -65,6 +67,7 @@ def solve(s):
 ## Common sub-patterns
 
 **Fixed window** (size k, slide by one)
+*(problems: [maximum-average-subarray-1](./easy/maximum-average-subarray-1), [contains-duplicate-2](./easy/contains-duplicate-2), [max-number-of-vowels](./medium/max-number-of-vowels), [number-of-sub-array-size-k](./medium/number-of-sub-array-size-k))*
 ```python
 window_sum = sum(nums[:k])
 for right in range(k, len(nums)):
@@ -72,6 +75,7 @@ for right in range(k, len(nums)):
 ```
 
 **Variable window — expand until valid, then shrink** (minimum window)
+*(no solutions yet)*
 ```python
 left = 0
 for right in range(len(nums)):
@@ -83,6 +87,7 @@ for right in range(len(nums)):
 ```
 
 **Variable window — expand, shrink only when invalid** (maximum window / at most K)
+*(no solutions yet)*
 ```python
 left = 0
 count = {}
@@ -97,6 +102,7 @@ for right in range(len(s)):
 ```
 
 **Monotonic deque — window maximum/minimum**
+*(no solutions yet)*
 ```python
 from collections import deque
 
@@ -141,5 +147,22 @@ for i, n in enumerate(nums):
 
 ## Problems in this folder
 
-No solutions yet — see [PROGRESS.md](./PROGRESS.md) for the learning
-roadmap and recommended problem order.
+### Easy
+
+- [maximum-average-subarray-1](./easy/maximum-average-subarray-1) —
+  fixed-size window sliding by one: subtract the outgoing element, add the
+  incoming one, divide by `k` once at the end instead of every iteration.
+- [contains-duplicate-2](./easy/contains-duplicate-2) — fixed-size window
+  (hash set or hash map) checking for a duplicate within distance `k`;
+  clamp the initial window when `k > len(nums)`, and delete map keys once
+  their count hits `0` so stale zero-count entries don't linger.
+
+### Medium
+
+- [max-number-of-vowels](./medium/max-number-of-vowels) — same fixed-size
+  slide as maximum-average-subarray-1, but tracking a count (vowels
+  in/out of the window) instead of a sum.
+- [number-of-sub-array-size-k](./medium/number-of-sub-array-size-k) —
+  fixed-size window counting how many windows meet a threshold; compare
+  `window_sum >= k * threshold` instead of dividing every window to avoid
+  floating-point division per step.
