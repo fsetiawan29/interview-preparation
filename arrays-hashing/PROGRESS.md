@@ -37,8 +37,10 @@
 | Integer to Roman | Mapping Rules | Medium | |
 
 - [x] Longest Palindrome
-- [x] Valid Palindrome
-- [x] Is Subsequence
+- [x] Valid Palindrome — solved in two-pointers'
+      [valid-palindrome](../two-pointers/easy/valid-palindrome)
+- [x] Is Subsequence — solved in two-pointers'
+      [is-subsequence](../two-pointers/easy/is-subsequence)
 - [x] Buddy Strings
 - [ ] Bulls and Cows
 - [ ] Encode and Decode TinyURL
