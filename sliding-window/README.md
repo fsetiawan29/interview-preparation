@@ -24,7 +24,7 @@ Use this pattern when the problem is about:
 ## The general shape
 
 **Fixed-size window** — slide by one, don't recompute:
-*(used by: [maximum-average-subarray-1](./easy/maximum-average-subarray-1), [contains-duplicate-2](./easy/contains-duplicate-2), [max-number-of-vowels](./medium/max-number-of-vowels), [number-of-sub-array-size-k](./medium/number-of-sub-array-size-k), [max-sum-of-distinct](./medium/max-sum-of-distinct))*
+*(used by: [maximum-average-subarray-1](./easy/maximum-average-subarray-1), [contains-duplicate-2](./easy/contains-duplicate-2), [max-number-of-vowels](./medium/max-number-of-vowels), [number-of-sub-array-size-k](./medium/number-of-sub-array-size-k), [max-sum-of-distinct](./medium/max-sum-of-distinct), [find-all-anagrams-in-a-string](./medium/find-all-anagrams-in-a-string))*
 
 ```python
 def solve(nums, k):
@@ -67,7 +67,7 @@ def solve(s):
 ## Common sub-patterns
 
 **Fixed window** (size k, slide by one)
-*(problems: [maximum-average-subarray-1](./easy/maximum-average-subarray-1), [contains-duplicate-2](./easy/contains-duplicate-2), [max-number-of-vowels](./medium/max-number-of-vowels), [number-of-sub-array-size-k](./medium/number-of-sub-array-size-k), [max-sum-of-distinct](./medium/max-sum-of-distinct))*
+*(problems: [maximum-average-subarray-1](./easy/maximum-average-subarray-1), [contains-duplicate-2](./easy/contains-duplicate-2), [max-number-of-vowels](./medium/max-number-of-vowels), [number-of-sub-array-size-k](./medium/number-of-sub-array-size-k), [max-sum-of-distinct](./medium/max-sum-of-distinct), [find-all-anagrams-in-a-string](./medium/find-all-anagrams-in-a-string))*
 ```python
 window_sum = sum(nums[:k])
 for right in range(k, len(nums)):
@@ -173,3 +173,7 @@ for i, n in enumerate(nums):
   tracking both a running sum and a frequency map; the window is
   all-distinct exactly when `len(freq) == k`, so no separate set check is
   needed.
+- [find-all-anagrams-in-a-string](./medium/find-all-anagrams-in-a-string)
+  — fixed-size window (size `len(p)`) comparing a frequency map of the
+  window against `p`'s frequency map; equal maps means the window is an
+  anagram of `p`.

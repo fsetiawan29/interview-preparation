@@ -7,7 +7,7 @@
 | Group Anagrams | Frequency Signature | Medium | DONE |
 | Top K Frequent Elements | Frequency Map | Medium | DONE |
 | Sort Characters By Frequency | Frequency + Sorting | Medium | DONE |
-| Find All Anagrams in a String | Frequency Window | Medium | |
+| Find All Anagrams in a String | Frequency Window | Medium | Done |
 | Ransom Note | Character Count | Easy | Done |
 | First Unique Character in a String | Frequency Count | Easy | Done |
 | Determine if Two Strings Are Close | Frequency Comparison | Medium | |
@@ -16,7 +16,8 @@
 - [x] Group Anagrams
 - [x] Top K Frequent Elements
 - [x] Sort Characters By Frequency
-- [ ] Find All Anagrams in a String
+- [x] Find All Anagrams in a String — solved in sliding-window's
+      [find-all-anagrams-in-a-string](../sliding-window/medium/find-all-anagrams-in-a-string)
 - [x] Ransom Note
 - [x] First Unique Character in a String
 - [ ] Determine if Two Strings Are Close
@@ -52,7 +53,7 @@
 | Longest Repeating Character Replacement | Frequency Window | Medium | |
 | Minimum Window Substring | Frequency Window | Hard | |
 | Permutation in String | Sliding Window | Medium | |
-| Find All Anagrams in a String | Sliding Window | Medium | |
+| Find All Anagrams in a String | Sliding Window | Medium | Done |
 | Subarray Sum Equals K | Prefix Sum + Hash Map | Medium | |
 | Fruit Into Baskets | Hash Map | Medium | |
 | Maximum Erasure Value | Hash Set | Medium | |
@@ -61,7 +62,8 @@
 - [ ] Longest Repeating Character Replacement
 - [ ] Minimum Window Substring
 - [ ] Permutation in String
-- [ ] Find All Anagrams in a String
+- [x] Find All Anagrams in a String — solved in sliding-window's
+      [find-all-anagrams-in-a-string](../sliding-window/medium/find-all-anagrams-in-a-string)
 - [ ] Subarray Sum Equals K
 - [ ] Fruit Into Baskets
 - [ ] Maximum Erasure Value
@@ -99,7 +101,8 @@ If I had to choose just 20, I'd pick:
 - [x] First Unique Character in a String (Easy)
 - [x] Longest Palindrome (Easy)
 - [ ] Roman to Integer (Easy)
-- [ ] Find All Anagrams in a String (Medium)
+- [x] Find All Anagrams in a String (Medium) — solved in sliding-window's
+      [find-all-anagrams-in-a-string](../sliding-window/medium/find-all-anagrams-in-a-string)
 - [ ] Longest Substring Without Repeating Characters (Medium)
 - [ ] Minimum Window Substring (Hard)
 - [ ] Subarray Sum Equals K (Medium)
