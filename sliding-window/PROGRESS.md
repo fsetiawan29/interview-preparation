@@ -17,14 +17,14 @@ Goal: learn to slide a fixed-size window.
 | # | Problem | Difficulty | Blind 75 | Status |
 |---|---|---|---|---|
 | 1 | #643 Maximum Average Subarray I | Easy | | Done |
-| 2 | #1456 Maximum Number of Vowels in a Substring of Given Length | Medium | | |
-| 3 | #1343 Number of Sub-arrays of Size K and Average ≥ Threshold | Medium | | |
+| 2 | #1456 Maximum Number of Vowels in a Substring of Given Length | Medium | | Done |
+| 3 | #1343 Number of Sub-arrays of Size K and Average ≥ Threshold | Medium | | Done |
 | 4 | #219 Contains Duplicate II | Easy | | |
 | 5 | #2461 Maximum Sum of Distinct Subarrays With Length K | Medium | | |
 
 - [x] #643 Maximum Average Subarray I
-- [ ] #1456 Maximum Number of Vowels in a Substring of Given Length
-- [ ] #1343 Number of Sub-arrays of Size K and Average ≥ Threshold
+- [x] #1456 Maximum Number of Vowels in a Substring of Given Length
+- [x] #1343 Number of Sub-arrays of Size K and Average ≥ Threshold
 - [ ] #219 Contains Duplicate II
 - [ ] #2461 Maximum Sum of Distinct Subarrays With Length K
 

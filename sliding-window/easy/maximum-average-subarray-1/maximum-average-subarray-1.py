@@ -6,20 +6,21 @@ class Solution:
         left = 0
         right = k - 1
         window_sum = sum(nums[:k])
-        max_average = window_sum / k
+        best = window_sum
 
         while right < len(nums):
-            average = window_sum / k
-            max_average = max(max_average, average)
+            best = max(best, window_sum)
 
             if right == len(nums) - 1:
                 break
 
-            window_sum = window_sum - nums[left] + nums[right+1]
+            window_sum -= nums[left] 
+            window_sum += nums[right+1]
+            
             left += 1
             right += 1
 
-        return max_average
+        return best / k
 
 
 def run_test(name, nums, k, expected):
