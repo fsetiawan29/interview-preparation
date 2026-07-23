@@ -96,7 +96,7 @@ If I had to choose just 20, I'd pick:
 - [x] Group Anagrams (Medium)
 - [x] Top K Frequent Elements (Medium)
 - [x] Longest Consecutive Sequence (Medium)
-- [ ] Ransom Note (Easy)
+- [x] Ransom Note (Easy)
 - [x] Isomorphic Strings (Easy)
 - [x] Word Pattern (Easy)
 - [x] Happy Number (Easy)
