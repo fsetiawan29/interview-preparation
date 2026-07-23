@@ -42,13 +42,13 @@
 
 Learn basic push/pop operations and when a stack is useful.
 
-| Problem | Blind 75 | NeetCode 150 | Difficulty |
-|---|---|---|---|
-| Valid Parentheses | ✅ | ✅ | Easy |
-| Baseball Game | ❌ | ❌ | Easy |
-| Backspace String Compare | ❌ | ❌ | Easy |
-| Remove Outermost Parentheses | ❌ | ❌ | Easy |
-| Build an Array With Stack Operations | ❌ | ❌ | Easy |
+| Problem | Blind 75 | NeetCode 150 | Difficulty | Status |
+|---|---|---|---|---|
+| Valid Parentheses | ✅ | ✅ | Easy | Done |
+| Baseball Game | ❌ | ❌ | Easy | Done |
+| Backspace String Compare | ❌ | ❌ | Easy | Done |
+| Remove Outermost Parentheses | ❌ | ❌ | Easy | |
+| Build an Array With Stack Operations | ❌ | ❌ | Easy | |
 
 - [x] Valid Parentheses
 - [x] Baseball Game
@@ -62,13 +62,13 @@ Learn basic push/pop operations and when a stack is useful.
 
 Use stacks to simulate processes.
 
-| Problem | Blind 75 | NeetCode 150 | Difficulty |
-|---|---|---|---|
-| Min Stack | ✅ | ✅ | Medium |
-| Crawler Log Folder | ❌ | ❌ | Easy |
-| Remove All Adjacent Duplicates in String | ❌ | ❌ | Easy |
-| Remove All Adjacent Duplicates in String II | ❌ | ❌ | Medium |
-| Simplify Path | ❌ | ✅ | Medium |
+| Problem | Blind 75 | NeetCode 150 | Difficulty | Status |
+|---|---|---|---|---|
+| Min Stack | ✅ | ✅ | Medium | |
+| Crawler Log Folder | ❌ | ❌ | Easy | |
+| Remove All Adjacent Duplicates in String | ❌ | ❌ | Easy | |
+| Remove All Adjacent Duplicates in String II | ❌ | ❌ | Medium | |
+| Simplify Path | ❌ | ✅ | Medium | |
 
 - [ ] Min Stack
 - [ ] Crawler Log Folder
@@ -82,13 +82,13 @@ Use stacks to simulate processes.
 
 A very common interview topic.
 
-| Problem | Blind 75 | NeetCode 150 | Difficulty |
-|---|---|---|---|
-| Evaluate Reverse Polish Notation | ❌ | ✅ | Medium |
-| Basic Calculator | ❌ | ❌ | Hard |
-| Basic Calculator II | ❌ | ❌ | Medium |
-| Basic Calculator III | ❌ | ❌ | Hard |
-| Decode String | ❌ | ✅ | Medium |
+| Problem | Blind 75 | NeetCode 150 | Difficulty | Status |
+|---|---|---|---|---|
+| Evaluate Reverse Polish Notation | ❌ | ✅ | Medium | |
+| Basic Calculator | ❌ | ❌ | Hard | |
+| Basic Calculator II | ❌ | ❌ | Medium | |
+| Basic Calculator III | ❌ | ❌ | Hard | |
+| Decode String | ❌ | ✅ | Medium | |
 
 - [ ] Evaluate Reverse Polish Notation
 - [ ] Basic Calculator
@@ -102,13 +102,13 @@ A very common interview topic.
 
 This is probably the most important advanced stack pattern.
 
-| Problem | Blind 75 | NeetCode 150 | Difficulty |
-|---|---|---|---|
-| Daily Temperatures | ✅ | ✅ | Medium |
-| Next Greater Element I | ❌ | ❌ | Easy |
-| Next Greater Element II | ❌ | ❌ | Medium |
-| Online Stock Span | ❌ | ❌ | Medium |
-| Final Prices With a Special Discount | ❌ | ❌ | Easy |
+| Problem | Blind 75 | NeetCode 150 | Difficulty | Status |
+|---|---|---|---|---|
+| Daily Temperatures | ✅ | ✅ | Medium | |
+| Next Greater Element I | ❌ | ❌ | Easy | |
+| Next Greater Element II | ❌ | ❌ | Medium | |
+| Online Stock Span | ❌ | ❌ | Medium | |
+| Final Prices With a Special Discount | ❌ | ❌ | Easy | |
 
 - [ ] Daily Temperatures
 - [ ] Next Greater Element I
@@ -122,11 +122,11 @@ This is probably the most important advanced stack pattern.
 
 These are classic interview problems.
 
-| Problem | Blind 75 | NeetCode 150 | Difficulty |
-|---|---|---|---|
-| Largest Rectangle in Histogram | ✅ | ✅ | Hard |
-| Maximal Rectangle | ❌ | ✅ | Hard |
-| Trapping Rain Water (Stack solution) | ✅ | ✅ | Hard |
+| Problem | Blind 75 | NeetCode 150 | Difficulty | Status |
+|---|---|---|---|---|
+| Largest Rectangle in Histogram | ✅ | ✅ | Hard | |
+| Maximal Rectangle | ❌ | ✅ | Hard | |
+| Trapping Rain Water (Stack solution) | ✅ | ✅ | Hard | |
 
 - [ ] Largest Rectangle in Histogram
 - [ ] Maximal Rectangle
@@ -136,13 +136,13 @@ These are classic interview problems.
 
 ## Level 6 — Stack + Greedy ⭐⭐⭐⭐⭐
 
-| Problem | Blind 75 | NeetCode 150 | Difficulty |
-|---|---|---|---|
-| Remove K Digits | ❌ | ❌ | Medium |
-| Remove Duplicate Letters | ❌ | ❌ | Hard |
-| Smallest Subsequence of Distinct Characters | ❌ | ❌ | Medium |
-| Create Maximum Number | ❌ | ❌ | Hard |
-| Remove Stars From a String | ❌ | ❌ | Medium |
+| Problem | Blind 75 | NeetCode 150 | Difficulty | Status |
+|---|---|---|---|---|
+| Remove K Digits | ❌ | ❌ | Medium | |
+| Remove Duplicate Letters | ❌ | ❌ | Hard | |
+| Smallest Subsequence of Distinct Characters | ❌ | ❌ | Medium | |
+| Create Maximum Number | ❌ | ❌ | Hard | |
+| Remove Stars From a String | ❌ | ❌ | Medium | |
 
 - [ ] Remove K Digits
 - [ ] Remove Duplicate Letters
@@ -154,13 +154,13 @@ These are classic interview problems.
 
 ## Level 7 — Advanced ⭐⭐⭐⭐⭐
 
-| Problem | Blind 75 | NeetCode 150 | Difficulty |
-|---|---|---|---|
-| Asteroid Collision | ❌ | ✅ | Medium |
-| Car Fleet | ❌ | ✅ | Medium |
-| Car Fleet II | ❌ | ❌ | Hard |
-| Exclusive Time of Functions | ❌ | ❌ | Hard |
-| Number of Atoms | ❌ | ❌ | Hard |
+| Problem | Blind 75 | NeetCode 150 | Difficulty | Status |
+|---|---|---|---|---|
+| Asteroid Collision | ❌ | ✅ | Medium | |
+| Car Fleet | ❌ | ✅ | Medium | |
+| Car Fleet II | ❌ | ❌ | Hard | |
+| Exclusive Time of Functions | ❌ | ❌ | Hard | |
+| Number of Atoms | ❌ | ❌ | Hard | |
 
 - [ ] Asteroid Collision
 - [ ] Car Fleet

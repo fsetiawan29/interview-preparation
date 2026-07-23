@@ -4,21 +4,21 @@
 
 | Problem | Difficulty | Main Concept | Status |
 |---|---|---|---|
-| Valid Palindrome | Easy | Two pointers from both ends | DONE |
-| Two Sum II - Input Array Is Sorted | Medium | Opposite-direction pointers | DONE |
-| Merge Strings Alternately | Easy | Same-direction pointers | DONE |
-| Reverse String | Easy | In-place swapping | DONE |
-| Reverse Vowels of a String | Easy | Conditional two pointers | DONE |
-| Move Zeroes | Easy | Fast & slow pointers | DONE |
-| Remove Duplicates from Sorted Array | Easy | Fast & slow pointers | DONE |
-| Remove Element | Easy | Fast & slow pointers | DONE |
-| Squares of a Sorted Array | Easy | Compare both ends | DONE |
-| Is Subsequence | Easy | Same-direction pointers | DONE |
-| Container With Most Water | Medium | Greedy + opposite pointers | DONE |
-| 3Sum | Medium | Sort + two pointers | DONE |
-| 4Sum (Optional) | Medium | Extension of 3Sum | DONE |
-| Sort Colors | Medium | Dutch National Flag (three pointers) | DONE |
-| Trapping Rain Water | Hard | Advanced two pointers | DONE |
+| Valid Palindrome | Easy | Two pointers from both ends | Done |
+| Two Sum II - Input Array Is Sorted | Medium | Opposite-direction pointers | Done |
+| Merge Strings Alternately | Easy | Same-direction pointers | Done |
+| Reverse String | Easy | In-place swapping | Done |
+| Reverse Vowels of a String | Easy | Conditional two pointers | Done |
+| Move Zeroes | Easy | Fast & slow pointers | Done |
+| Remove Duplicates from Sorted Array | Easy | Fast & slow pointers | Done |
+| Remove Element | Easy | Fast & slow pointers | Done |
+| Squares of a Sorted Array | Easy | Compare both ends | Done |
+| Is Subsequence | Easy | Same-direction pointers | Done |
+| Container With Most Water | Medium | Greedy + opposite pointers | Done |
+| 3Sum | Medium | Sort + two pointers | Done |
+| 4Sum (Optional) | Medium | Extension of 3Sum | Done |
+| Sort Colors | Medium | Dutch National Flag (three pointers) | Done |
+| Trapping Rain Water | Hard | Advanced two pointers | Done |
 
 ## Level 1 – Basic Two Pointers (Easy)
 
