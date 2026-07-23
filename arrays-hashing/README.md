@@ -19,7 +19,7 @@ Use this pattern when the problem is about:
 ## The general shape
 
 Almost every problem here is a variation of this skeleton:
-*(used by: [contains-duplicate](./easy/contains-duplicate), [two-sum](./easy/two-sum), [valid-anagram](./easy/valid-anagram), [intersection-of-two-arrays](./easy/intersection-of-two-arrays), [intersection-of-two-arrays-2](./easy/intersection-of-two-arrays-2), [happy-number](./easy/happy-number), [isomorphic-strings](./easy/isomorphic-strings), [word-pattern](./easy/word-pattern), [find-the-difference](./easy/find-the-difference), [first-unique-character-in-a-string](./easy/first-unique-character-in-a-string), [longest-palindrome](./easy/longest-palindrome), [majority-element](./easy/majority-element), [ransom-note](./easy/ransom-note), [buddy-strings](./easy/buddy-strings), [group-anagrams](./medium/group-anagrams), [top-k-frequent-elements](./medium/top-k-frequent-elements), [determine-if-two-strings-are-close](./medium/determine-if-two-strings-are-close), [valid-sudoku](./medium/valid-sudoku), [longest-consecutive-sequence](./medium/longest-consecutive-sequence); not [best-time-to-buy-and-sell-stock](./easy/best-time-to-buy-and-sell-stock), [product-of-array-except-self](./medium/product-of-array-except-self), or [integer-to-roman](./medium/integer-to-roman) — those don't hash)*
+*(used by: [contains-duplicate](./easy/contains-duplicate), [two-sum](./easy/two-sum), [valid-anagram](./easy/valid-anagram), [intersection-of-two-arrays](./easy/intersection-of-two-arrays), [intersection-of-two-arrays-2](./easy/intersection-of-two-arrays-2), [happy-number](./easy/happy-number), [isomorphic-strings](./easy/isomorphic-strings), [word-pattern](./easy/word-pattern), [find-the-difference](./easy/find-the-difference), [first-unique-character-in-a-string](./easy/first-unique-character-in-a-string), [longest-palindrome](./easy/longest-palindrome), [majority-element](./easy/majority-element), [ransom-note](./easy/ransom-note), [buddy-strings](./easy/buddy-strings), [group-anagrams](./medium/group-anagrams), [top-k-frequent-elements](./medium/top-k-frequent-elements), [determine-if-two-strings-are-close](./medium/determine-if-two-strings-are-close), [custom-sort-string](./medium/custom-sort-string), [valid-sudoku](./medium/valid-sudoku), [longest-consecutive-sequence](./medium/longest-consecutive-sequence); not [best-time-to-buy-and-sell-stock](./easy/best-time-to-buy-and-sell-stock), [product-of-array-except-self](./medium/product-of-array-except-self), or [integer-to-roman](./medium/integer-to-roman) — those don't hash)*
 
 ```python
 def solve(nums):
@@ -73,7 +73,7 @@ for i, num in enumerate(nums):
 ```
 
 **Hash Map — frequency counter**
-*(problems: [valid-anagram](./easy/valid-anagram), [intersection-of-two-arrays-2](./easy/intersection-of-two-arrays-2), [find-the-difference](./easy/find-the-difference), [first-unique-character-in-a-string](./easy/first-unique-character-in-a-string), [longest-palindrome](./easy/longest-palindrome), [majority-element](./easy/majority-element), [ransom-note](./easy/ransom-note), [top-k-frequent-elements](./medium/top-k-frequent-elements), [determine-if-two-strings-are-close](./medium/determine-if-two-strings-are-close))*
+*(problems: [valid-anagram](./easy/valid-anagram), [intersection-of-two-arrays-2](./easy/intersection-of-two-arrays-2), [find-the-difference](./easy/find-the-difference), [first-unique-character-in-a-string](./easy/first-unique-character-in-a-string), [longest-palindrome](./easy/longest-palindrome), [majority-element](./easy/majority-element), [ransom-note](./easy/ransom-note), [top-k-frequent-elements](./medium/top-k-frequent-elements), [determine-if-two-strings-are-close](./medium/determine-if-two-strings-are-close), [custom-sort-string](./medium/custom-sort-string))*
 ```python
 from collections import Counter
 counts = Counter(nums)  # or build manually with counts[n] = counts.get(n, 0) + 1
@@ -195,6 +195,10 @@ for n in nums_set:
   (`.keys()`), same frequency multiset (`sorted(.values())`) — swapping
   characters never changes counts, and relabeling characters never
   changes the counts' shape, just which key holds which value.
+- [custom-sort-string](./medium/custom-sort-string) — frequency counter
+  over `s`, then walk `order` emitting each character's full run at once
+  (deleting it from the map so it's not re-emitted), followed by
+  whatever's left over for characters `order` doesn't mention.
 - [product-of-array-except-self](./medium/product-of-array-except-self) —
   prefix/suffix running products instead of hashing; two passes, `O(1)`
   extra space (excluding the output array).

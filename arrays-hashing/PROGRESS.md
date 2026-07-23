@@ -11,7 +11,7 @@
 | Ransom Note | Character Count | Easy | Done |
 | First Unique Character in a String | Frequency Count | Easy | Done |
 | Determine if Two Strings Are Close | Frequency Comparison | Medium | Done |
-| Custom Sort String | Character Mapping | Medium | |
+| Custom Sort String | Character Mapping | Medium | Done |
 
 - [x] Group Anagrams
 - [x] Top K Frequent Elements
@@ -21,7 +21,7 @@
 - [x] Ransom Note
 - [x] First Unique Character in a String
 - [x] Determine if Two Strings Are Close
-- [ ] Custom Sort String
+- [x] Custom Sort String
 
 ## Level 3: String Hashing & Mapping
 
