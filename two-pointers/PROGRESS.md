@@ -18,7 +18,7 @@
 | 3Sum | Medium | Sort + two pointers | DONE |
 | 4Sum (Optional) | Medium | Extension of 3Sum | DONE |
 | Sort Colors | Medium | Dutch National Flag (three pointers) | DONE |
-| Trapping Rain Water | Hard | Advanced two pointers | |
+| Trapping Rain Water | Hard | Advanced two pointers | DONE |
 
 ## Level 1 – Basic Two Pointers (Easy)
 
@@ -81,7 +81,7 @@ These are asked surprisingly often.
 These require deciding which pointer to move.
 
 - [x] Container With Most Water (Medium)
-- [ ] Trapping Rain Water (Hard)
+- [x] Trapping Rain Water (Hard)
 - [ ] Boats to Save People (Medium)
 - [ ] Bag of Tokens (Medium)
 - [ ] Rescue Boats (Medium)
@@ -103,7 +103,7 @@ Fast & slow pointers on linked lists.
 
 ## Level 7 – Hard Interview Problems
 
-- [ ] Trapping Rain Water (Hard)
+- [x] Trapping Rain Water (Hard)
 - [ ] Shortest Unsorted Continuous Subarray (Medium)
 - [ ] Next Permutation (Medium)
 - [x] Dutch National Flag (Sort Colors) (Medium)

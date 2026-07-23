@@ -20,7 +20,7 @@ Use this pattern when the problem is about:
 ## The general shape
 
 **Opposite-ends pointers** — converge toward the middle:
-*(used by: [reverse-string](./easy/reverse-string), [valid-palindrome](./easy/valid-palindrome), [reverse-vowels-of-a-string](./easy/reverse-vowels-of-a-string), [two-sum-ii](./medium/two-sum-ii), [container-with-most-water](./medium/container-with-most-water), [3-sum](./medium/3-sum), [4sum](./medium/4sum))*
+*(used by: [reverse-string](./easy/reverse-string), [valid-palindrome](./easy/valid-palindrome), [reverse-vowels-of-a-string](./easy/reverse-vowels-of-a-string), [two-sum-ii](./medium/two-sum-ii), [container-with-most-water](./medium/container-with-most-water), [3-sum](./medium/3-sum), [4sum](./medium/4sum), [trapping-rain-water](./hard/trapping-rain-water))*
 
 ```python
 def solve(s):
@@ -114,6 +114,23 @@ while left < right:
         right -= 1
 ```
 
+**Opposite ends — running max on each side** (trap water between walls)
+*(problems: [trapping-rain-water](./hard/trapping-rain-water))*
+```python
+left, right = 0, len(height) - 1
+left_max, right_max = height[left], height[right]
+water = 0
+while left < right:
+    if left_max < right_max:
+        left += 1
+        left_max = max(left_max, height[left])
+        water += left_max - height[left]
+    else:
+        right -= 1
+        right_max = max(right_max, height[right])
+        water += right_max - height[right]
+```
+
 **Sort + fix index(es) — k-sum family** (skip duplicates at every level)
 *(problems: [3-sum](./medium/3-sum), [4sum](./medium/4sum))*
 ```python
@@ -179,6 +196,10 @@ while mid <= high:
 - **Advancing `mid` after a swap with `high`** in a three-way partition
   (`sort-colors`) — the swapped-in value hasn't been checked yet, so only
   swaps with `low` are safe to advance past.
+- **Not trusting the smaller running max** in `trapping-rain-water` — when
+  `left_max < right_max`, the water above `left` is bounded by `left_max`
+  no matter how tall unseen bars on the right turn out to be, so it's
+  safe to finalize and advance `left` without ever looking past `right`.
 
 ## Problems in this folder
 
@@ -236,3 +257,13 @@ while mid <= high:
   not two pointers, but the same "frequency count feeding a bucket" shape
   as arrays-hashing's
   [top-k-frequent-elements](../arrays-hashing/medium/top-k-frequent-elements).
+
+### Hard
+
+- [trapping-rain-water](./hard/trapping-rain-water) — three approaches
+  side by side: brute force (rescan both directions per index,
+  `O(n^2)`), prefix/suffix max arrays (`O(n)` time and space), and
+  opposite-ends two pointers tracking a running max on each side
+  (`O(n)` time, `O(1)` space) — the two-pointer version collapses the
+  two arrays into two running values by only ever trusting whichever
+  side currently has the smaller max.
