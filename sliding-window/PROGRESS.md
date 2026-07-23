@@ -37,13 +37,13 @@ Goal: learn when to expand and shrink.
 | # | Problem | Difficulty | Blind 75 | Status |
 |---|---|---|---|---|
 | 6 | #209 Minimum Size Subarray Sum | Medium | | |
-| 7 | #3 Longest Substring Without Repeating Characters | Medium | ✅ | |
+| 7 | #3 Longest Substring Without Repeating Characters | Medium | ✅ | Done |
 | 8 | #904 Fruit Into Baskets | Medium | | |
 | 9 | #1004 Max Consecutive Ones III | Medium | | |
 | 10 | #1493 Longest Subarray of 1's After Deleting One Element | Medium | | |
 
 - [ ] #209 Minimum Size Subarray Sum
-- [ ] #3 Longest Substring Without Repeating Characters (Blind 75)
+- [x] #3 Longest Substring Without Repeating Characters (Blind 75)
 - [ ] #904 Fruit Into Baskets
 - [ ] #1004 Max Consecutive Ones III
 - [ ] #1493 Longest Subarray of 1's After Deleting One Element
@@ -147,7 +147,7 @@ If short on time before interviews, prioritize these:
 - [ ] #209 Minimum Size Subarray Sum
 
 **Core**
-- [ ] #3 Longest Substring Without Repeating Characters (Blind 75)
+- [x] #3 Longest Substring Without Repeating Characters (Blind 75)
 - [ ] #567 Permutation in String (Blind 75)
 - [ ] #438 Find All Anagrams in a String
 - [ ] #424 Longest Repeating Character Replacement (Blind 75)

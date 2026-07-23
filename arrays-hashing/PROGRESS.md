@@ -4,9 +4,9 @@
 
 | Problem | Concepts | Difficulty | Status |
 |---|---|---|---|
-| Group Anagrams | Frequency Signature | Medium | DONE |
-| Top K Frequent Elements | Frequency Map | Medium | DONE |
-| Sort Characters By Frequency | Frequency + Sorting | Medium | DONE |
+| Group Anagrams | Frequency Signature | Medium | Done |
+| Top K Frequent Elements | Frequency Map | Medium | Done |
+| Sort Characters By Frequency | Frequency + Sorting | Medium | Done |
 | Find All Anagrams in a String | Frequency Window | Medium | Done |
 | Ransom Note | Character Count | Easy | Done |
 | First Unique Character in a String | Frequency Count | Easy | Done |
@@ -51,7 +51,7 @@
 
 | Problem | Concepts | Difficulty | Status |
 |---|---|---|---|
-| Longest Substring Without Repeating Characters | Hash Set | Medium | |
+| Longest Substring Without Repeating Characters | Hash Set | Medium | Done |
 | Longest Repeating Character Replacement | Frequency Window | Medium | |
 | Minimum Window Substring | Frequency Window | Hard | |
 | Permutation in String | Sliding Window | Medium | |
@@ -60,7 +60,9 @@
 | Fruit Into Baskets | Hash Map | Medium | |
 | Maximum Erasure Value | Hash Set | Medium | |
 
-- [ ] Longest Substring Without Repeating Characters
+- [x] Longest Substring Without Repeating Characters — solved in
+      sliding-window's
+      [longest-substring-without-repeating-char](../sliding-window/medium/longest-substring-without-repeating-char)
 - [ ] Longest Repeating Character Replacement
 - [ ] Minimum Window Substring
 - [ ] Permutation in String
@@ -105,7 +107,9 @@ If I had to choose just 20, I'd pick:
 - [ ] Roman to Integer (Easy)
 - [x] Find All Anagrams in a String (Medium) — solved in sliding-window's
       [find-all-anagrams-in-a-string](../sliding-window/medium/find-all-anagrams-in-a-string)
-- [ ] Longest Substring Without Repeating Characters (Medium)
+- [x] Longest Substring Without Repeating Characters (Medium) — solved in
+      sliding-window's
+      [longest-substring-without-repeating-char](../sliding-window/medium/longest-substring-without-repeating-char)
 - [ ] Minimum Window Substring (Hard)
 - [ ] Subarray Sum Equals K (Medium)
 - [ ] LRU Cache (Medium)

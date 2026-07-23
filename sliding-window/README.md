@@ -39,7 +39,7 @@ def solve(nums, k):
 ```
 
 **Variable-size window** — expand right, shrink left while invalid:
-*(no solutions yet)*
+*(used by: [longest-substring-without-repeating-char](./medium/longest-substring-without-repeating-char))*
 
 ```python
 def solve(s):
@@ -87,7 +87,7 @@ for right in range(len(nums)):
 ```
 
 **Variable window — expand, shrink only when invalid** (maximum window / at most K)
-*(no solutions yet)*
+*(problems: [longest-substring-without-repeating-char](./medium/longest-substring-without-repeating-char))*
 ```python
 left = 0
 count = {}
@@ -177,3 +177,9 @@ for i, n in enumerate(nums):
   — fixed-size window (size `len(p)`) comparing a frequency map of the
   window against `p`'s frequency map; equal maps means the window is an
   anagram of `p`.
+- [longest-substring-without-repeating-char](./medium/longest-substring-without-repeating-char)
+  — the first variable-size window here: expand `right` every step,
+  shrink `left` with a hash set only while `s[right]` is already in the
+  window, then record `right - left + 1`. Also solvable via
+  arrays-hashing's plain hash-set membership check, but the sliding
+  window avoids rescanning from scratch on every duplicate.
