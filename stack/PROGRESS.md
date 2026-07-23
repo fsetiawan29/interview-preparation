@@ -4,9 +4,9 @@
 
 | Problem | Blind 75 | NeetCode 150 | Difficulty | Status |
 |---|---|---|---|---|
-| Valid Parentheses | ✅ | ✅ | Easy | |
-| Baseball Game | ❌ | ❌ | Easy | |
-| Backspace String Compare | ❌ | ❌ | Easy | |
+| Valid Parentheses | ✅ | ✅ | Easy | Done |
+| Baseball Game | ❌ | ❌ | Easy | Done |
+| Backspace String Compare | ❌ | ❌ | Easy | Done |
 | Remove Outermost Parentheses | ❌ | ❌ | Easy | |
 | Build an Array With Stack Operations | ❌ | ❌ | Easy | |
 | Min Stack | ✅ | ✅ | Medium | |
@@ -50,9 +50,9 @@ Learn basic push/pop operations and when a stack is useful.
 | Remove Outermost Parentheses | ❌ | ❌ | Easy |
 | Build an Array With Stack Operations | ❌ | ❌ | Easy |
 
-- [ ] Valid Parentheses
-- [ ] Baseball Game
-- [ ] Backspace String Compare
+- [x] Valid Parentheses
+- [x] Baseball Game
+- [x] Backspace String Compare
 - [ ] Remove Outermost Parentheses
 - [ ] Build an Array With Stack Operations
 
@@ -170,9 +170,9 @@ These are classic interview problems.
 
 ## Recommended Learning Order (30 Problems)
 
-- [ ] Valid Parentheses ⭐
-- [ ] Baseball Game ⭐
-- [ ] Backspace String Compare ⭐
+- [x] Valid Parentheses ⭐
+- [x] Baseball Game ⭐
+- [x] Backspace String Compare ⭐
 - [ ] Remove Outermost Parentheses ⭐
 - [ ] Build an Array With Stack Operations ⭐
 - [ ] Min Stack ⭐⭐

@@ -53,7 +53,7 @@ Two steps, always in this order:
 ## Common sub-patterns
 
 **Matching pairs** (parentheses/brackets)
-*(problems: Valid Parentheses, Remove Outermost Parentheses)*
+*(problems: [valid-parentheses](./easy/valid-parentheses), Remove Outermost Parentheses)*
 ```python
 pairs = {')': '(', ']': '[', '}': '{'}
 stack = []
@@ -67,7 +67,7 @@ return not stack
 ```
 
 **Auxiliary stack** (track extra state alongside the main one)
-*(problems: Min Stack, Baseball Game)*
+*(problems: Min Stack)*
 ```python
 stack, mins = [], []
 def push(x):
@@ -162,5 +162,20 @@ for i, ch in enumerate(s):
 
 ## Problems in this folder
 
-No solutions yet — see [PROGRESS.md](./PROGRESS.md) for the full curriculum
-(7 levels, 30 problems) and the recommended learning order.
+### Easy
+
+- [valid-parentheses](./easy/valid-parentheses) — push open brackets, and
+  on a close bracket check it matches whatever's on top of the stack;
+  valid only if the stack is empty once the string is fully scanned.
+- [baseball-game](./easy/baseball-game) — the general check/push skeleton
+  itself: `"C"` pops, `"D"`/`"+"` derive a new score from the top (and
+  second-from-top) and push it, an integer just gets pushed directly;
+  the record's running sum is just `sum(stack)` at the end.
+- [backspace-string-compare](./easy/backspace-string-compare) — build
+  each string with a stack (`'#'` pops, otherwise push) and compare the
+  results; the `O(1)`-space follow-up swaps the stack for two pointers
+  walking both strings from the right, skipping a run of pending
+  backspaces before each character comparison.
+
+See [PROGRESS.md](./PROGRESS.md) for the full curriculum (7 levels, 30
+problems) and the recommended learning order.

@@ -56,7 +56,7 @@ Dynamic Programming
 - [x] Arrays & Hashing — [arrays-hashing](./arrays-hashing)
 - [x] Two Pointers — [two-pointers](./two-pointers)
 - [x] Sliding Window — [sliding-window](./sliding-window)
-- [ ] Stack
+- [x] Stack — [stack](./stack)
 - [ ] Binary Search
 - [ ] Linked List
 - [ ] Trees — early traversal problems started in [dfs](./dfs)
@@ -78,6 +78,8 @@ Dynamic Programming
   recomputed from scratch.
 - [dfs](./dfs) — depth-first traversal and backtracking on trees, grids, and
   graphs.
+- [stack](./stack) — LIFO push/pop/peek for matching/nesting structure,
+  expression parsing, and monotonic next-greater/smaller lookups.
 
 Each problem subfolder contains the solution, its `PROBLEM.md`, and its
 `README.md` — see the pattern's own `README.md` for a per-problem index and
@@ -99,6 +101,10 @@ interview-preparation/
 │   ├── PROGRESS.md
 │   └── easy|medium|hard/<problem-name>/
 ├── sliding-window/
+│   ├── README.md
+│   ├── PROGRESS.md
+│   └── easy|medium|hard/<problem-name>/
+├── stack/
 │   ├── README.md
 │   ├── PROGRESS.md
 │   └── easy|medium|hard/<problem-name>/
