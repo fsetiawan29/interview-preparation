@@ -10,7 +10,7 @@
 | Find All Anagrams in a String | Frequency Window | Medium | Done |
 | Ransom Note | Character Count | Easy | Done |
 | First Unique Character in a String | Frequency Count | Easy | Done |
-| Determine if Two Strings Are Close | Frequency Comparison | Medium | |
+| Determine if Two Strings Are Close | Frequency Comparison | Medium | Done |
 | Custom Sort String | Character Mapping | Medium | |
 
 - [x] Group Anagrams
@@ -20,7 +20,7 @@
       [find-all-anagrams-in-a-string](../sliding-window/medium/find-all-anagrams-in-a-string)
 - [x] Ransom Note
 - [x] First Unique Character in a String
-- [ ] Determine if Two Strings Are Close
+- [x] Determine if Two Strings Are Close
 - [ ] Custom Sort String
 
 ## Level 3: String Hashing & Mapping
