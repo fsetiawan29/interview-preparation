@@ -7,7 +7,7 @@
 | Valid Parentheses | ✅ | ✅ | Easy | Done |
 | Baseball Game | ❌ | ❌ | Easy | Done |
 | Backspace String Compare | ❌ | ❌ | Easy | Done |
-| Remove Outermost Parentheses | ❌ | ❌ | Easy | |
+| Remove Outermost Parentheses | ❌ | ❌ | Easy | Done |
 | Build an Array With Stack Operations | ❌ | ❌ | Easy | |
 | Min Stack | ✅ | ✅ | Medium | |
 | Crawler Log Folder | ❌ | ❌ | Easy | |
@@ -47,13 +47,13 @@ Learn basic push/pop operations and when a stack is useful.
 | Valid Parentheses | ✅ | ✅ | Easy | Done |
 | Baseball Game | ❌ | ❌ | Easy | Done |
 | Backspace String Compare | ❌ | ❌ | Easy | Done |
-| Remove Outermost Parentheses | ❌ | ❌ | Easy | |
+| Remove Outermost Parentheses | ❌ | ❌ | Easy | Done |
 | Build an Array With Stack Operations | ❌ | ❌ | Easy | |
 
 - [x] Valid Parentheses
 - [x] Baseball Game
 - [x] Backspace String Compare
-- [ ] Remove Outermost Parentheses
+- [x] Remove Outermost Parentheses
 - [ ] Build an Array With Stack Operations
 
 **Concepts:** push, pop, peek (`stack[-1]`), empty stack, matching pairs.
@@ -173,7 +173,7 @@ These are classic interview problems.
 - [x] Valid Parentheses ⭐
 - [x] Baseball Game ⭐
 - [x] Backspace String Compare ⭐
-- [ ] Remove Outermost Parentheses ⭐
+- [x] Remove Outermost Parentheses ⭐
 - [ ] Build an Array With Stack Operations ⭐
 - [ ] Min Stack ⭐⭐
 - [ ] Remove Adjacent Duplicates ⭐⭐

@@ -53,7 +53,7 @@ Two steps, always in this order:
 ## Common sub-patterns
 
 **Matching pairs** (parentheses/brackets)
-*(problems: [valid-parentheses](./easy/valid-parentheses), Remove Outermost Parentheses)*
+*(problems: [valid-parentheses](./easy/valid-parentheses), [remove-outermost-parentheses](./easy/remove-outermost-parentheses))*
 ```python
 pairs = {')': '(', ']': '[', '}': '{'}
 stack = []
@@ -176,6 +176,11 @@ for i, ch in enumerate(s):
   results; the `O(1)`-space follow-up swaps the stack for two pointers
   walking both strings from the right, skipping a run of pending
   backspaces before each character comparison.
+- [remove-outermost-parentheses](./easy/remove-outermost-parentheses) —
+  a stack's *size* (a running `depth` counter) is enough to spot each
+  primitive block's outermost pair, without pushing actual characters:
+  skip a `'('` that takes depth `0 → 1` and a `')'` that takes depth
+  `1 → 0`, keep every other character.
 
 See [PROGRESS.md](./PROGRESS.md) for the full curriculum (7 levels, 30
 problems) and the recommended learning order.

@@ -13,12 +13,14 @@
 | Remove Duplicates from Sorted Array | Easy | Fast & slow pointers | Done |
 | Remove Element | Easy | Fast & slow pointers | Done |
 | Squares of a Sorted Array | Easy | Compare both ends | Done |
+| Backspace String Compare | Easy | Pointers from the right, skip pending backspaces | Done |
 | Is Subsequence | Easy | Same-direction pointers | Done |
 | Container With Most Water | Medium | Greedy + opposite pointers | Done |
 | 3Sum | Medium | Sort + two pointers | Done |
 | 4Sum (Optional) | Medium | Extension of 3Sum | Done |
 | Sort Colors | Medium | Dutch National Flag (three pointers) | Done |
 | Trapping Rain Water | Hard | Advanced two pointers | Done |
+| Duplicate Zeros | Easy | Fill from the back | Done |
 
 ## Level 1 – Basic Two Pointers (Easy)
 
@@ -55,7 +57,8 @@ The classic interview pattern.
 
 Very common in interviews.
 
-- [ ] Backspace String Compare (Easy)
+- [x] Backspace String Compare (Easy) — solved in stack's
+      [backspace-string-compare](../stack/easy/backspace-string-compare)
 - [ ] One Edit Distance (Medium)
 - [ ] Append Characters to String to Make Subsequence (Medium)
 - [ ] Compare Version Numbers (Medium)
@@ -70,7 +73,7 @@ These are asked surprisingly often.
 
 - [x] Sort Colors (Medium)
 - [ ] Partition Array According to Given Pivot (Medium)
-- [ ] Duplicate Zeros (Easy)
+- [x] Duplicate Zeros (Easy)
 - [ ] Wiggle Sort (Medium)
 - [ ] Merge Sorted Array (Easy)
 
