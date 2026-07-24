@@ -234,6 +234,9 @@ while mid <= high:
   means every index between them also pairs validly with `left`, so add
   `right - left` to the count in one shot instead of counting pairs
   individually.
+- [duplicate-zeros](./easy/duplicate-zeros) — read/write pointers filled
+  from the back instead of the front, so writing a duplicated zero never
+  overwrites a value that still needs to be read.
 
 ### Medium
 
