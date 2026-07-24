@@ -56,7 +56,7 @@ Dynamic Programming
 - [x] Two Pointers — [two-pointers](./two-pointers)
 - [x] Sliding Window — [sliding-window](./sliding-window)
 - [x] Stack — [stack](./stack)
-- [ ] Binary Search
+- [ ] Binary Search — [binary-search](./binary-search)
 - [ ] Linked List
 - [ ] Trees — early traversal problems started in [dfs](./dfs)
 - [ ] Heap / Priority Queue
@@ -79,6 +79,9 @@ Dynamic Programming
   graphs.
 - [stack](./stack) — LIFO push/pop/peek for matching/nesting structure,
   expression parsing, and monotonic next-greater/smaller lookups.
+- [binary-search](./binary-search) — halving a monotonic search space
+  (sorted array, rotated array, or an abstract answer range) instead of
+  scanning it.
 
 Each problem subfolder contains the solution and its `README.md` — see the
 pattern's own `README.md` for a per-problem index and `PROGRESS.md` for
@@ -92,10 +95,19 @@ Problems solved so far, by topic and difficulty:
 |---|---|---|---|---|
 | [arrays-hashing](./arrays-hashing) | 15 | 8 | 0 | 23 |
 | [two-pointers](./two-pointers) | 13 | 6 | 1 | 20 |
-| [sliding-window](./sliding-window) | 2 | 5 | 0 | 7 |
-| [stack](./stack) | 4 | 0 | 0 | 4 |
+| [sliding-window](./sliding-window) | 2 | 7 | 0 | 9 |
+| [stack](./stack) | 4 | 1 | 0 | 5 |
 | [dfs](./dfs) | 2 | 1 | 0 | 3 |
-| **Total** | **36** | **20** | **1** | **57** |
+| [binary-search](./binary-search) | 0 | 0 | 0 | 0 |
+| **Total** | **36** | **23** | **1** | **60** |
+
+### Solved Today (2026-07-24)
+
+- Remove Outermost Parentheses — [stack/easy/remove-outermost-parentheses](./stack/easy/remove-outermost-parentheses)
+- Duplicate Zeros — [two-pointers/easy/duplicate-zeros](./two-pointers/easy/duplicate-zeros)
+- Merge Sorted Array — [two-pointers/easy/merge-sorted-array](./two-pointers/easy/merge-sorted-array)
+- Build an Array With Stack Operations — [stack/medium/build-array-with-stack-operations](./stack/medium/build-array-with-stack-operations)
+- Permutation in String — [sliding-window/medium/permutation-in-string](./sliding-window/medium/permutation-in-string)
 
 ## Structure
 
