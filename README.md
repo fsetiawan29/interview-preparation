@@ -4,9 +4,8 @@ Coding interview practice, organized by algorithmic pattern rather than by
 source or difficulty. Each pattern folder is self-contained: a `README.md`
 explaining the pattern with a general shape/template, a `PROGRESS.md`
 tracking what's done vs. queued, and per-problem subfolders under
-`easy/medium/hard`. Each problem subfolder has its own `PROBLEM.md`
-(examples + constraints), `README.md` (recognition notes), and solution
-file.
+`easy/medium/hard`. Each problem subfolder has its own `README.md` (problem
+understanding, key insight, mental model, and solution) and solution file.
 
 ## Roadmap
 
@@ -81,9 +80,22 @@ Dynamic Programming
 - [stack](./stack) — LIFO push/pop/peek for matching/nesting structure,
   expression parsing, and monotonic next-greater/smaller lookups.
 
-Each problem subfolder contains the solution, its `PROBLEM.md`, and its
-`README.md` — see the pattern's own `README.md` for a per-problem index and
-`PROGRESS.md` for what's solved vs. still queued.
+Each problem subfolder contains the solution and its `README.md` — see the
+pattern's own `README.md` for a per-problem index and `PROGRESS.md` for
+what's solved vs. still queued.
+
+## Progress Summary
+
+Problems solved so far, by topic and difficulty:
+
+| Topic | Easy | Medium | Hard | Total |
+|---|---|---|---|---|
+| [arrays-hashing](./arrays-hashing) | 15 | 8 | 0 | 23 |
+| [two-pointers](./two-pointers) | 13 | 6 | 1 | 20 |
+| [sliding-window](./sliding-window) | 2 | 5 | 0 | 7 |
+| [stack](./stack) | 4 | 0 | 0 | 4 |
+| [dfs](./dfs) | 2 | 1 | 0 | 3 |
+| **Total** | **36** | **20** | **1** | **57** |
 
 ## Structure
 
@@ -93,8 +105,7 @@ interview-preparation/
 │   ├── README.md       # pattern explanation + problem index
 │   ├── PROGRESS.md      # tracker
 │   └── easy|medium|hard/<problem-name>/
-│       ├── PROBLEM.md   # examples + constraints
-│       ├── README.md    # recognition notes: idea, steps, mistakes, complexity
+│       ├── README.md    # problem understanding + recognition notes: idea, steps, mistakes, complexity
 │       └── <problem-name>.py
 ├── two-pointers/
 │   ├── README.md
@@ -119,6 +130,6 @@ interview-preparation/
   signature convention.
 - New patterns get their own top-level folder with the same
   `README.md` + `PROGRESS.md` + `easy/medium/hard` layout.
-- Every problem subfolder has a `PROBLEM.md` with just the LeetCode
-  examples and constraints, kept separate from the `README.md`'s
-  pattern/recognition notes so the two don't get tangled together.
+- Every problem subfolder has a single `README.md` covering the problem
+  statement (understanding, examples, constraints) and the
+  recognition/solution notes together.
