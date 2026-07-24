@@ -21,6 +21,7 @@
 | Sort Colors | Medium | Dutch National Flag (three pointers) | Done |
 | Trapping Rain Water | Hard | Advanced two pointers | Done |
 | Duplicate Zeros | Easy | Fill from the back | Done |
+| Merge Sorted Array | Easy | Fill from the back (three pointers) | Done |
 
 ## Level 1 – Basic Two Pointers (Easy)
 
@@ -75,7 +76,7 @@ These are asked surprisingly often.
 - [ ] Partition Array According to Given Pivot (Medium)
 - [x] Duplicate Zeros (Easy)
 - [ ] Wiggle Sort (Medium)
-- [ ] Merge Sorted Array (Easy)
+- [x] Merge Sorted Array (Easy)
 
 **Patterns learned:** three pointers, partitioning, stable rearrangement.
 

@@ -237,6 +237,10 @@ while mid <= high:
 - [duplicate-zeros](./easy/duplicate-zeros) — read/write pointers filled
   from the back instead of the front, so writing a duplicated zero never
   overwrites a value that still needs to be read.
+- [merge-sorted-array](./easy/merge-sorted-array) — same back-to-front
+  idea as duplicate-zeros, but with three pointers: compare the largest
+  remaining value from each array and write the bigger one into the
+  current last open slot of `nums1`.
 
 ### Medium
 
