@@ -55,13 +55,67 @@ Result: "c" + "b" + "a" + "d" = "cbad"
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+For each character of `order`, scan all of `s` and pull out every still-unused occurrence of that character. Afterward, append whatever characters of `s` were never claimed by `order`.
+
+### Pseudocode
+
+```text
+n = length(s)
+used = array of n false values
+res = []
+
+for ch in order
+    for i = 0 to n - 1
+        if not used[i] and s[i] == ch
+            res.append(ch)
+            used[i] = true
+
+for i = 0 to n - 1
+    if not used[i]
+        res.append(s[i])
+
+return join(res)
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(m * n)
+```
+
+Why?
+
+- `m = len(order)`, `n = len(s)`; for each of the `m` characters in `order`, a full `O(n)` scan of `s` looks for matches.
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- The `used` array tracks one boolean per character of `s`.
+
+### Why this isn't good enough
+
+Every character of `order` re-scans the entirety of `s` looking for matches, even though `s` only needs to be counted once. Building a frequency map from `s` up front lets each character of `order` emit its whole run in `O(1)` (a single dictionary lookup and delete), replacing the `O(n)` scan per `order` character with `O(m + n)` total.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 `order` only constrains *some* of the alphabet, and `s` can repeat characters — a naive custom comparator sort would need to handle "not in order" as a special case and would also need to preserve repeat counts, which is easy to get wrong (e.g. emitting a repeated character only once).
 
-## Key Observation
+### Key Observation
 
 We don't need to sort character-by-character at all. Since every occurrence of the same character must land together in the output (they're indistinguishable), we can first **count how many times each character occurs in `s`**, then simply **walk `order` once** and dump the entire count for each character in one shot.
 
@@ -76,13 +130,13 @@ order = "cba":
   'a' in freq -> append 'a' * freq['a']  ("a")
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Because `order` is walked exactly once (length ≤ 26) and every character of `s` is consumed exactly once via the frequency map, the whole problem collapses into two linear passes and one shorter pass over `order` — no sorting or per-character comparator needed. Deleting a character from `freq` once it's emitted also guarantees it isn't accidentally emitted twice, and cleanly identifies what's "leftover" (never in `order`) once the walk finishes.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -103,7 +157,7 @@ Whatever tally marks remain after the checklist is exhausted belongs to characte
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -149,7 +203,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Build a frequency map `freq` counting each character in `s`.
 2. Walk `order` from left to right:
@@ -159,7 +213,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 freq = empty map
@@ -182,7 +236,7 @@ return join(res)
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -205,7 +259,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -226,7 +280,7 @@ Result: `"".join(["c","b","a","d"])` = `"cbad"`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

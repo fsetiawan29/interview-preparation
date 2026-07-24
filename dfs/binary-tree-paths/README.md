@@ -56,13 +56,81 @@ From 1, go right to 3 -> no children -> leaf! path so far: "1->3"
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+First find every leaf with one traversal. Then, for each leaf separately, run a brand-new search starting back at the root to rediscover the path down to that specific leaf.
+
+### Pseudocode
+
+```text
+function find_leaves(node)
+    if node is None
+        return []
+    if node.left is None and node.right is None
+        return [node]
+    return find_leaves(node.left) + find_leaves(node.right)
+
+function path_to(node, target, path)
+    if node is None
+        return None
+
+    new_path = (path + "->" + str(node.val)) if path else str(node.val)
+
+    if node == target
+        return new_path
+
+    left_result = path_to(node.left, target, new_path)
+    if left_result is not None
+        return left_result
+
+    return path_to(node.right, target, new_path)
+
+leaves = find_leaves(root)
+result = []
+for leaf in leaves
+    result.append(path_to(root, leaf, ""))
+
+return result
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^3)
+```
+
+Why?
+
+- `n` = number of nodes; there can be up to `O(n)` leaves.
+- For each leaf, `path_to` re-searches from the root — up to `O(n)` nodes — and at each of those nodes it pays another `O(n)` to extend the path string by concatenation, giving `O(n^2)` per leaf and `O(n^3)` total.
+
+#### Space Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- `leaves` holds up to `O(n)` nodes, and the accumulated path strings across all leaves sum to `O(n^2)` in the worst case (a skewed tree).
+
+### Why this isn't good enough
+
+Every leaf triggers its own completely separate walk from the root, redoing work that a single traversal already covers. Carrying the path down *while* the one traversal is already visiting every node — extending it once per level instead of re-deriving it from scratch per leaf — removes that redundant re-searching entirely.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Each path needs to remember every node visited since the root, but a single shared list (like the one used for inorder traversal) would keep growing forever and would need explicit undoing whenever recursion backtracks up from a leaf to try a different branch.
 
-## Key Observation
+### Key Observation
 
 Because `path` is a Python string (immutable), passing `path + "->" + str(node.val)` down into a recursive call automatically gives that call — and only that call — its own private copy. No two branches can see or corrupt each other's path.
 
@@ -77,13 +145,13 @@ dfs(3, "1"):
     path = "1->3"    # completely separate string
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 There's no need for an explicit backtracking step (no "undo" after the recursive calls return) — each call builds its own extended path and simply lets it go out of scope when it returns. Contrast this with Word Search, where the shared, mutable `board` *does* require an explicit undo.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -109,7 +177,7 @@ Each branch only ever sees its own copy — nothing needs to be cleaned up after
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -164,7 +232,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Start `dfs(root, "")`.
 2. Extend `path` with the current node's value — `str(node.val)` if `path` was empty, otherwise `path + "->" + str(node.val)`.
@@ -175,7 +243,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 result = []
@@ -201,7 +269,7 @@ return result
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -234,7 +302,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -261,7 +329,7 @@ Result: `["1->2->5", "1->3"]`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

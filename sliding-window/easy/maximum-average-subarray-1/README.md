@@ -52,13 +52,64 @@ Windows of size 4:
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+For every possible start index, sum the `k` elements of that window from scratch, then keep the best sum seen. Divide by `k` only at the very end.
+
+### Pseudocode
+
+```text
+n = length(nums)
+best = -infinity
+
+for i = 0 to n - k
+    window_sum = 0
+    for j = i to i + k - 1
+        window_sum += nums[j]
+    best = max(best, window_sum)
+
+return best / k
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n * k)
+```
+
+Why?
+
+- There are roughly `n = len(nums)` starting positions to try.
+- For each one, summing the window from scratch costs `O(k)`.
+- Total: `O(n * k)`, which hits `~10^10` operations at the given constraint (`n` up to `10^5`) — too slow.
+
+#### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- Only `window_sum` and `best` are used; no additional array or data structure is created.
+
+### Why this isn't good enough
+
+Every window re-adds `k` elements even though consecutive windows share `k - 1` of them. Sliding the sum incrementally — dropping one element, adding one element — is what removes that repeated work.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Recomputing the sum of every length-`k` window from scratch is `O(n * k)` — wasteful, since consecutive windows overlap in all but two elements.
 
-## Key Observation
+### Key Observation
 
 Sliding the window by one position only changes two elements: the value leaving on the left and the value entering on the right. The sum can be updated incrementally instead of recomputed.
 
@@ -70,13 +121,13 @@ slide right by one -> drop 1, add 50
 new sum = 2 - 1 + 50 = 51
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Updating the sum in `O(1)` per slide turns the whole scan into `O(n)` total. Dividing by `k` is also deferred until the very end (applied only to the best sum found), avoiding a division on every single window.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -98,7 +149,7 @@ The best sum seen across all slides, divided by `k` once at the end, is the answ
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -142,7 +193,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Set `left = 0` and `right = k - 1` — the first window covers indices `0` through `k - 1`.
 2. Compute `window_sum` as the sum of that first window; initialize `best` to it.
@@ -154,7 +205,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 left = 0
@@ -179,7 +230,7 @@ return best / k
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -206,7 +257,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -224,7 +275,7 @@ Result: `best / k = 51 / 4 = 12.75000`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

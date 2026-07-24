@@ -46,13 +46,77 @@ Example palindrome: "dccaccd" -> length 7
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+For each character position not yet accounted for, scan the rest of the string to count every remaining occurrence of that character, marking each one as counted so it isn't counted again from a later position.
+
+### Pseudocode
+
+```text
+n = length(s)
+used = array of n false values
+result = 0
+has_odd = false
+
+for i = 0 to n - 1
+    if used[i]
+        continue
+
+    count = 0
+    for j = i to n - 1
+        if s[j] == s[i] and not used[j]
+            count += 1
+            used[j] = true
+
+    if count % 2 == 0
+        result += count
+    else
+        has_odd = true
+        result += count - 1
+
+if has_odd
+    result += 1
+
+return result
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- In the worst case (many distinct characters), every index triggers an `O(n)` scan of the rest of the string before being marked `used`.
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- The `used` array tracks one boolean per character in `s`.
+
+### Why this isn't good enough
+
+Every character's total count is rediscovered by re-scanning the remaining string, position by position. A single frequency map built in one pass counts every character exactly once, replacing all those repeated scans with `O(1)` lookups.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 The palindrome doesn't need to use every letter of `s` — leftover letters with odd counts can't all be paired up, so it's tempting to either overcount them or forget the "one odd letter allowed in the center" rule.
 
-## Key Observation
+### Key Observation
 
 A palindrome is built from pairs of matching letters mirrored around a center, plus optionally **one single leftover letter** sitting exactly in the middle. So for each character:
 
@@ -75,13 +139,13 @@ Only ONE center slot exists -> add +1 (using either leftover 'a' or 'b')
 Total = 7
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Counting frequencies once lets us decide, character by character, exactly how many letters contribute to mirrored pairs — and a single flag (`has_odd`) is enough to know whether at least one leftover letter is available to occupy the one allowed center slot.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -97,7 +161,7 @@ a:1, b:1 -> only one can go in the single center slot:
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -149,7 +213,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Build a frequency map `freq` counting every character in `s`.
 2. Initialize `result = 0` and `has_odd = False`.
@@ -161,7 +225,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 freq = empty map
@@ -187,7 +251,7 @@ return result
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -213,7 +277,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -235,7 +299,7 @@ Result: `7`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

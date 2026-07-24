@@ -51,13 +51,77 @@ Total = 5 + 10 + 15 = 30
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Never actually remove an entry from the record — mark it "cancelled" instead. Whenever an operation needs "the previous score(s)," scan backward from the end each time, skipping over cancelled entries, to find the most recent one(s) still in play.
+
+### Pseudocode
+
+```text
+record = []   // stores (value, cancelled) pairs
+
+for op in operations
+    if op == "C"
+        for i = length(record) - 1 down to 0
+            if not record[i].cancelled
+                record[i].cancelled = true
+                break
+    elif op == "D"
+        for i = length(record) - 1 down to 0
+            if not record[i].cancelled
+                record.append((2 * record[i].value, false))
+                break
+    elif op == "+"
+        found = []
+        for i = length(record) - 1 down to 0
+            if not record[i].cancelled
+                found.append(record[i].value)
+                if length(found) == 2
+                    break
+        record.append((found[1] + found[0], false))
+    else
+        record.append((int(op), false))
+
+return sum(v for (v, cancelled) in record if not cancelled)
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- `n = len(operations)`; each `"C"`, `"D"`, or `"+"` may scan backward through the entire record to find the most recent uncancelled entry (or entries), and this can happen up to `n` times.
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- `record` holds one entry (cancelled or not) per operation processed.
+
+### Why this isn't good enough
+
+Keeping cancelled entries around means every lookup has to re-scan past them to find what's still valid. A real stack makes `"C"` an actual pop — permanently removing the invalidated entry — so the top of the stack is always exactly "the previous score," retrievable in `O(1)` with no scanning at all.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 `"D"` and `"+"` refer to "the previous score(s)" — but that phrase means something different every time `"C"` removes an entry. It's tempting to track scores in a plain list indexed by position, but "previous" is a moving target once records are actually deleted, not just skipped.
 
-## Key Observation
+### Key Observation
 
 Every operation only ever needs the **top one or two entries of the record, as it currently stands** — exactly what a stack's top (and second-from-top) expose. The record itself can BE the stack: `"C"` pops, everything else pushes.
 
@@ -71,13 +135,13 @@ stack (record): [5, 2]
 "+" -> push top + second-from-top (5+10) -> [5, 10, 15]
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Push, pop, and peek are all `O(1)` operations on a stack. Each operation can be resolved using only what's currently on top, with no need to search or rebuild history — and invalidated scores are genuinely removed rather than merely ignored.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -97,7 +161,7 @@ Whatever remains on the stack once every operation card has been played is exact
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -154,7 +218,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Initialize an empty stack to represent the record.
 2. For each operation string in `operations`:
@@ -166,7 +230,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 stack = []
@@ -186,7 +250,7 @@ return sum(stack)
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -207,7 +271,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -227,7 +291,7 @@ Result: `sum([5, 10, 15]) = 30`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

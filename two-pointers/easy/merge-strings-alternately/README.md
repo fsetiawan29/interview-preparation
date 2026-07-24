@@ -52,13 +52,65 @@ Notice "rs" is simply appended once word1 runs out.
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Build the result with repeated string concatenation (`result = result + char`) instead of collecting characters in a list and joining once at the end.
+
+### Pseudocode
+
+```text
+result = ""
+i = 0
+j = 0
+
+while i < length(word1) or j < length(word2)
+    if i < length(word1)
+        result = result + word1[i]
+        i++
+    if j < length(word2)
+        result = result + word2[j]
+        j++
+
+return result
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O((n + m)^2)
+```
+
+Why?
+
+- `n = len(word1)`, `m = len(word2)`; strings are immutable, so each `result + char` copies the entire string built so far, and this happens `O(n + m)` times.
+
+#### Space Complexity
+
+```text
+O(n + m)
+```
+
+Why?
+
+- The final `result` string holds all characters (the discarded intermediate copies aren't counted).
+
+### Why this isn't good enough
+
+Every concatenation silently re-copies everything appended so far, turning what should be linear work into quadratic work. Appending characters to a list and joining once at the very end does the same job with each character written exactly once.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 The two strings can have different lengths, so a naive `zip()`-style pairing would silently drop the longer string's extra characters once the shorter one runs out.
 
-## Key Observation
+### Key Observation
 
 Each string just needs **its own independent pointer** that advances only while it still has characters left. Once one pointer runs out, the other keeps going on its own — the "alternating" behavior falls out naturally as long as both pointers get a chance to contribute on every round, when available.
 
@@ -75,13 +127,13 @@ j < len(word2) -> take word2[j], j++
 once i >= len(word1), only j keeps contributing
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 By checking each pointer's bound independently on every round (instead of stopping the whole loop when either one is exhausted), the leftover tail of the longer string gets appended automatically — no special-case "append the rest" step is needed after the loop.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -101,7 +153,7 @@ Round 5: both out of bounds -> stop
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -155,7 +207,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Start two pointers, `i` for `word1` and `j` for `word2`, both at `0`.
 2. While either `i` is within `word1` or `j` is within `word2`:
@@ -165,7 +217,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 res = []
@@ -186,7 +238,7 @@ return join(res)
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -208,7 +260,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -226,7 +278,7 @@ word1 = "abcd", word2 = "pq"
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

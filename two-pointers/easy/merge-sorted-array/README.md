@@ -62,13 +62,57 @@ Written back into nums1, which had room for exactly this many values
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Concatenate the real values of `nums1` with `nums2` into a new list, sort it, and copy the result back into `nums1`.
+
+### Pseudocode
+
+```text
+combined = nums1[0 .. m-1] + nums2
+sort(combined)
+
+for i = 0 to length(combined) - 1
+    nums1[i] = combined[i]
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O((m + n) log(m + n))
+```
+
+Why?
+
+- Sorting the combined `m + n` elements dominates the cost.
+
+#### Space Complexity
+
+```text
+O(m + n)
+```
+
+Why?
+
+- `combined` is a full extra array holding every element.
+
+### Why this isn't good enough
+
+This throws away the fact that both inputs are already sorted, and it needs a second array to hold the concatenated values. Comparing from the back of both arrays and writing the larger value into `nums1`'s own trailing space merges them in `O(m + n)` time with no extra array.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 `nums1`'s real values sit at the *front*, but the free space to write merged results also sits inside `nums1`, at the *back*. Merging left-to-right (the usual way to merge two sorted lists) would overwrite real values in `nums1` before they've been read and compared.
 
-## Key Observation
+### Key Observation
 
 Since the merged result is exactly `m + n` values and `nums1` already has exactly that much space, filling `nums1` **from the back forward** guarantees every write lands on a slot that's either unused padding or a value that's already been read and copied elsewhere. The largest remaining value — whichever of `nums1[i]` or `nums2[j]` is bigger — always belongs in the current last unfilled slot.
 
@@ -83,13 +127,13 @@ nums1[i]=3 < nums2[j]=6 -> 6 is the biggest remaining value overall,
 so it belongs in the very last slot of nums1
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Comparing `nums1[i]` and `nums2[j]` from the back and writing the bigger one into the back of `nums1` never destroys a value that still needs to be read — everything ahead of the write pointer `w` (toward the front) is still untouched real data, and everything behind it is already finalized. This turns the merge into a single `O(m + n)` pass with no extra array.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -115,7 +159,7 @@ Once one side runs out, whatever's left on the other side is already sorted and 
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -160,7 +204,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Point `i` at the last real value in `nums1` (`m - 1`), `j` at the last value in `nums2` (`n - 1`), and `w` at the last slot of `nums1` (`m + n - 1`).
 2. While both `i` and `j` are still `>= 0`:
@@ -172,7 +216,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 i = m - 1
@@ -197,7 +241,7 @@ while j >= 0
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -227,7 +271,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -249,7 +293,7 @@ Result: `[1,2,2,3,5,6]` — matches the expected output.
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

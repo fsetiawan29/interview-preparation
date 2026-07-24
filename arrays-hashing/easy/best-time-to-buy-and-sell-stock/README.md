@@ -47,13 +47,61 @@ since every later price is lower than 7 except the ones already considered.
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+For every possible buy day `i`, check every later sell day `j` and compute the profit `prices[j] - prices[i]`, keeping the best one seen.
+
+### Pseudocode
+
+```text
+n = length(prices)
+max_profit = 0
+
+for i = 0 to n - 1
+    for j = i + 1 to n - 1
+        profit = prices[j] - prices[i]
+        max_profit = max(max_profit, profit)
+
+return max_profit
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- There are `O(n^2)` pairs `(i, j)` with `i < j`, and each is checked with `O(1)` work.
+
+#### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- Only `max_profit` and the two loop indices are used.
+
+### Why this isn't good enough
+
+Every buy day `i` is compared against every later sell day individually, even though only the *cheapest* buy day seen so far ever matters for a given sell day. Tracking a running minimum instead of re-checking every earlier day is what removes that repeated work.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 A brute-force approach checks every pair of buy/sell days, which is `O(n^2)`. It's tempting to think you need to compare every day against every other day, but selling only ever needs to be compared against the *cheapest* day seen so far — not every earlier day individually.
 
-## Key Observation
+### Key Observation
 
 While scanning left to right, only one number matters from the past: the **minimum price seen so far**. Any profit worth considering today is `price - min_price_so_far`.
 
@@ -66,13 +114,13 @@ At day 4 (price=6): the cheapest price seen so far is 1 (day 1)
 Profit if selling today = 6 - 1 = 5
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Instead of comparing today's price against every previous day, we only need to track a single running minimum. This turns an `O(n^2)` comparison problem into a single `O(n)` left-to-right pass.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -100,7 +148,7 @@ The sticky note (`min_price`) never goes up, only down or stays the same — it 
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -148,7 +196,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Initialize `min_price` to `prices[0]` and `max_profit` to `0`.
 2. Scan the array left to right. For each `price`:
@@ -159,7 +207,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 min_price = prices[0]
@@ -174,7 +222,7 @@ return max_profit
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -189,7 +237,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -210,7 +258,7 @@ Result: `5`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

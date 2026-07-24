@@ -56,13 +56,68 @@ Keep going until mid passes high
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Count how many `0`s, `1`s, and `2`s are in `nums`, then overwrite the array in a second pass using those counts.
+
+### Pseudocode
+
+```text
+count0 = 0
+count1 = 0
+count2 = 0
+
+for x in nums
+    if x == 0
+        count0 += 1
+    else if x == 1
+        count1 += 1
+    else
+        count2 += 1
+
+i = 0
+repeat count0 times: nums[i] = 0; i += 1
+repeat count1 times: nums[i] = 1; i += 1
+repeat count2 times: nums[i] = 2; i += 1
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- One pass tallies the three counts, one pass overwrites the array using them.
+
+#### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- Only the three counters `count0`, `count1`, `count2` are used as extra state.
+
+### Why this isn't good enough
+
+This is already `O(n)` time and `O(1)` space, matching the optimized version's complexity class — but it still needs two full passes over the array: one to count, one to overwrite. The three-pointer (`low`/`mid`/`high`) partition classifies and places every element in a single combined pass, without a separate counting phase.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Values can only take on `0`, `1`, or `2`, and the array must be sorted **in-place** in a single pass, without calling a general-purpose sort. A naive counting pass followed by a rewrite works, but a true one-pass, constant-space partition needs a way to place values correctly as it scans, even when a swapped-in value hasn't been checked yet.
 
-## Key Observation
+### Key Observation
 
 Because there are only three possible values, the array can be thought of as three growing regions: `0`s on the left, `1`s in the middle, and `2`s on the right. Three pointers — `low` (boundary of the `0` region), `mid` (current element being classified), and `high` (boundary of the `2` region) — can partition the array in a single pass, similar in spirit to opposite-ends two-pointer narrowing but with a third pointer added for the middle region.
 
@@ -77,13 +132,13 @@ nums[mid] = 2 -> swap with nums[high], shrink high (don't advance mid yet —
 the swapped-in value at mid hasn't been checked)
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Swapping `nums[mid]` with `nums[low]` when it's a `0` extends the `0`-region and is always safe to advance past (the value swapped in from `low` was already known to be `1`, having been passed over by `mid` earlier). Swapping with `nums[high]` when it's a `2` extends the `2`-region, but the newly swapped-in value at `mid` is unclassified, so `mid` must stay put and be re-examined. This lets the whole array be partitioned in one linear pass with no extra memory.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -105,7 +160,7 @@ The scan ends once `mid` crosses `high` — everything left of `low` is `0`, eve
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -146,7 +201,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Point `low = 0`, `mid = 0`, and `high = len(nums) - 1`.
 2. While `mid <= high`:
@@ -157,7 +212,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 low = 0
@@ -178,7 +233,7 @@ while mid <= high
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -204,7 +259,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -227,7 +282,7 @@ Result: `[0,0,1,1,2,2]` — matches the expected output.
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

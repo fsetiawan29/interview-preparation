@@ -59,13 +59,64 @@ Fill the remaining slots with 0
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Build a new array holding every non-zero value in order, pad it with zeroes to the original length, then copy it back into `nums`.
+
+### Pseudocode
+
+```text
+n = length(nums)
+non_zero = []
+
+for x in nums
+    if x != 0
+        non_zero.append(x)
+
+while length(non_zero) < n
+    non_zero.append(0)
+
+for i = 0 to n - 1
+    nums[i] = non_zero[i]
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- One pass collects non-zero values, one pass pads with zeroes, one pass copies back.
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- `non_zero` is a full second array — exactly what the in-place constraint forbids.
+
+### Why this isn't good enough
+
+This is already `O(n)` time, but it needs a second array to get there. A read pointer and a write pointer scanning `nums` together can swap non-zero values into place directly, achieving the same result with `O(1)` extra space.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 We can't simply delete zeroes and append them at the end using a second array — that violates the in-place constraint. And shifting elements one at a time whenever a zero is found is easy to get wrong (it's easy to accidentally reorder non-zero values).
 
-## Key Observation
+### Key Observation
 
 Every non-zero value needs to land at the **next available "non-zero slot"**, in the same order it was read. That slot pointer only moves forward when a non-zero value is actually placed.
 
@@ -78,13 +129,13 @@ Example:
   only advances once something is written there
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 A single forward pass with two pointers — one reading every element, one marking where the next non-zero value belongs — places every non-zero value correctly without ever touching a second array. Whatever's left behind the write pointer is automatically all zeroes.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -114,7 +165,7 @@ By the time `i` finishes scanning, every non-zero value sits before `j`, in orig
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -157,7 +208,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Set a write pointer `j` to `0`.
 2. Scan the array left to right with a read pointer `i`.
@@ -167,7 +218,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 j = 0
@@ -184,7 +235,7 @@ for i in 0 .. length(nums) - 1
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -204,7 +255,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -222,7 +273,7 @@ nums = [0,1,0,3,12]
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

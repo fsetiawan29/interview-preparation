@@ -34,7 +34,7 @@
 | Bulls and Cows | Multiple Frequency Maps | Medium | |
 | Encode and Decode TinyURL | Hash Map Design | Medium | |
 | Roman to Integer | Character Mapping | Easy | |
-| Integer to Roman | Mapping Rules | Medium | |
+| Integer to Roman | Mapping Rules | Medium | Done |
 
 - [x] Longest Palindrome
 - [x] Valid Palindrome — solved in two-pointers'
@@ -45,14 +45,14 @@
 - [ ] Bulls and Cows
 - [ ] Encode and Decode TinyURL
 - [ ] Roman to Integer
-- [ ] Integer to Roman
+- [x] Integer to Roman
 
 ## Level 4: Sliding Window + Hash Map
 
 | Problem | Concepts | Difficulty | Status |
 |---|---|---|---|
 | Longest Substring Without Repeating Characters | Hash Set | Medium | Done |
-| Longest Repeating Character Replacement | Frequency Window | Medium | |
+| Longest Repeating Character Replacement | Frequency Window | Medium | Done |
 | Minimum Window Substring | Frequency Window | Hard | |
 | Permutation in String | Sliding Window | Medium | |
 | Find All Anagrams in a String | Sliding Window | Medium | Done |
@@ -63,7 +63,8 @@
 - [x] Longest Substring Without Repeating Characters — solved in
       sliding-window's
       [longest-substring-without-repeating-char](../sliding-window/medium/longest-substring-without-repeating-char)
-- [ ] Longest Repeating Character Replacement
+- [x] Longest Repeating Character Replacement — solved in sliding-window's
+      [longest-repeating-char-replacement](../sliding-window/medium/longest-repeating-char-replacement)
 - [ ] Minimum Window Substring
 - [ ] Permutation in String
 - [x] Find All Anagrams in a String — solved in sliding-window's

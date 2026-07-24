@@ -51,13 +51,66 @@ s: a b c a b c b b
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+For every possible start index `i`, extend `j` forward one character at a time into a fresh `set`, stopping the moment a repeat is found. Track the longest run achieved this way across all starting indices.
+
+### Pseudocode
+
+```text
+n = length(s)
+best = 0
+
+for i = 0 to n - 1
+    seen = {}
+    for j = i to n - 1
+        if s[j] in seen
+            break
+        add s[j] to seen
+        best = max(best, j - i + 1)
+
+return best
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- `n = len(s)`; there are `n` possible start indices `i`.
+- For each one, the inner loop can scan forward up to `n - i` characters before hitting a duplicate (or the end of `s`).
+- Total: `O(n^2)`, which hits `~2.5 * 10^9` operations at the given constraint (`n` up to `5 * 10^4`) — too slow.
+
+#### Space Complexity
+
+```text
+O(min(n, k))
+```
+
+Why?
+
+- `seen` holds at most one entry per character in the current inner scan, bounded by the string length `n` or the character set size `k`, whichever is smaller.
+
+### Why this isn't good enough
+
+Every new `i` rebuilds a fresh `seen` set and re-walks characters that were already confirmed duplicate-free on the previous `i`. Letting a single window slide forward — where `left` only ever advances, never resets — is what removes that repeated re-walking.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 The window's size isn't fixed like a typical sliding-window problem — it needs to grow and shrink dynamically depending on where duplicates appear, so the naive approach of checking every substring is `O(n^2)` or worse.
 
-## Key Observation
+### Key Observation
 
 A window `[left, right]` is valid (no repeats) as long as we track what's currently inside it with a set. Expanding `right` by one is always safe to *attempt* — if the incoming character is already in the set, shrinking from `left` (removing characters from the set as they leave) is guaranteed to eventually remove the conflicting duplicate, because it's somewhere inside the current window.
 
@@ -70,13 +123,13 @@ right moves to next 'a' -> duplicate! shrink: remove s[left]='a' from seen, left
 now seen = {b,c}, no more conflict -> add 'a' -> window "bca"
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Both `left` and `right` only ever move forward, never backward. Each character is added to `seen` once and removed at most once across the entire scan, so the total work is `O(n)` even though there's a `while` loop nested inside the `for` loop.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -99,7 +152,7 @@ The best answer is simply the largest `right - left + 1` seen at any point.
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -146,7 +199,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. If `s` is empty, return `0`.
 2. Initialize `left = 0`, `best = 0`, and an empty set `seen`.
@@ -158,7 +211,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 if length(s) == 0
@@ -181,7 +234,7 @@ return best
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -205,7 +258,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -228,7 +281,7 @@ Result: `best = 3`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

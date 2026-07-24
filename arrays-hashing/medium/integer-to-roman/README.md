@@ -47,13 +47,63 @@ Result: "M" + "CM" + "XC" + "IV" = "MCMXCIV"
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Instead of one shared descending value/symbol table, hardcode a separate lookup table of ten strings for each digit position (thousands, hundreds, tens, ones), and index into each table with that digit.
+
+### Pseudocode
+
+```text
+thousands = ["", "M", "MM", "MMM"]
+hundreds  = ["", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"]
+tens      = ["", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"]
+ones      = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
+
+t = num // 1000
+h = (num // 100) % 10
+te = (num // 10) % 10
+o = num % 10
+
+return thousands[t] + hundreds[h] + tens[te] + ones[o]
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- Exactly four fixed table lookups happen regardless of `num`, since `num` is bounded by `3999`.
+
+#### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- Four fixed-size tables (40 hardcoded strings total), independent of `num`.
+
+### Why this isn't good enough
+
+This is still `O(1)`, same as the optimized version — `num` is bounded, so there's no asymptotic win available here. The real problem is duplication: the subtractive-notation logic (`IV`, `IX`, `XL`, ...) is hand-encoded four separate times, once per digit position. The single descending value/symbol table expresses that logic exactly once and applies it uniformly via one loop, which is why it's worth using even without a complexity improvement.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Roman numerals mix additive symbols (`M`, `C`, `X`, `I`, ...) with subtractive pairs (`CM`, `XC`, `IV`, ...). A naive digit-by-digit conversion has to special-case every subtractive form (4, 9, 40, 90, 400, 900), which is easy to get wrong or leave incomplete.
 
-## Key Observation
+### Key Observation
 
 If the subtractive forms (`900/CM`, `400/CD`, `90/XC`, `40/XL`, `9/IX`, `4/IV`) are simply added as their **own entries** in a value-to-symbol table — sorted alongside the regular values in strictly descending order — then a single greedy rule works uniformly for every case: *always take as much of the largest available value as still fits*.
 
@@ -69,13 +119,13 @@ Largest value <= 3 is 1/I (x3)          -> take it three times, num = 0
 Result: "L" + "V" + "III" = "LVIII"
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 By baking the subtractive pairs directly into the descending value list, there's no special-casing left to do at all — the same `while num >= value: append symbol; num -= value` loop, run once per table entry, handles both additive and subtractive symbols identically.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -98,7 +148,7 @@ Change fully made: "M" + "CM" + "XC" + "IV" = "MCMXCIV"
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -140,7 +190,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Define a list of `(value, symbol)` pairs in strictly descending order, including the six subtractive pairs (`900/CM`, `400/CD`, `90/XC`, `40/XL`, `9/IX`, `4/IV`) alongside the standard ones.
 2. For each pair in that list:
@@ -149,7 +199,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 values = [
@@ -170,7 +220,7 @@ return join(res)
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -202,7 +252,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -228,7 +278,7 @@ Result: `"".join(["M","CM","XC","IV"])` = `"MCMXCIV"`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

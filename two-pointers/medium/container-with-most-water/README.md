@@ -59,13 +59,62 @@ tracking the largest area seen:
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Check every pair of lines directly, computing the area each pair could hold.
+
+### Pseudocode
+
+```text
+n = length(height)
+max_area = 0
+
+for i = 0 to n - 1
+    for j = i + 1 to n - 1
+        width = j - i
+        area = width * min(height[i], height[j])
+        max_area = max(max_area, area)
+
+return max_area
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- There are `O(n^2)` pairs `(i, j)` with `i < j`, each checked in `O(1)`.
+
+#### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- Only `max_area` and the two loop indices are used.
+
+### Why this isn't good enough
+
+Every pair is checked individually, even though moving the *taller* of two walls inward can never produce a bigger area than what's already been seen (the width shrinks while the limiting height can't improve). Always discarding the shorter wall lets a single opposite-ends pass reach every pair that could possibly be optimal, without checking the rest.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Checking every pair of lines directly is `O(n^2)`. The area formula `width * min(height[left], height[right])` means both the width *and* the limiting (shorter) height shrink as the pointers move inward, so it isn't obvious which pointer to move without risking missing the true maximum.
 
-## Key Observation
+### Key Observation
 
 For any pair `(left, right)`, the water level is capped by the **shorter** of the two walls — the taller wall contributes nothing beyond that cap. Moving the *taller* wall inward can only shrink the width while the limiting height stays the same or gets worse, so it can never produce a bigger area. Moving the *shorter* wall inward is the only move that has a chance of increasing the limiting height, even though it shrinks the width.
 
@@ -80,13 +129,13 @@ height[left]=1 < height[right]=7 -> left is the shorter wall
 moving left inward is the only move that could raise the limiting height
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 This turns the search into a greedy, single-pass, opposite-ends two-pointer scan: always discard the shorter wall. Every pair that could possibly beat the current best is still reachable this way, so no candidate is skipped, and the whole search finishes in `O(n)`.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -108,7 +157,7 @@ min(8,7)=7, width=7, area=49 -> shorter wall is right -> right moves in
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -154,7 +203,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Point `left` at index `0` and `right` at the last index. Set `max_area = 0`.
 2. While `left` is left of `right`:
@@ -165,7 +214,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 left = 0
@@ -187,7 +236,7 @@ return max_area
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -211,7 +260,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -235,7 +284,7 @@ Result: `max_area = 49` — matches the expected output.
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

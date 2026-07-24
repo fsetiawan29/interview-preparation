@@ -5,7 +5,7 @@
 | Problem | Difficulty | Status |
 |---|---|---|
 | #3 Longest Substring Without Repeating Characters | Medium | Done |
-| #424 Longest Repeating Character Replacement | Medium | |
+| #424 Longest Repeating Character Replacement | Medium | Done |
 | #567 Permutation in String | Medium | |
 | #76 Minimum Window Substring | Hard | |
 | #239 Sliding Window Maximum | Hard | |
@@ -58,13 +58,13 @@ Goal: frequency arrays and hash maps.
 |---|---|---|---|---|
 | 11 | #567 Permutation in String | Medium | ✅ | |
 | 12 | #438 Find All Anagrams in a String | Medium | | Done |
-| 13 | #424 Longest Repeating Character Replacement | Medium | ✅ | |
+| 13 | #424 Longest Repeating Character Replacement | Medium | ✅ | Done |
 | 14 | #1208 Get Equal Substrings Within Budget | Medium | | |
 | 15 | #1838 Frequency of the Most Frequent Element | Medium | | |
 
 - [ ] #567 Permutation in String (Blind 75)
 - [x] #438 Find All Anagrams in a String
-- [ ] #424 Longest Repeating Character Replacement (Blind 75)
+- [x] #424 Longest Repeating Character Replacement (Blind 75)
 - [ ] #1208 Get Equal Substrings Within Budget
 - [ ] #1838 Frequency of the Most Frequent Element
 
@@ -150,7 +150,7 @@ If short on time before interviews, prioritize these:
 - [x] #3 Longest Substring Without Repeating Characters (Blind 75)
 - [ ] #567 Permutation in String (Blind 75)
 - [ ] #438 Find All Anagrams in a String
-- [ ] #424 Longest Repeating Character Replacement (Blind 75)
+- [x] #424 Longest Repeating Character Replacement (Blind 75)
 
 **Advanced**
 - [ ] #76 Minimum Window Substring (Blind 75)

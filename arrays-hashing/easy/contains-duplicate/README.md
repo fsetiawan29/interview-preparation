@@ -46,13 +46,60 @@ Seen so far: {1,2,3} -> see 1, already seen -> duplicate found
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Compare every pair of elements directly — if any two match, a duplicate exists.
+
+### Pseudocode
+
+```text
+n = length(nums)
+
+for i = 0 to n - 1
+    for j = i + 1 to n - 1
+        if nums[i] == nums[j]
+            return true
+
+return false
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- There are `O(n^2)` pairs `(i, j)` with `i < j`, each checked in `O(1)`.
+
+#### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- No extra data structure is used — just the two loop indices.
+
+### Why this isn't good enough
+
+Every element is re-compared against every other element, even though a hash set can answer "have I seen this before?" in `O(1)` average time as the array is scanned once. The pairwise comparisons are exactly the repeated work the set removes.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Comparing every pair of elements to check for a duplicate costs `O(n^2)`. Sorting first would work in `O(n log n)`, but a faster approach exists if we're willing to spend a little extra memory.
 
-## Key Observation
+### Key Observation
 
 Membership in a hash set can be checked in average `O(1)` time. Instead of comparing each element against every other element, we can just ask "have I seen this value before?" as we scan once, left to right.
 
@@ -66,13 +113,13 @@ seen = {1,2,3}
 1 is already in seen -> duplicate exists
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 A single pass with a hash set turns the pairwise comparison problem into a sequence of `O(1)` average-case lookups, reducing overall time to `O(n)` at the cost of `O(n)` extra space.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -94,7 +141,7 @@ nums:  1   2   3   1
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -130,7 +177,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Create an empty hash set `seen`.
 2. Scan `nums` left to right. For each value `n`:
@@ -140,7 +187,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 seen = empty set
@@ -155,7 +202,7 @@ return false
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -170,7 +217,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -189,7 +236,7 @@ Result: `true`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

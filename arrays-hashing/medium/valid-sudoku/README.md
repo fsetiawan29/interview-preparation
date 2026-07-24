@@ -57,13 +57,80 @@ a duplicate.
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Instead of one combined pass that checks rows, columns, and boxes together, run three completely separate full-board scans: one that checks every row for duplicates, one that checks every column, and one that checks every 3x3 box.
+
+### Pseudocode
+
+```text
+function hasDuplicateInRow(board, r)
+    seen = empty set
+    for c = 0 to 8
+        v = board[r][c]
+        if v == '.'
+            continue
+        if v in seen
+            return true
+        seen.add(v)
+    return false
+
+// hasDuplicateInCol and hasDuplicateInBox follow the same shape,
+// scanning a column or a 3x3 box respectively
+
+for r = 0 to 8
+    if hasDuplicateInRow(board, r)
+        return false
+
+for c = 0 to 8
+    if hasDuplicateInCol(board, c)
+        return false
+
+for br = 0 to 2
+    for bc = 0 to 2
+        if hasDuplicateInBox(board, br, bc)
+            return false
+
+return true
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- The board is a fixed 9x9 = 81 cells, so even three full scans do a bounded amount of work (equivalently `O(n^2)` if generalized to an `n x n` board).
+
+#### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- Each helper reuses one small set bounded by 9 digits.
+
+### Why this isn't good enough
+
+This stays `O(1)` (or `O(n^2)` generalized) just like the optimized version — the board size is fixed, so there's no asymptotic win available. The real cost is doing three separate full scans of the board (27 row/column/box checks) instead of one: a single pass that updates a row set, a column set, and a box set together for each cell catches the same duplicates in a third of the work.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Three different kinds of "no duplicates" rules (row, column, 3x3 box) all apply simultaneously, and a single cell participates in exactly one row, one column, and one box at the same time. Checking each rule with a separate full scan of the board would be wasteful, and mapping a cell to "its" box requires a bit of index arithmetic that's easy to get wrong.
 
-## Key Observation
+### Key Observation
 
 Every cell `(r, c)` belongs to exactly one row `r`, one column `c`, and one box identified by `(r // 3, c // 3)`. If we keep **one hash set per row, per column, and per box**, a single pass over the board can check *and* record membership in all three simultaneously — a duplicate in any one of the three sets means the board is invalid.
 
@@ -79,13 +146,13 @@ If "8" is already in rows[2], cols[2], or boxes[(0,0)] -> invalid, return False
 Otherwise, add "8" to all three and continue
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 One single pass over all 81 cells is enough — no separate row-pass, column-pass, or box-pass is needed. Each cell's membership check and insertion into its row/column/box set happens together, so a duplicate anywhere is caught the moment it's seen.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -105,7 +172,7 @@ If the scan reaches the last cell without ever finding `v` already on a clipboar
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -154,7 +221,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Create 9 empty sets for rows, 9 empty sets for columns, and an empty map of sets for 3x3 boxes (keyed by `(r // 3, c // 3)`).
 2. Scan the board cell by cell, row by row:
@@ -165,7 +232,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 rows = 9 empty sets
@@ -195,7 +262,7 @@ return true
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -235,7 +302,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example (the invalid board — same as the "true" board but with `board[0][0]` changed from `"5"` to `"8"`):
 
@@ -262,7 +329,7 @@ Result: `false` — the duplicate "8" is caught in the top-left 3x3 box (cells `
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

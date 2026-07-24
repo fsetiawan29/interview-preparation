@@ -52,13 +52,68 @@ nums: 1 5 4 2 9 9 9
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+For every possible start index, build a fresh frequency map and sum for that window of length `k`. If the frequency map has exactly `k` distinct keys, every element in the window is distinct, so the sum is a candidate for the best answer.
+
+### Pseudocode
+
+```text
+n = length(nums)
+best = 0
+
+for i = 0 to n - k
+    freq = {}
+    window_sum = 0
+    for j = i to i + k - 1
+        freq[nums[j]] = freq.get(nums[j], 0) + 1
+        window_sum += nums[j]
+
+    if length(freq) == k
+        best = max(best, window_sum)
+
+return best
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n * k)
+```
+
+Why?
+
+- There are roughly `n = len(nums)` starting positions to try.
+- For each one, rebuilding the frequency map and sum from scratch costs `O(k)`.
+- Total: `O(n * k)`, which hits `~10^10` operations at the given constraint (`n` up to `10^5`) — too slow.
+
+#### Space Complexity
+
+```text
+O(k)
+```
+
+Why?
+
+- The temporary `freq` map built fresh each iteration holds at most `k` entries — one per element in the window.
+
+### Why this isn't good enough
+
+Every window rebuilds its frequency map and sum from nothing, even though consecutive windows share `k - 1` elements. Sliding the sum and frequency counts incrementally — dropping one element, adding one — is what removes that repeated work.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Two things need tracking at once for every length-`k` window: its sum, and whether all its elements are distinct. A naive approach might rebuild a `set` from scratch for every window to check distinctness, which is `O(n * k)`.
 
-## Key Observation
+### Key Observation
 
 A frequency map (not a set) can track both the running sum incrementally *and* distinctness: a window of size `k` has all-distinct elements exactly when the frequency map has `k` distinct keys — i.e. `len(freq) == k`. As the window slides, only one key's count decreases and one key's count increases (or a new key appears).
 
@@ -69,13 +124,13 @@ window [4,2,9] -> freq = {4:1, 2:1, 9:1}, len(freq) = 3 == k -> distinct, sum=15
 slide -> window [2,9,9] -> freq = {2:1, 9:2}, len(freq) = 2 != k -> not distinct
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 `len(freq) == k` is an `O(1)` check (dictionary length), replacing an `O(k)` rebuild-and-check for every window. Combined with an incrementally maintained `window_sum`, each slide is `O(1)`, keeping the whole scan `O(n)`.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -101,7 +156,7 @@ nums: 1  5  4  2  9  9  9
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -154,7 +209,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Initialize `left = 0`, an empty frequency map `freq`, `window_sum = 0`, and `best_sum = 0`.
 2. For each `right` from `0` to `len(nums) - 1`:
@@ -166,7 +221,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 left = 0
@@ -194,7 +249,7 @@ return best_sum
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -226,7 +281,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -248,7 +303,7 @@ Result: `best_sum = 15`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

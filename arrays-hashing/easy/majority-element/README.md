@@ -48,13 +48,63 @@ The count of 2 reaches 4, which is greater than threshold 3
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+For every candidate value in `nums`, count how many times it occurs by scanning the whole array again, and return the first one whose count exceeds `n / 2`.
+
+### Pseudocode
+
+```text
+n = length(nums)
+threshold = n // 2
+
+for i = 0 to n - 1
+    count = 0
+    for j = 0 to n - 1
+        if nums[j] == nums[i]
+            count += 1
+
+    if count > threshold
+        return nums[i]
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- For each of the `n` candidate positions, counting its occurrences costs another `O(n)` scan.
+
+#### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- Only the running `count` and `threshold` are used.
+
+### Why this isn't good enough
+
+The same value's count gets recomputed from scratch every time it's encountered as a candidate. A single frequency map, updated once per element as the array is scanned, tracks every value's running count in one pass, letting the majority be detected the moment any count crosses the threshold.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Sorting the array to find the middle element works, but costs `O(n log n)`. A brute-force count of every distinct value against every other position is `O(n^2)`. Since the array is guaranteed to have a true majority element (appearing more than half the time), there's a faster way to detect it in a single pass.
 
-## Key Observation
+### Key Observation
 
 Since the guaranteed majority element occurs more than `n / 2` times, tracking each value's running count as we scan the array will eventually cause exactly one value's count to exceed the threshold `n / 2` — and it must be the majority element, since no other value can also exceed half the array.
 
@@ -68,13 +118,13 @@ freq: {2:1} -> {2:2} -> {2:2,1:1} -> {2:2,1:2} -> {2:2,1:3} -> {2:3,1:3} -> {2:4
                                                                     4 > 3 -> return 2
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 A hash map lets us count every value's occurrences in a single left-to-right pass, and we can return as soon as any count crosses the majority threshold — no sorting and no nested comparisons required.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -89,7 +139,7 @@ tally:  2:1 2:2 1:1 1:2 1:3 2:3 2:4
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -123,7 +173,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Compute `threshold = len(nums) // 2`.
 2. Create an empty frequency map `freq`.
@@ -133,7 +183,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 threshold = length(nums) // 2
@@ -149,7 +199,7 @@ for n in nums
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -167,7 +217,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -191,7 +241,7 @@ Result: `2`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

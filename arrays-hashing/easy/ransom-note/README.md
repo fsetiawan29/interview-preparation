@@ -49,13 +49,60 @@ Both letters found -> true
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Treat `magazine` as a mutable list of characters. For every character `ransomNote` needs, remove one matching occurrence from that list; if none is available, it can't be built.
+
+### Pseudocode
+
+```text
+magazine_chars = list of characters in magazine
+
+for char in ransomNote
+    if char not in magazine_chars
+        return false
+    remove one occurrence of char from magazine_chars
+
+return true
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n * m)
+```
+
+Why?
+
+- `n = len(ransomNote)`, `m = len(magazine)`; each character of `ransomNote` triggers an `O(m)` search-and-remove against `magazine_chars`.
+
+#### Space Complexity
+
+```text
+O(m)
+```
+
+Why?
+
+- `magazine_chars` is a full mutable copy of `magazine`.
+
+### Why this isn't good enough
+
+Every letter `ransomNote` needs re-scans `magazine_chars` from scratch to find and remove a match. Counting `magazine`'s letters once into a frequency map lets each letter of `ransomNote` be "spent" with an `O(1)` decrement instead of an `O(m)` search.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Each letter in `magazine` can only be used once, so it's not enough to check that a letter *exists* somewhere in `magazine` — we must track how many copies remain as `ransomNote` consumes them.
 
-## Key Observation
+### Key Observation
 
 Counting every letter's availability in `magazine` up front, then decrementing that count as `ransomNote` "spends" each letter, immediately reveals a shortage: the moment any count goes negative, `magazine` has run out of that letter.
 
@@ -72,13 +119,13 @@ ransomNote = "aab" consumes:
 All consumed without going negative -> true
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 A single frequency map, built once and then decremented as `ransomNote` is scanned, lets us detect a shortage in one linear pass — no need to re-scan `magazine` for every letter of `ransomNote`.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -96,7 +143,7 @@ Note fully built without running out -> true
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -139,7 +186,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. If `ransomNote` is longer than `magazine`, return `false` immediately.
 2. Build a frequency map `freq` counting every character in `magazine`.
@@ -150,7 +197,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 if length(ransomNote) > length(magazine)
@@ -172,7 +219,7 @@ return true
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -195,7 +242,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -215,7 +262,7 @@ Result: `true`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

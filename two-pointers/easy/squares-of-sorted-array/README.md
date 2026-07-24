@@ -56,13 +56,58 @@ Sort the squares
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Square every element into a new array, then sort that array.
+
+### Pseudocode
+
+```text
+result = []
+for x in nums
+    result.append(x * x)
+
+sort(result)
+return result
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n log n)
+```
+
+Why?
+
+- Squaring is `O(n)`, but sorting the squared values dominates at `O(n log n)`.
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- `result` holds all `n` squared values before and after sorting.
+
+### Why this isn't good enough
+
+Squaring destroys the original sorted order (large-magnitude negatives become large positives), so this re-sorts from scratch. Since the biggest square is always at one of the two ends of the original sorted array, comparing absolute values at both ends and filling the answer from the back forward produces a sorted result in `O(n)`, with no sort needed at all.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 The array is sorted, but squaring can reorder things — negative numbers with large magnitude become large positive squares. Simply squaring in place and returning does **not** stay sorted, and re-sorting afterward costs `O(n log n)` when a linear solution is possible.
 
-## Key Observation
+### Key Observation
 
 Because `nums` is sorted, the value with the **largest square** is always at one of the two ends — either the most negative number (largest magnitude on the left) or the largest positive number (on the right). Whichever end has the bigger absolute value produces the next-largest square.
 
@@ -76,13 +121,13 @@ Example:
 abs(-4)=4 < abs(10)=10 -> right has the bigger square right now
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 By comparing absolute values at both ends and always taking the bigger one, the biggest remaining square can be identified in `O(1)` per step. Filling the result array **from the back forward** means each comparison directly produces the next correctly-sorted position — no separate sort step needed.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -108,7 +153,7 @@ Each step permanently fixes the correct value for the current write position —
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -152,7 +197,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Point `left` at the first index, `right` at the last index, and `write` at the last index of a new `result` array.
 2. While `left` is less than or equal to `right`:
@@ -163,7 +208,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 left = 0
@@ -186,7 +231,7 @@ return result
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -211,7 +256,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -231,7 +276,7 @@ Result: `[4,9,9,49,121]`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

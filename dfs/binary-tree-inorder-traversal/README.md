@@ -65,13 +65,62 @@ Visited order: 1, 3, 2
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Instead of appending into one shared result list, have every recursive call build and return its own brand-new list by concatenating its left subtree's values, its own value, and its right subtree's values.
+
+### Pseudocode
+
+```text
+function dfs(node)
+    if node is None
+        return []
+
+    left_values = dfs(node.left)
+    right_values = dfs(node.right)
+
+    return left_values + [node.val] + right_values   // creates a new list every call
+
+return dfs(root)
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- `n` = number of nodes. In the worst case (a skewed tree), each level's concatenation copies the entire list accumulated so far, and this happens at every one of the `n` levels — `1 + 2 + ... + n = O(n^2)`.
+
+#### Space Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- Every level of recursion allocates a fresh, fully-copied list, so the total memory churned across all the intermediate concatenations is `O(n^2)` in the worst case (beyond the final `O(n)`-sized output).
+
+### Why this isn't good enough
+
+Building a new list at every recursive call means the same values get copied over and over as they bubble up toward the root. Appending directly into one shared `result` list — passed by reference into every call instead of returned and concatenated — means each value is written exactly once, dropping the total work to `O(n)`.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 It's tempting to think of "traversal" as scanning the tree left-to-right the way you'd scan an array, but a tree has no single linear layout — the only way to visit nodes in a well-defined order is to let recursion do the walking. The order in which the "visit" step is placed relative to the two recursive calls (before, between, or after) is exactly what defines pre/in/post-order.
 
-## Key Observation
+### Key Observation
 
 Recursing into the left subtree fully before touching the current node, and only visiting the right subtree after the current node, guarantees every node's value lands in the result list exactly once, in left-to-right structural order.
 
@@ -90,13 +139,13 @@ dfs(2):
 result = [1, 2, 3]
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Recursion naturally handles "go all the way down, then come back up" for us — we don't need to manage an explicit stack ourselves. Placing a single `result.append(node.val)` line between the two recursive calls is enough to produce a correctly ordered traversal for a tree of any shape.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -127,7 +176,7 @@ The recursion stack itself *is* the traversal order — reading the "visit" line
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -164,7 +213,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. If the current node is `None`, return immediately — there's nothing to visit.
 2. Otherwise, recurse into the left child first.
@@ -174,7 +223,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 result = []
@@ -193,7 +242,7 @@ return result
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -219,7 +268,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -252,7 +301,7 @@ Result: `[1,3,2]`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

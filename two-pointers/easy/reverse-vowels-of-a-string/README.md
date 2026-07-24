@@ -53,13 +53,70 @@ A c e C r e I m
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Collect every vowel into a separate list first, reverse that list, then walk the string a second time and drop the reversed vowels back into their original vowel positions.
+
+### Pseudocode
+
+```text
+VOWELS = {a, e, i, o, u} (case-insensitive)
+n = length(s)
+s_array = list(s)
+
+vowel_list = []
+for i = 0 to n - 1
+    if s_array[i].lower() in VOWELS
+        vowel_list.append(s_array[i])
+
+reverse(vowel_list)
+
+v = 0
+for i = 0 to n - 1
+    if s_array[i].lower() in VOWELS
+        s_array[i] = vowel_list[v]
+        v += 1
+
+return join(s_array)
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- Three linear passes: one to extract vowels, one (bounded by the vowel count) to reverse them, one to reinsert.
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- `s_array` is needed regardless (strings are immutable), plus a separate `vowel_list` holding up to `n` extra characters.
+
+### Why this isn't good enough
+
+This is still `O(n)` time, same as the optimized version, but it makes three separate passes and allocates a whole second list just for the vowels. Two pointers walking in from both ends, each skipping non-vowels and swapping the vowels they land on directly, does the extraction and reinsertion in a single combined pass with no separate vowel list.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Consonants must not move, so we can't just filter out vowels, reverse them, and splice them back in with a simple linear scan — we need to know, for every vowel position from the left, which vowel from the right should land there.
 
-## Key Observation
+### Key Observation
 
 If we walk in from **both ends at once**, the first vowel found from the left and the first vowel found from the right are exactly the pair that needs to swap — they are mirror images of each other in the final vowel ordering.
 
@@ -74,13 +131,13 @@ l skips nothing (I is a vowel)
 r skips nothing (m is not a vowel, keep moving r left)
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Instead of extracting vowels into a separate list, reversing it, and reinserting, two pointers can swap vowels directly in place as they're discovered — each pointer independently skips non-vowels until it lands on one, and only then does a swap happen.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -109,7 +166,7 @@ Both pointers only ever care about vowels — consonants are invisible to them e
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -161,7 +218,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Convert the string to a list so characters can be swapped in place.
 2. Point `l` at the first index and `r` at the last index.
@@ -173,7 +230,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 vowels = {a, e, i, o, u} (case-insensitive)
@@ -200,7 +257,7 @@ return join(s_array)
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -227,7 +284,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -248,7 +305,7 @@ Result: `"leotcede"`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

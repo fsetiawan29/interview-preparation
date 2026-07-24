@@ -49,13 +49,63 @@ Result: [2]
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+For every element of `nums1`, scan `nums2` for a match. Collect matches into a set so duplicates are automatically dropped.
+
+### Pseudocode
+
+```text
+n = length(nums1)
+m = length(nums2)
+res = empty set
+
+for i = 0 to n - 1
+    for j = 0 to m - 1
+        if nums1[i] == nums2[j]
+            res.add(nums1[i])
+            break
+
+return list(res)
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n * m)
+```
+
+Why?
+
+- For each of the `n` elements of `nums1`, the inner loop scans up to `m` elements of `nums2`.
+
+#### Space Complexity
+
+```text
+O(min(n, m))
+```
+
+Why?
+
+- `res` holds at most as many entries as the smaller of the two arrays' distinct values.
+
+### Why this isn't good enough
+
+Every element of `nums1` re-scans all of `nums2` looking for a match. Converting `nums1` into a set once gives `O(1)` average membership checks, so a single pass over `nums2` replaces the nested scan.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Duplicates exist in both input arrays, but the result must contain each shared value only once. Comparing every element of `nums1` against every element of `nums2` with nested loops (`O(n*m)`) would also need extra logic to avoid adding the same value to the result twice.
 
-## Key Observation
+### Key Observation
 
 Converting `nums1` into a set immediately removes its duplicates and gives `O(1)` average membership checks. Scanning `nums2` and adding matches into a second set (instead of a list) automatically dedupes the result too — from either side.
 
@@ -75,13 +125,13 @@ Scan nums2:
 Result: {9,4} -> [9,4]
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Using a set for `nums1` turns membership checks into `O(1)` average operations, and using a set for the result eliminates the need for any manual duplicate tracking — the set data structure handles it for free.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -99,7 +149,7 @@ result bag: {9} {9,4} {9,4} {9,4} {9,4}
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -138,7 +188,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Convert `nums1` into a set `seen`.
 2. Create an empty result set `res`.
@@ -148,7 +198,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 seen = set(nums1)
@@ -163,7 +213,7 @@ return list(res)
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -180,7 +230,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -202,7 +252,7 @@ Result: `[9,4]` (order may vary)
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

@@ -49,13 +49,63 @@ Result: [24, 12, 8, 6]
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+For each index, multiply every other element from scratch.
+
+### Pseudocode
+
+```text
+n = length(nums)
+answer = array of n zeros
+
+for i = 0 to n - 1
+    product = 1
+    for j = 0 to n - 1
+        if j != i
+            product = product * nums[j]
+    answer[i] = product
+
+return answer
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- For each of the `n` indices, computing its product costs another `O(n)` pass over the rest of the array.
+
+#### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- Only the running `product` is used as extra state (the `answer` array is the required output).
+
+### Why this isn't good enough
+
+Every index's product is recomputed from nothing, even though consecutive indices share almost the entire same set of factors. Building a running prefix product left-to-right and a running suffix product right-to-left lets each `answer[i]` be assembled from two `O(1)` lookups instead of an `O(n)` re-multiplication.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 The obvious approach — compute the total product, then divide by `nums[i]` for each `i` — is forbidden (no division), and also breaks when `nums` contains a `0`. Computing each `answer[i]` from scratch by multiplying all other elements would cost `O(n)` per index, `O(n^2)` overall — too slow for `n` up to `10^5`.
 
-## Key Observation
+### Key Observation
 
 `answer[i]` is just **(product of everything to the left of `i`) × (product of everything to the right of `i`)**. Both the "everything to the left" and "everything to the right" products can each be built incrementally in a single linear pass — no division needed, and no recomputation from scratch.
 
@@ -74,13 +124,13 @@ suffix products (product of everything strictly after i), multiplied into the sa
 combine with the prefix values already stored there to give the final answer.
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Two linear passes — one left-to-right accumulating a running prefix product, one right-to-left accumulating a running suffix product — together build the full "everything except index i" product for every index, using only the output array and one running accumulator variable as extra space.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -100,7 +150,7 @@ Rather than recomputing "everything to the left/right" from scratch at every ind
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -132,7 +182,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Create an `answer` array of the same length as `nums`, initialized to `1`.
 2. **Prefix pass** — walk left to right with a running product `running` (starting at `1`):
@@ -145,7 +195,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 answer = array of 1's, length n
@@ -165,7 +215,7 @@ return answer
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -187,7 +237,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -219,7 +269,7 @@ Final `answer`: `[24, 12, 8, 6]`, matching the expected output.
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

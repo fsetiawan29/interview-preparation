@@ -55,13 +55,77 @@ Result (order of groups/order within groups may vary):
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Compare every pair of strings directly: two strings belong in the same group exactly when they're anagrams of each other (same sorted characters).
+
+### Pseudocode
+
+```text
+n = length(strs)
+used = array of n false values
+groups = []
+
+for i = 0 to n - 1
+    if used[i]
+        continue
+
+    group = [strs[i]]
+    used[i] = true
+
+    for j = i + 1 to n - 1
+        if not used[j] and isAnagram(strs[i], strs[j])
+            group.append(strs[j])
+            used[j] = true
+
+    groups.append(group)
+
+return groups
+
+function isAnagram(a, b)
+    freq_a = frequency map of a
+    freq_b = frequency map of b
+    return freq_a == freq_b
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2 * k)
+```
+
+Why?
+
+- `n = len(strs)`, `k` = max string length.
+- There are `O(n^2)` pairs to compare, and each `isAnagram` check costs `O(k)` to build and compare frequency maps.
+
+#### Space Complexity
+
+```text
+O(n * k)
+```
+
+Why?
+
+- Every original string ends up stored exactly once across all the groups.
+
+### Why this isn't good enough
+
+Every string is compared against every other ungrouped string individually to test if they're anagrams. Reducing each string to a canonical "sorted characters" key turns matching into a single hash map lookup — strings with the same key are anagrams automatically — replacing all the pairwise `O(k)` comparisons with one `O(k log k)` key computation per string.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Comparing every pair of strings to check if they're anagrams of each other would be `O(n^2)` comparisons, each of which could itself cost `O(k)` — far too slow for `n` up to `10^4`. We need a way to recognize "these strings are anagrams" without pairwise comparison.
 
-## Key Observation
+### Key Observation
 
 Two strings are anagrams **if and only if** sorting their characters produces the exact same string. That sorted string is a **canonical form** — a single "fingerprint" shared by every member of an anagram group.
 
@@ -73,13 +137,13 @@ Example:
 "tan" -> sorted characters -> "ant"   (different fingerprint)
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Once every string has a canonical key, grouping becomes a single pass with a hash map: compute each string's key, and append the string to the bucket for that key. No pairwise comparisons are needed — the hash map does the matching in `O(1)` average time per lookup.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -103,7 +167,7 @@ Once every string has been dropped into its bin, the bins themselves (their cont
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -150,7 +214,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Create an empty map `group` from canonical key to list of strings.
 2. For each string in `strs`:
@@ -161,7 +225,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 group = empty map
@@ -179,7 +243,7 @@ return values of group
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -200,7 +264,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -221,7 +285,7 @@ Final `group.values()`: `[["eat","tea","ate"], ["tan","nat"], ["bat"]]` — the 
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

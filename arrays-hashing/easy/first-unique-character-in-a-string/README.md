@@ -46,13 +46,64 @@ index 0 -> 'l' has count 1 -> found it!
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+For each index, count how many times that character occurs anywhere in the string by scanning the whole string again. The first index whose character has a total count of exactly `1` is the answer.
+
+### Pseudocode
+
+```text
+n = length(s)
+
+for i = 0 to n - 1
+    count = 0
+    for j = 0 to n - 1
+        if s[j] == s[i]
+            count += 1
+
+    if count == 1
+        return i
+
+return -1
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- For each of the `n` indices, counting that character's total occurrences costs another `O(n)` scan.
+
+#### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- No extra data structure is used — just the running `count`.
+
+### Why this isn't good enough
+
+The same character's total count gets recomputed from scratch for every one of its occurrences. Counting every character once up front with a frequency map, then doing a single second pass to find the first count of `1`, removes that repeated re-scanning.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Determining whether a character is "unique" requires knowing how many times it appears *anywhere* in the string — information that isn't available just by looking at the character in isolation as we scan.
 
-## Key Observation
+### Key Observation
 
 If we first count every character's total frequency across the whole string, then a second left-to-right scan can simply check each character's precomputed count. The first one with a count of exactly `1` is the answer.
 
@@ -69,13 +120,13 @@ index 1 'o' -> freq=2, skip
 index 2 'v' -> freq=1 -> found it!
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Separating the problem into "count everything" then "scan for the first count of 1" avoids re-scanning the rest of the string for every character — each phase is a single linear pass, giving `O(n)` total instead of `O(n^2)`.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -93,7 +144,7 @@ Walk again: l o v e l e e t c o d e
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -126,7 +177,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Build a frequency map `freq` counting every character in `s`.
 2. Scan `s` left to right with its index `i`. For each `char`:
@@ -135,7 +186,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 freq = empty map
@@ -152,7 +203,7 @@ return -1
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -170,7 +221,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -190,7 +241,7 @@ Result: `2`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

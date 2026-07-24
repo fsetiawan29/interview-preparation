@@ -61,13 +61,76 @@ true
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Instead of marking a cell directly on the board and restoring it afterward, pass a freshly copied `visited` set into every recursive call, adding the current cell to the copy each time.
+
+### Pseudocode
+
+```text
+function dfs(r, c, index, visited)
+    if index == length(word)
+        return true
+
+    if r < 0 or r >= rows or c < 0 or c >= cols
+        return false
+    if (r, c) in visited
+        return false
+    if board[r][c] != word[index]
+        return false
+
+    new_visited = copy of visited, plus (r, c)   // O(L) copy
+
+    return dfs(r+1, c, index+1, new_visited)
+        or dfs(r-1, c, index+1, new_visited)
+        or dfs(r, c+1, index+1, new_visited)
+        or dfs(r, c-1, index+1, new_visited)
+
+for r in 0 .. rows-1
+    for c in 0 .. cols-1
+        if dfs(r, c, 0, empty set)
+            return true
+
+return false
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(rows * cols * 4^L * L)
+```
+
+Why?
+
+- Same `rows * cols` starting points and `4^L` branching as the optimized version (`L = len(word)`), but every recursive call now also pays `O(L)` to copy the `visited` set before recursing.
+
+#### Space Complexity
+
+```text
+O(L^2)
+```
+
+Why?
+
+- Up to `L` recursive calls can be active at once, and each one carries its own `O(L)`-sized copy of `visited`.
+
+### Why this isn't good enough
+
+Copying the visited set at every step multiplies the entire search by an extra factor of `L`, in both time and space. Marking a cell directly on the board (and un-marking it when backtracking) needs no copying at all — it reuses storage that already exists, at `O(1)` extra work per step instead of `O(L)`.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 A cell can lead down multiple possible directions, and a wrong guess several steps in requires undoing exactly the cells that were tentatively claimed — without an explicit "undo," a used cell would stay marked as visited forever and block every other path that also needs to pass through it.
 
-## Key Observation
+### Key Observation
 
 The board itself can double as the "visited" tracker: temporarily overwrite a matched cell with a sentinel (like `"#"`) while exploring deeper, then restore its original letter once that exploration path is exhausted — this is backtracking.
 
@@ -80,13 +143,13 @@ board[r][c] = '#'           # mark visited
 board[r][c] = 'C'  # restore ('#' -> original letter) before trying a sibling direction
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 No second `visited` grid is needed — mutating and then restoring `board` in place gives O(1) extra bookkeeping per cell, and guarantees that once a path backtracks past a cell, that cell is available again for a completely different path starting elsewhere.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -108,7 +171,7 @@ Every cell on the current trail is "frozen" (can't be reused) only while the hik
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -155,7 +218,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Try every cell `(r, c)` in the grid as a possible starting point for `word[0]`.
 2. From a given cell, if `index` has already reached `len(word)`, the whole word matched — return `true`.
@@ -167,7 +230,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 rows = number of rows in board
@@ -204,7 +267,7 @@ return false
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -245,7 +308,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -272,7 +335,7 @@ Result: `true`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

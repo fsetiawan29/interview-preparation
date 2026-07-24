@@ -51,13 +51,60 @@ and no two distinct characters in s map to the same character in t -> true
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Without building any maps, directly verify the bijection property between every pair of positions: `s[i] == s[j]` must hold exactly when `t[i] == t[j]` holds, for every pair `(i, j)`.
+
+### Pseudocode
+
+```text
+n = length(s)
+
+for i = 0 to n - 1
+    for j = 0 to i - 1
+        if (s[j] == s[i]) != (t[j] == t[i])
+            return false
+
+return true
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- For each index `i`, comparing it against every earlier index `j` costs `O(n)`, across `n` indices.
+
+#### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- No extra data structure is used beyond the loop indices.
+
+### Why this isn't good enough
+
+Every new index is checked against *every* earlier index individually. Two hash maps (`s -> t` and `t -> s`) let each index be checked against its single recorded mapping in `O(1)`, replacing the `O(n)` per-index comparison with a constant-time lookup.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 A valid isomorphism must hold in **both directions** — `s[i]` must always map to the same `t[i]`, but also no two different characters of `s` may map to the same character of `t`. Checking only one direction misses cases like `s="ab"`, `t="aa"`, where `a` and `b` would both map to `a`.
 
-## Key Observation
+### Key Observation
 
 Two hash maps, one for each direction (`s -> t` and `t -> s`), can each catch a different kind of violation as we scan once, left to right.
 
@@ -71,13 +118,13 @@ i=1: s[1]='b' -> t[1]='a'   b is unmapped so far, but t[1]='a' is ALREADY mapped
      t_to_s['a'] == 'a', but s[1] == 'b' != 'a' -> conflict! -> false
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Checking both `s_to_t` and `t_to_s` at every index catches a mismatch in either direction the moment it happens, without needing a second pass or extra bookkeeping — a single left-to-right scan is enough.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -95,7 +142,7 @@ No conflicts found -> true
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -139,7 +186,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Create two empty maps: `s_to_t` and `t_to_s`.
 2. Scan both strings together by index `i`, from `0` to `len(s) - 1`:
@@ -150,7 +197,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 s_to_t = empty map
@@ -171,7 +218,7 @@ return true
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -194,7 +241,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -212,7 +259,7 @@ Result: `true`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

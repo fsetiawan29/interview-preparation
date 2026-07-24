@@ -47,13 +47,59 @@ The letter 'e' in t has no match -> it's the extra letter.
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Treat `t` as a mutable list of characters. For every character in `s`, remove one matching occurrence from that list. Whatever single character remains at the end is the extra letter.
+
+### Pseudocode
+
+```text
+t_chars = list of characters in t
+
+for char in s
+    find the index of char in t_chars
+    remove that entry from t_chars
+
+return the one remaining character in t_chars
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- `n = len(t)`; for each of the `n - 1` characters in `s`, finding and removing a matching entry from `t_chars` costs `O(n)` (scan to find it, shift to close the gap).
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- `t_chars` is a full mutable copy of `t`.
+
+### Why this isn't good enough
+
+Every character removal re-scans and re-shifts the list, even though "how many of this character are available" is information that could be counted once up front. A frequency map built from `s` and consumed while scanning `t` turns each of those `O(n)` removals into an `O(1)` decrement.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 `t` is a shuffled version of `s` plus one extra character, so the extra letter isn't necessarily at a fixed position — comparing characters index by index doesn't work directly.
 
-## Key Observation
+### Key Observation
 
 If we count how many times each character appears in `s`, then walk through `t` decrementing those counts, the one character that either isn't in the count map at all, or whose count has already hit zero, must be the extra letter.
 
@@ -70,13 +116,13 @@ d -> freq[d] 1->0
 e -> not in freq -> this is the extra letter
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Instead of sorting both strings and comparing them character by character (`O(n log n)`), a hash map lets us count once and consume once, both in `O(n)` — the mismatch naturally surfaces as either a missing key or a spent count.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -95,7 +141,7 @@ Walking t="abcde":
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -135,7 +181,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Build a frequency map `freq` counting every character in `s`.
 2. Scan `t` left to right. For each `char`:
@@ -145,7 +191,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 freq = empty map
@@ -163,7 +209,7 @@ for char in t
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -184,7 +230,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -206,7 +252,7 @@ Result: `"e"`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

@@ -49,13 +49,64 @@ Result matches goal -> true
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Try every pair of positions in `s`, swap them, and check whether the result equals `goal`.
+
+### Pseudocode
+
+```text
+n = length(s)
+if n != length(goal)
+    return false
+
+for i = 0 to n - 1
+    for j = i + 1 to n - 1
+        candidate = copy of s with characters at i and j swapped
+        if candidate == goal
+            return true
+
+return false
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^3)
+```
+
+Why?
+
+- There are `O(n^2)` pairs `(i, j)` to try swapping.
+- Building the swapped copy and comparing it to `goal` costs `O(n)` per pair.
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- Each candidate swapped string is a fresh `O(n)`-sized copy of `s`.
+
+### Why this isn't good enough
+
+Every pair is tested by materializing and comparing a whole new string, even though a swap only ever changes two positions. Scanning once to record the mismatched positions (at most two, and their mirror relationship) replaces all those `O(n)` rebuild-and-compare operations with a single `O(n)` pass.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 It's tempting to think a single swap can fix any two mismatched positions, but that's only true if the mismatches are each other's mirror image. If `s == goal` already, a swap is still required (or forbidden) depending on whether a repeated letter exists to "swap with itself."
 
-## Key Observation
+### Key Observation
 
 There are really only two shapes this problem can take:
 
@@ -72,13 +123,13 @@ Mismatches: index 0 ('a' vs 'b'), index 1 ('b' vs 'a')
 s[0]==goal[1] ('a'=='a') and s[1]==goal[0] ('b'=='b') -> mirror match -> true
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Instead of trying every possible swap (`O(n^2)`), a single left-to-right pass can count mismatches and remember their positions. If there are anything other than exactly two mismatches, or they aren't mirrors of each other, the answer is immediately `false`.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -97,7 +148,7 @@ If instead three or more disagreements appear, no single swap can fix them all â
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -148,7 +199,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. If `s` and `goal` have different lengths, return `false`.
 2. If `s` equals `goal`, scan `s` for any repeated character (using a hash set) â€” if one exists, return `true` (swap it with itself), otherwise return `false`.
@@ -158,7 +209,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 if length(s) != length(goal)
@@ -192,7 +243,7 @@ return s[first] == goal[second] and s[second] == goal[first]
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -231,7 +282,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -251,7 +302,7 @@ Result: `true`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

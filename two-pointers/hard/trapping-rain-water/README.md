@@ -55,13 +55,61 @@ Summing water[i] across every position:
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+For every index, directly scan left for the tallest wall so far and scan right for the tallest wall so far, and use the shorter of the two to compute trapped water at that index.
+
+### Pseudocode
+
+```text
+n = length(height)
+water = 0
+
+for i = 0 to n - 1
+    left_max = max(height[0 .. i])
+    right_max = max(height[i .. n-1])
+    water += min(left_max, right_max) - height[i]
+
+return water
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- For each of the `n` indices, finding `left_max` and `right_max` each costs another `O(n)` scan.
+
+#### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- Only the running `water` total and the two scan maxima are used per index.
+
+### Why this isn't good enough
+
+Every index re-scans the entire array in both directions to find its bounding walls, even though most of that scanning is repeated from one index to the next. Two pointers closing in from both ends, each carrying a running max, let the smaller-max side's water be finalized immediately — collapsing the repeated `O(n)` scans into a single `O(n)` pass.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 The water trapped above any single position depends on the tallest wall to its left **and** the tallest wall to its right — a genuinely two-sided dependency. Computing both directly for every index is `O(n^2)` (brute force). Precomputing `leftMax` and `rightMax` arrays fixes that at `O(n)` time, but costs `O(n)` extra space for the two arrays.
 
-## Key Observation
+### Key Observation
 
 At any moment while scanning inward from both ends with running maxes `leftMax` and `rightMax`, **whichever side currently has the smaller running max has its water level already fully decided** — the opposite wall, wherever it ends up, is guaranteed to be at least as tall as the current running max on that side, so it can only help, never hurt. This means the water at that position doesn't need to wait for the true global right-max (or left-max) to be known.
 
@@ -78,13 +126,13 @@ whatever is further right, some wall >= rightMax(1) will always bound it
 from that side, so min(leftMax, someFutureRightMax) = leftMax here.
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Since the smaller-running-max side is already resolved, its pointer can be advanced immediately, water added on the fly, using the running max instead of a precomputed max array. Both `leftMax` and `rightMax` only ever need to track the tallest wall seen *so far* from each side, so the two precomputed arrays collapse into two scalars — turning `O(n)` space into `O(1)`.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -108,7 +156,7 @@ leftMax not< rightMax -> right hiker moves instead
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -151,7 +199,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Point `left` at index `0` and `right` at the last index. Set `leftMax = height[left]`, `rightMax = height[right]`, and `water = 0`.
 2. While `left < right`:
@@ -161,7 +209,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 left = 0
@@ -185,7 +233,7 @@ return water
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -217,7 +265,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -244,7 +292,7 @@ Result: `water = 6` — matches the expected output.
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

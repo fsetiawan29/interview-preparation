@@ -49,13 +49,64 @@ Take the top k=2: [1, 2]
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Count every element's frequency, then sort the distinct elements by frequency (descending) and take the first `k`.
+
+### Pseudocode
+
+```text
+freq = empty map
+for n in nums
+    freq[n] = freq.get(n, 0) + 1
+
+pairs = list of (value, count) from freq
+sort pairs descending by count
+
+res = []
+for i = 0 to k - 1
+    res.append(pairs[i].value)
+
+return res
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n + m log m)
+```
+
+Why?
+
+- `n = len(nums)` to build `freq`, `m` = number of distinct elements to sort by frequency.
+
+#### Space Complexity
+
+```text
+O(m)
+```
+
+Why?
+
+- `freq` and `pairs` each hold `m` distinct elements.
+
+### Why this isn't good enough
+
+Sorting all `m` distinct elements by frequency does more work than needed when only the top `k` are wanted. Since a frequency can never exceed `len(nums)`, bucket sort — dropping each element into a bucket indexed by its own frequency — lets the top `k` be read off directly from the highest buckets in `O(n)` total, with no comparison-based sort at all.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Sorting all distinct elements by frequency to grab the top `k` costs `O(m log m)` where `m` is the number of distinct elements — not bad, but not the fastest possible, and it's easy to reach for `sorted()` without noticing a linear-time alternative exists.
 
-## Key Observation
+### Key Observation
 
 A frequency can never be larger than `len(nums)` (an element can't occur more times than there are elements in the array at all). That means frequency is a **bounded integer** — which makes it usable directly as a **bucket index**: create `len(nums) + 1` buckets, and drop each number into the bucket matching its own frequency.
 
@@ -73,13 +124,13 @@ buckets (index 0..6):
   (all other buckets empty)
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Instead of sorting, walking the buckets from the highest index down to `1` visits elements in descending order of frequency "for free" — no comparison-based sort is needed, giving an overall `O(n)` solution (bucket sort).
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -101,7 +152,7 @@ No sorting needed — the bins themselves are already arranged from lowest frequ
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -148,7 +199,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Build a frequency map counting how many times each number appears in `nums`.
 2. Create `len(nums) + 1` empty buckets, indexed `0` through `len(nums)`.
@@ -159,7 +210,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 freq = empty map
@@ -181,7 +232,7 @@ for i from length(buckets) - 1 down to 1
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -207,7 +258,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -231,7 +282,7 @@ Result: `[1, 2]`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

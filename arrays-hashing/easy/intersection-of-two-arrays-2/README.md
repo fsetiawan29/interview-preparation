@@ -49,13 +49,65 @@ Result: [2,2]
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+For every element of `nums1`, scan `nums2` for a still-unused matching element. Mark matched elements of `nums2` as used so they can't be reused.
+
+### Pseudocode
+
+```text
+n = length(nums1)
+m = length(nums2)
+used = array of m false values
+res = []
+
+for i = 0 to n - 1
+    for j = 0 to m - 1
+        if not used[j] and nums1[i] == nums2[j]
+            res.append(nums1[i])
+            used[j] = true
+            break
+
+return res
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n * m)
+```
+
+Why?
+
+- For each of the `n` elements of `nums1`, the inner loop scans up to `m` elements of `nums2` looking for an unused match.
+
+#### Space Complexity
+
+```text
+O(m)
+```
+
+Why?
+
+- The `used` array tracks one boolean per element of `nums2`.
+
+### Why this isn't good enough
+
+Every element of `nums1` re-scans `nums2` from the start looking for a match. Counting `nums1`'s values once into a frequency map lets each element of `nums2` be matched (and its available count decremented) in `O(1)`, instead of an `O(m)` search per element.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Unlike a plain set intersection, duplicates matter here — an element should appear in the result exactly `min(count in nums1, count in nums2)` times, not just once. A naive nested loop comparing every pair would work but costs `O(n*m)` and needs careful bookkeeping to avoid reusing the same element twice.
 
-## Key Observation
+### Key Observation
 
 If we count how many times each value appears in `nums1`, we can then scan `nums2` once and, for each value, "spend" one unit of its remaining count from the map — as long as some count remains, that value belongs in the intersection.
 
@@ -75,13 +127,13 @@ Scan nums2:
 Result: [9,4]
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Decrementing the count as each match is consumed naturally caps how many times a value can appear in the result — exactly matching the number of times it was available in `nums1`. This turns an `O(n*m)` nested search into a single `O(n + m)` pass.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -99,7 +151,7 @@ result:  [9]    [9,4]    (skip)    (skip)   (skip)
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -146,7 +198,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Build a frequency map `freq` counting every value in `nums1`.
 2. Create an empty result list `res`.
@@ -156,7 +208,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 freq = empty map
@@ -176,7 +228,7 @@ return res
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -197,7 +249,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -219,7 +271,7 @@ Result: `[9,4]`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

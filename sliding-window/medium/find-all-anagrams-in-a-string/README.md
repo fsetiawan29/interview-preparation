@@ -50,13 +50,72 @@ window at 6: "bac" -> letters {b,a,c} match p's {a,b,c} -> anagram, record 6
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+For every possible start index, cut out a window of length `len(p)` and check — from scratch — whether that window is an anagram of `p` by comparing letter-frequency maps. No information is carried over between windows.
+
+### Pseudocode
+
+```text
+if length(p) > length(s)
+    return []
+
+n = length(s)
+m = length(p)
+freq_p = frequency map of p
+res = []
+
+for i = 0 to n - m
+    freq_window = {}
+    for j = i to i + m - 1
+        freq_window[s[j]] = freq_window.get(s[j], 0) + 1
+
+    if freq_window == freq_p
+        res.append(i)
+
+return res
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n * m)
+```
+
+Why?
+
+- There are roughly `n = len(s)` starting positions to try.
+- For each one, building `freq_window` from scratch by scanning the window costs `O(m)` (`m = len(p)`).
+- Total: `O(n * m)`, which hits `~9 * 10^8` operations at the given constraint (`n, m` up to `3 * 10^4`) — too slow.
+
+#### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- `freq_p` and `freq_window` each hold at most 26 lowercase-letter keys, independent of `n` or `m`.
+- The output array doesn't count toward auxiliary space.
+
+### Why this isn't good enough
+
+Each window is treated as brand new, so sliding by one re-scans and re-counts all `m` characters even though the window only changed by one character on each end. That repeated work is exactly what the optimized approach below eliminates.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Checking every window of length `len(p)` by sorting or rebuilding a frequency count from scratch is `O(n * m)` (`m = len(p)`) — too slow when both lengths can reach `3 * 10^4`. Also, "anagram" means same letters with the same counts, not same order, so a direct substring comparison doesn't work.
 
-## Key Observation
+### Key Observation
 
 A window is an anagram of `p` exactly when its letter-frequency map equals `p`'s letter-frequency map. Since the window has fixed size `len(p)`, sliding it by one only removes one letter's count and adds another's — the frequency map can be updated incrementally instead of rebuilt.
 
@@ -67,13 +126,13 @@ p = "abc"          freq_p = {a:1, b:1, c:1}
 window "cba"        window_freq = {c:1, b:1, a:1}  -> equal to freq_p -> anagram
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Dictionary equality (`window_freq == freq_p`) does the "is this an anagram" check in `O(26)` (bounded alphabet) instead of `O(m log m)` for sorting each window. Combined with `O(1)` incremental updates per slide, the whole scan stays `O(n)`.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -93,7 +152,7 @@ s:  c  b  a  e  b  a  b  a  c  d
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -150,7 +209,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. If `p` is longer than `s`, no anagram can fit — return `[]`.
 2. Build `freq_p`, the letter-frequency map of `p`.
@@ -163,7 +222,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 if length(p) > length(s)
@@ -196,7 +255,7 @@ return res
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -233,7 +292,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -253,7 +312,7 @@ Result: `[0, 1, 2]`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

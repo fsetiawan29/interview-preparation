@@ -59,13 +59,62 @@ k = 5
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Build a new list of every value that isn't `val`, then copy it back into `nums`.
+
+### Pseudocode
+
+```text
+kept = []
+for x in nums
+    if x != val
+        kept.append(x)
+
+k = length(kept)
+for i = 0 to k - 1
+    nums[i] = kept[i]
+
+return k
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- One pass filters into `kept`, one pass copies back.
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- `kept` is a full second array — extra space the in-place constraint forbids.
+
+### Why this isn't good enough
+
+Since the problem explicitly allows the remaining elements' order to change, there's no need to preserve it (or use a second array) at all. Overwriting a `val` found at the front with a value taken from the back — shrinking the "active" range by one each time — removes every occurrence in `O(1)` extra space.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 A naive approach shifts every element after a removed one — that's `O(n)` work per removal, and it feels necessary if you assume order must be preserved. But the problem explicitly says order **may** change, which opens up a much cheaper trick.
 
-## Key Observation
+### Key Observation
 
 Since order doesn't matter, whenever we find a `val` at the front, we don't need to shift the whole array — we can just **overwrite it with a value from the back** instead, and shrink the array's "active" range by one from the right.
 
@@ -79,13 +128,13 @@ Example:
 nums[left] == val -> replace it with nums[right], shrink from the right
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 This turns every removal into an `O(1)` operation — no shifting required. Two pointers closing in from opposite ends means each element is examined at most once, and the "back" values get reused to plug holes left by removed values at the front.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -112,7 +161,7 @@ The region `[left, right]` is the only part of the array still "in question" —
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -155,7 +204,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Point `left` at the first index and `right` at the last index.
 2. While `left` is less than or equal to `right`:
@@ -165,7 +214,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 left = 0
@@ -183,7 +232,7 @@ return left
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -203,7 +252,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -223,7 +272,7 @@ Result: `k = 2`, kept values `[2, 2]`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

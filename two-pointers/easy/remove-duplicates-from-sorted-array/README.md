@@ -59,13 +59,65 @@ k = 5 (the rest of the array's contents no longer matter)
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Track which values have been seen using a hash set, collecting the first occurrence of each into a new list, then copy that list back into `nums`.
+
+### Pseudocode
+
+```text
+seen = empty set
+unique = []
+
+for x in nums
+    if x not in seen
+        seen.add(x)
+        unique.append(x)
+
+k = length(unique)
+for i = 0 to k - 1
+    nums[i] = unique[i]
+
+return k
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- One pass over `nums`, with `O(1)` average set membership checks and inserts.
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- Both `seen` and `unique` can grow up to `n` entries — extra space the in-place constraint forbids.
+
+### Why this isn't good enough
+
+This doesn't take advantage of `nums` already being sorted, so it needs a hash set just to recognize duplicates. Since duplicates in a sorted array are always adjacent, comparing each value only to the *last kept* value (via a single write pointer) recognizes duplicates just as reliably, with `O(1)` extra space instead of a set and a second array.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Removing an element from the middle of an array normally means shifting everything after it — done naively that's an `O(n)` shift per duplicate, and it's easy to lose track of which values have already been kept when duplicates repeat many times in a row.
 
-## Key Observation
+### Key Observation
 
 Because `nums` is **already sorted**, duplicates of the same value are always **adjacent**. That means uniqueness can be checked with a single comparison: is the current value different from the *last value we kept*?
 
@@ -78,13 +130,13 @@ Example:
    compare nums[i] to nums[j-1], not to every prior value
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 No `set` is needed to track "seen" values — a single write pointer `j` remembers the last unique value's position. Whenever the read pointer `i` finds a value that differs from `nums[j-1]`, it's guaranteed to be a brand-new unique value (since sorted order rules out it matching anything further back).
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -112,7 +164,7 @@ nums[i]=1 != nums[j-1]=0 -> new unique value, write it at j, j advances
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -150,7 +202,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Set the write pointer `j` to `1` — `nums[0]` is always the first unique value.
 2. Scan the array from index `1` onward with a read pointer `i`.
@@ -160,7 +212,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 j = 1
@@ -175,7 +227,7 @@ return j
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -192,7 +244,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -209,7 +261,7 @@ Result: `k = 2`, `nums[:2] = [1, 2]`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

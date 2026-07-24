@@ -52,13 +52,71 @@ Concatenate the results:
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+First split `s` into its primitive pieces by tracking matching-bracket boundaries explicitly, then strip the first and last character off each piece and concatenate the results.
+
+### Pseudocode
+
+```text
+pieces = []
+depth = 0
+start = 0
+
+for i = 0 to length(s) - 1
+    if s[i] == "("
+        depth += 1
+    else
+        depth -= 1
+
+    if depth == 0
+        pieces.append(s[start .. i])
+        start = i + 1
+
+res = []
+for piece in pieces
+    res.append(piece[1 .. length(piece) - 2])
+
+return join(res)
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- `n = len(s)`; finding piece boundaries is one pass, and slicing off the first/last character of each piece touches every remaining character exactly once in total.
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- `pieces` stores every primitive substring (their combined length is `O(n)`) before being trimmed and rejoined.
+
+### Why this isn't good enough
+
+This is already `O(n)` time, same as the optimized version, but it explicitly builds and stores every primitive piece as its own substring just to strip its ends. A single running `depth` counter identifies exactly the same characters to drop — the `'('` that takes depth `0 -> 1` and the `')'` that takes it `1 -> 0` — in one pass, without ever materializing piece boundaries or intermediate substrings.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 It's tempting to think you must first split `s` into its primitive pieces (by tracking matching-bracket boundaries), then strip the first and last character off each piece. That's extra bookkeeping — but it turns out you never need to identify the piece boundaries explicitly.
 
-## Key Observation
+### Key Observation
 
 The characters to **drop** are exactly the `'('` that takes the nesting depth from `0` to `1`, and the `')'` that takes it back from `1` to `0` — one such pair per primitive piece. Every other character is nested one level deeper (or more) and belongs in the output. A single running `depth` counter is enough to spot these two special characters, with no need to ever locate the piece boundaries themselves.
 
@@ -72,13 +130,13 @@ chars:   (     (     )     (     )     )
                ^^^^^^^^^^^^^^^^^^^^ everything else stays >= depth 1: KEEP
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 A single left-to-right pass with one integer counter is all that's needed — no stack of characters, and no explicit search for where one primitive piece ends and the next begins.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -94,7 +152,7 @@ Picture nested doors, like floors of a building. `depth` tracks which floor you'
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -144,7 +202,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Initialize an empty result list and `depth = 0`.
 2. For each character in `s`:
@@ -154,7 +212,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 res = []
@@ -175,7 +233,7 @@ return join(res)
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -203,7 +261,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -228,7 +286,7 @@ Result: `"()()()"`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

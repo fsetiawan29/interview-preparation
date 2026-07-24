@@ -50,13 +50,70 @@ Longest run: [1,2,3,4] -> length 4
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Sort the array first — once sorted, a consecutive run is just a stretch of values increasing by exactly `1` each step (skipping over duplicates).
+
+### Pseudocode
+
+```text
+if length(nums) == 0
+    return 0
+
+sorted_nums = sort(nums)
+longest = 1
+current = 1
+
+for i = 1 to length(sorted_nums) - 1
+    if sorted_nums[i] == sorted_nums[i - 1]
+        continue
+    elif sorted_nums[i] == sorted_nums[i - 1] + 1
+        current += 1
+    else
+        current = 1
+
+    longest = max(longest, current)
+
+return longest
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n log n)
+```
+
+Why?
+
+- Sorting dominates at `O(n log n)`; the single linear scan afterward is `O(n)`.
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- Sorting produces (or requires) a sorted copy/ordering of the `n` elements.
+
+### Why this isn't good enough
+
+The problem explicitly calls for `O(n)`, and sorting alone already exceeds that. Putting every number into a hash set and only starting a walk from true sequence starts (`n - 1` not in the set) avoids sorting entirely — every number is still visited, but each is walked forward at most once across the whole run.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Sorting first gives an `O(n log n)` solution — but the problem explicitly wants `O(n)`. Without sorting, checking "is `n+1` present?" naively for every element could restart the same run over and over (e.g. starting the walk from `2`, then again from `3`, then again from `4`, all part of the same run), wasting work.
 
-## Key Observation
+### Key Observation
 
 Put every number into a **hash set** for O(1) membership checks. Then, only start walking a sequence from a number `n` if `n - 1` is **not** in the set — that guarantees `n` is the *start* of its run, not somewhere in the middle. Every run then gets walked forward exactly once, from its true starting point.
 
@@ -69,13 +126,13 @@ n = 3: is 2 in the set? yes -> 3 is NOT a start, skip it here
 n = 1: is 0 in the set? no  -> 1 IS a start, walk forward: 2,3,4 all present -> length 4
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Because each number is only ever walked forward as part of *one* run (the run it truly starts), the total work across all the inner "walk forward" loops adds up to at most `n` steps overall — even though the outer loop iterates over every number in the set, only true starts trigger the (potentially long) inner walk.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -97,7 +154,7 @@ The longest walk found across all true starts is the answer.
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -145,7 +202,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Put every number from `nums` into a hash set `num_set` (this also removes duplicates).
 2. Initialize `longest = 0`.
@@ -157,7 +214,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 num_set = set(nums)
@@ -179,7 +236,7 @@ return longest
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -200,7 +257,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -225,7 +282,7 @@ Result: `longest = 4`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

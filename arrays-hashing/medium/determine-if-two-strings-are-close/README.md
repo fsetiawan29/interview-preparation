@@ -59,13 +59,79 @@ word1 and word2 are close -> true
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Build each string's frequency map the slow way — for each position not yet counted, scan the rest of that string to tally every remaining occurrence of that character — then compare the two maps' key sets and sorted value lists.
+
+### Pseudocode
+
+```text
+function bruteForceFreq(word)
+    n = length(word)
+    used = array of n false values
+    freq = empty map
+
+    for i = 0 to n - 1
+        if used[i]
+            continue
+        count = 0
+        for j = i to n - 1
+            if word[j] == word[i] and not used[j]
+                count += 1
+                used[j] = true
+        freq[word[i]] = count
+
+    return freq
+
+if length(word1) != length(word2)
+    return false
+
+freq1 = bruteForceFreq(word1)
+freq2 = bruteForceFreq(word2)
+
+if keys(freq1) != keys(freq2)
+    return false
+
+return sorted(values(freq1)) == sorted(values(freq2))
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- `n = len(word1) == len(word2)`; in the worst case (many distinct characters), building each frequency map re-scans the remaining string from every position.
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- Each `used` array tracks one boolean per character of its string.
+
+### Why this isn't good enough
+
+Each frequency map is built by repeatedly re-scanning the remaining characters of the string. Counting each string in a single pass with a hash map (incrementing a running count per character) computes the exact same frequency map in `O(n)`, instead of `O(n^2)`.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 There are two very different operations in play, and it's tempting to try to simulate them directly. Simulating swaps and relabels on strings of length up to `10^5` would be slow and error-prone — the real question is what invariant the operations preserve, not how to execute them.
 
-## Key Observation
+### Key Observation
 
 - Operation 1 (swap any two characters) means **positions never matter** — only which characters appear and how often.
 - Operation 2 (swap all occurrences of one character with another) means **character labels don't matter either** — only the *multiset* of frequencies. Two strings are close exactly when they use the same set of characters, and that set's frequency values match up after sorting (each frequency can be "relabeled" onto a matching frequency in the other string via repeated Operation 2).
@@ -81,13 +147,13 @@ sorted(freq1.values()) == sorted(freq2.values())
                                            -> [1,2,3] == [1,2,3]  True
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Instead of simulating any operations at all, the problem reduces to two `O(1)`-ish checks on frequency maps: same character set, same sorted frequency multiset. Both are cheap to compute with a single pass over each string plus a sort bounded by the alphabet size (26).
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -108,7 +174,7 @@ If either the set of labels differs, or the sorted heights differ, no amount of 
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -154,7 +220,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. If `word1` and `word2` have different lengths, return `false` immediately.
 2. Build a frequency map `freq1` counting each character in `word1`.
@@ -165,7 +231,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 if length(word1) != length(word2)
@@ -187,7 +253,7 @@ return sorted(values(freq1)) == sorted(values(freq2))
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -208,7 +274,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -229,7 +295,7 @@ Result: `true`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

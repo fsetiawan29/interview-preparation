@@ -45,13 +45,56 @@ Every letter count matches exactly between s and t -> true
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Sort both strings — two strings are anagrams exactly when their sorted forms are identical.
+
+### Pseudocode
+
+```text
+if length(s) != length(t)
+    return false
+
+return sorted(s) == sorted(t)
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n log n)
+```
+
+Why?
+
+- Sorting each string costs `O(n log n)`, which dominates the final `O(n)` comparison.
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- Sorting produces new sorted copies of both strings.
+
+### Why this isn't good enough
+
+Sorting reorders every character just to compare multisets, which is more work than necessary. A single frequency map — incremented for `s`, decremented for `t` — checks the same "same letters, same counts" property in `O(n)`, without ever needing to establish an order.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Sorting both strings and comparing them works, but costs `O(n log n)`. Since only lowercase letters are involved, there's a faster way that avoids sorting entirely.
 
-## Key Observation
+### Key Observation
 
 If we count every character's frequency in `s`, then walk through `t` and *decrement* those same counts, an exact anagram will bring every count back down to precisely `0` — no more, no less.
 
@@ -68,13 +111,13 @@ freq = {r:0, a:0, t:1, c:-1}
 Not every count is 0 (t:1, c:-1 remain) -> false
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 A single hash map, incremented for `s` and decremented for `t`, captures both "letter present in `s` but missing from `t`" (count stays positive) and "letter present in `t` but not in `s`" (count goes negative) — checking that every final count is `0` verifies both directions at once, in linear time.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -90,7 +133,7 @@ Final balance: a:0  n:0  g:0  r:0  m:0  -> every scale at zero -> true
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -133,7 +176,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. If `s` and `t` have different lengths, return `false`.
 2. Build a frequency map `freq`, incrementing it once for each character in `s`.
@@ -143,7 +186,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 if length(s) != length(t)
@@ -166,7 +209,7 @@ return true
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -189,7 +232,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -209,7 +252,7 @@ Result: `true`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

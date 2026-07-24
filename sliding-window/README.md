@@ -39,7 +39,7 @@ def solve(nums, k):
 ```
 
 **Variable-size window** — expand right, shrink left while invalid:
-*(used by: [longest-substring-without-repeating-char](./medium/longest-substring-without-repeating-char))*
+*(used by: [longest-substring-without-repeating-char](./medium/longest-substring-without-repeating-char), [longest-repeating-char-replacement](./medium/longest-repeating-char-replacement))*
 
 ```python
 def solve(s):
@@ -87,7 +87,7 @@ for right in range(len(nums)):
 ```
 
 **Variable window — expand, shrink only when invalid** (maximum window / at most K)
-*(problems: [longest-substring-without-repeating-char](./medium/longest-substring-without-repeating-char))*
+*(problems: [longest-substring-without-repeating-char](./medium/longest-substring-without-repeating-char), [longest-repeating-char-replacement](./medium/longest-repeating-char-replacement))*
 ```python
 left = 0
 count = {}
@@ -183,3 +183,11 @@ for i, n in enumerate(nums):
   window, then record `right - left + 1`. Also solvable via
   arrays-hashing's plain hash-set membership check, but the sliding
   window avoids rescanning from scratch on every duplicate.
+- [longest-repeating-char-replacement](./medium/longest-repeating-char-replacement)
+  — variable-size window tracking a frequency map and a running
+  `max_freq` (count of the window's most frequent letter); the window is
+  achievable with at most `k` replacements exactly when
+  `window_length - max_freq <= k`. `max_freq` is a high-water mark that's
+  never decremented after a shrink — it can only make the shrink
+  condition stricter, never wrongly accept an invalid window, so the
+  final answer stays correct.

@@ -60,13 +60,61 @@ tracking the largest one seen:
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Check every pair of indices directly, keeping the largest sum found that's still under `k`.
+
+### Pseudocode
+
+```text
+n = length(nums)
+max_sum = -1
+
+for i = 0 to n - 1
+    for j = i + 1 to n - 1
+        if nums[i] + nums[j] < k
+            max_sum = max(max_sum, nums[i] + nums[j])
+
+return max_sum
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- There are `O(n^2)` pairs `(i, j)` with `i < j`, each checked in `O(1)`.
+
+#### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- Only `max_sum` and the two loop indices are used.
+
+### Why this isn't good enough
+
+Every pair is checked individually, with no way to steer the search toward bigger valid sums. Sorting first makes pointer movement predictable — advancing `left` can only grow the sum, retreating `right` can only shrink it — so a single opposite-ends scan can chase the maximum valid sum directly instead of trying every pair.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Checking every pair directly is `O(n^2)`, and simply looking for *any* valid pair isn't enough — we specifically need the **largest** sum under `k`, so the search has to be steered toward bigger sums without missing the true maximum.
 
-## Key Observation
+### Key Observation
 
 Once `nums` is **sorted**, a pair's sum only moves in one predictable direction when a pointer moves: shifting the left pointer right increases the sum, shifting the right pointer left decreases it. That means a classic opposite-ends two-pointer scan can be steered directly by whether the current sum is valid or not.
 
@@ -80,13 +128,13 @@ left                        right
 nums[left] + nums[right] = 1 + 75 = 76 >= 60 -> too big, need a smaller sum
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 If the current pair's sum is `< k`, it's a valid candidate — record it, then push `left` forward to *try for an even bigger* valid sum (moving `right` instead could only make the sum smaller, never bigger, so it would waste the opportunity). If the sum is `>= k`, the only way to shrink it is to pull `right` left.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -115,7 +163,7 @@ Every valid sum encountered along the way is compared against the running best.
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -158,7 +206,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Sort `nums`.
 2. Point `left` at the first index and `right` at the last index. Set `max_sum = -1`.
@@ -170,7 +218,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 sort(nums)
@@ -193,7 +241,7 @@ return max_sum
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -217,7 +265,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -237,7 +285,7 @@ Result: `max_sum = -1` (no valid pair found)
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

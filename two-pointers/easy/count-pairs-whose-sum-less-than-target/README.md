@@ -62,13 +62,61 @@ that a match unlocks in one shot:
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Check every pair of indices directly and count the ones whose sum is under `target`.
+
+### Pseudocode
+
+```text
+n = length(nums)
+count = 0
+
+for i = 0 to n - 1
+    for j = i + 1 to n - 1
+        if nums[i] + nums[j] < target
+            count += 1
+
+return count
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- There are `O(n^2)` pairs `(i, j)` with `i < j`, each checked in `O(1)`.
+
+#### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- Only the running `count` and the two loop indices are used.
+
+### Why this isn't good enough
+
+Every pair is checked individually, even though sorting first reveals that a single valid comparison at the two ends can confirm many pairs at once — every index strictly between a valid `left` and `right` also pairs validly with `left`. That's what collapses the nested loop into a linear two-pointer scan.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Counting every pair with a nested loop is `O(n^2)`, and since we need a **count**, not just existence, it's tempting to think every valid pair must be found and tallied individually — which seems to require checking each one.
 
-## Key Observation
+### Key Observation
 
 Once `nums` is **sorted**, if `nums[left] + nums[right] < target`, then `nums[left]` paired with **any** index strictly between `left` and `right` is also `< target` — because every value in that range is `<= nums[right]`. That's `right - left` valid pairs discovered in a single comparison, not just one.
 
@@ -90,13 +138,13 @@ left < m <= right also satisfies nums[left] + nums[m] < target,
 since nums[m] <= nums[right]
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Instead of counting one pair at a time, a valid comparison at the two ends lets us add `right - left` to the count in one step and advance `left` — collapsing what would be an inner loop into pure arithmetic.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -118,7 +166,7 @@ count += 3, left advances to chase new pairs
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -161,7 +209,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Sort `nums`.
 2. Point `left` at the first index, `right` at the last index. Set `count = 0`.
@@ -173,7 +221,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 sort(nums)
@@ -196,7 +244,7 @@ return count
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -221,7 +269,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -245,7 +293,7 @@ Result: `count = 5 + 4 + 1 = 10`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

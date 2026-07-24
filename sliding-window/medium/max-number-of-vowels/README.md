@@ -56,13 +56,66 @@ Windows of size 3:
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+For every possible start index, count the vowels in that window of length `k` from scratch, then keep the best count seen.
+
+### Pseudocode
+
+```text
+VOWELS = {a, e, i, o, u}
+n = length(s)
+best = 0
+
+for i = 0 to n - k
+    window_vowels = 0
+    for j = i to i + k - 1
+        if s[j] in VOWELS
+            window_vowels += 1
+    best = max(best, window_vowels)
+
+return best
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n * k)
+```
+
+Why?
+
+- There are roughly `n = len(s)` starting positions to try.
+- For each one, counting vowels in the window from scratch costs `O(k)`.
+- Total: `O(n * k)`, which hits `~10^10` operations at the given constraint (`n` up to `10^5`) — too slow.
+
+#### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- `VOWELS` is a fixed-size set of 5 characters; only `window_vowels` and `best` are used as extra state.
+
+### Why this isn't good enough
+
+Every window re-checks all `k` characters even though consecutive windows share `k - 1` of them. Adjusting the vowel tally by just the outgoing and incoming characters on each slide is what removes that repeated counting.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Recounting vowels in every length-`k` window from scratch is `O(n * k)` — wasteful, since consecutive windows overlap in all but two characters.
 
-## Key Observation
+### Key Observation
 
 Sliding the window by one position only changes two characters: the one leaving on the left and the one entering on the right. The vowel count only needs to be adjusted for those two characters, not recomputed for the whole window.
 
@@ -74,13 +127,13 @@ slide right by one -> drop 'a' (was a vowel, count -1), add 'i' (is a vowel, cou
 new count = 1 - 1 + 1 = 1  (window is now "bci")
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Each slide becomes `O(1)` work (two membership checks against a fixed vowel set) instead of an `O(k)` recount, bringing the total scan down to `O(n)`.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -102,7 +155,7 @@ The best count seen across all slides is the answer.
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -146,7 +199,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Set `left = 0` and `right = k - 1` — the first window covers indices `0` through `k - 1`.
 2. Count the vowels in that first window as `window_vowels`; initialize `best` to it.
@@ -158,7 +211,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 VOWELS = {a, e, i, o, u}
@@ -188,7 +241,7 @@ return best
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -230,7 +283,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -252,7 +305,7 @@ Result: `best = 3`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

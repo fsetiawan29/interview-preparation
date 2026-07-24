@@ -50,13 +50,67 @@ All characters of s found in order -> true
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+For each character of `s`, search `t` from the very beginning every time (skipping indices already claimed by earlier matches) instead of resuming from where the previous search left off.
+
+### Pseudocode
+
+```text
+last_matched = -1
+
+for char in s
+    found_at = -1
+    for i = 0 to length(t) - 1
+        if i > last_matched and t[i] == char
+            found_at = i
+            break
+
+    if found_at == -1
+        return false
+
+    last_matched = found_at
+
+return true
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n * m)
+```
+
+Why?
+
+- `n = len(s)`, `m = len(t)`; each character of `s` triggers a fresh scan of `t` from index `0`, re-walking the already-passed prefix every time.
+
+#### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- Only `last_matched` and the loop indices are used.
+
+### Why this isn't good enough
+
+Every character of `s` re-scans `t` from the start, re-covering ground already known to be used up. Since `t`'s pointer never needs to go backward, a single synchronized pass — advancing `t`'s pointer every step and `s`'s pointer only on a match — replaces all those repeated re-scans with one `O(n)` walk.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 `s`'s characters don't need to be consecutive in `t`, so it's tempting to search for each character independently — but that risks re-matching an earlier position in `t`, which would break the "in order" requirement.
 
-## Key Observation
+### Key Observation
 
 Both strings only need to be scanned **once, left to right, together**. `t`'s pointer always advances every step; `s`'s pointer only advances when its current character is actually found at `t`'s current position.
 
@@ -70,13 +124,13 @@ s = "abc"     t = "ahbgdc"
 t[i]='a' == s[j]='a' -> match, j advances too
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Because `t`'s pointer never goes backward, once a character of `s` is matched it's "consumed" and never revisited — a single synchronized pass is enough to verify the whole subsequence, with no need to search from scratch for each character of `s`.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -102,7 +156,7 @@ If `j` ever reaches `len(s)`, every character was found in order — `s` is a su
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -142,7 +196,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Point `i` at the start of `t` and `j` at the start of `s`.
 2. While both pointers are still within their strings:
@@ -152,7 +206,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 i = 0
@@ -169,7 +223,7 @@ return j == length(s)
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -187,7 +241,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -209,7 +263,7 @@ Result: `j=1 != len(s)=3` → `false`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

@@ -57,13 +57,63 @@ i=0: no pair sums to 0
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Check every triplet of indices directly, using a set to drop duplicate triplets.
+
+### Pseudocode
+
+```text
+n = length(nums)
+res = empty set of sorted tuples
+
+for i = 0 to n - 1
+    for j = i + 1 to n - 1
+        for k = j + 1 to n - 1
+            if nums[i] + nums[j] + nums[k] == 0
+                triplet = sorted([nums[i], nums[j], nums[k]])
+                res.add(tuple(triplet))
+
+return list(res)
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^3)
+```
+
+Why?
+
+- There are `O(n^3)` triplets `(i, j, k)` with `i < j < k`, each checked in `O(1)`.
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- `res`, a set of sorted tuples used to drop duplicates, holds at most `O(n)` unique triplets in the worst case.
+
+### Why this isn't good enough
+
+Every triplet is checked individually, and duplicates are only caught after the fact by hashing sorted tuples. Sorting `nums` first turns "find two numbers summing to `-nums[i]`" into a linear two-pointer scan, and lets duplicate values be skipped directly (since they sit adjacent) instead of relying on a set — dropping the whole search from `O(n^3)` to `O(n^2)`.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 A brute-force check of every triplet is `O(n^3)`. On top of that, the problem demands **unique** triplets, so naively collecting results and then deduplicating (e.g. with a set of sorted tuples) wastes time and space compared to avoiding duplicates during the scan itself.
 
-## Key Observation
+### Key Observation
 
 Once `nums` is **sorted**, fixing one number `nums[i]` reduces the problem to "find two numbers in the remainder that sum to `-nums[i]`" — exactly the opposite-ends two-pointer pattern used in Two Sum II. Sorting also makes duplicate values sit next to each other, so they can be skipped with a simple adjacent-value check.
 
@@ -78,13 +128,13 @@ nums[left] + nums[right] = -1 + 2 = 1
 target for the pair = -nums[i] = 1 -> match!
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Instead of a third nested loop, the inner search becomes a linear two-pointer scan (`O(n)`), so the whole algorithm is `O(n^2)` instead of `O(n^3)`. Skipping a repeated `nums[i]` (and repeated `left`/`right` values after a match) guarantees each distinct triplet is only recorded once.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -104,7 +154,7 @@ Whenever the anchor `i` repeats a value already tried, skip it entirely — it w
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -165,7 +215,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Sort `nums`.
 2. For each index `i` from `0` to `len(nums) - 1`:
@@ -180,7 +230,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 sort(nums)
@@ -215,7 +265,7 @@ return res
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -250,7 +300,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -278,7 +328,7 @@ Result: `[[-1,-1,2],[-1,0,1]]` — matches the expected output.
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

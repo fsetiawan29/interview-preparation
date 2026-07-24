@@ -55,13 +55,69 @@ t becomes "ac"
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Repeatedly scan for the first `'#'`, remove it along with the character before it, and restart the scan from the beginning — keep doing this until no `'#'` remains.
+
+### Pseudocode
+
+```text
+function reduce(str)
+    changed = true
+    while changed
+        changed = false
+        for i = 0 to length(str) - 1
+            if str[i] == '#'
+                if i == 0
+                    str = str[1:]
+                else
+                    str = str[0:i-1] + str[i+1:]
+                changed = true
+                break   // restart the scan after mutating the string
+
+    return str
+
+return reduce(s) == reduce(t)
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- `n = len(s)` (or `t`); each `'#'` found triggers a full string rebuild costing `O(n)`, and the scan restarts from the beginning after every removal.
+- Up to `n` characters can be removed this way.
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- Every removal builds a new string via slicing, each up to `O(n)` in size.
+
+### Why this isn't good enough
+
+Every `'#'` triggers a full rebuild-and-restart of the scan, even though the deletions only ever affect what's currently at the "end" of what's been kept so far. A stack lets each character be pushed or popped exactly once as the string is scanned a single time, left to right — no rebuilding, no restarting.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 A `'#'` deletes whatever character was typed immediately before it — but that character might itself have already been deleted by an earlier `'#'`. You can't simply pair up each `'#'` with the literal character in front of it in the original string; you need to track what's still "alive" as you scan.
 
-## Key Observation
+### Key Observation
 
 Processing left to right, a `'#'` should simply pop whatever is currently on top of a stack of surviving characters. This naturally cascades: an earlier deletion changes what the next `'#'` ends up removing.
 
@@ -77,13 +133,13 @@ s = "ab#c"
 final stack: [a, c] -> "ac"
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Building each string's surviving characters with a stack turns "apply the backspaces" into plain push/pop operations. Once both strings have been reduced to their surviving stacks, the answer is just a direct equality check between the two stacks.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -102,7 +158,7 @@ Whatever remains in the stack once typing finishes is exactly the text visible i
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -151,7 +207,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Define a helper that reduces a string to its "surviving characters" using a stack: for each character, if it's `'#'`, pop the stack (only if it isn't empty); otherwise, push the character.
 2. Build the surviving-character stack for `s`.
@@ -160,7 +216,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 function build(str)
@@ -178,7 +234,7 @@ return build(s) == build(t)
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -199,7 +255,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -233,7 +289,7 @@ Final comparison: `[a, c] == [a, c]` → `true`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

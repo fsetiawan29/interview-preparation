@@ -49,13 +49,62 @@ nums[0] == nums[3] == 1
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+For every index `i`, look ahead at the next `k` positions and check whether any of them holds the same value. If a match with `nums[i]` turns up within that window, a valid duplicate exists.
+
+### Pseudocode
+
+```text
+n = length(nums)
+
+for i = 0 to n - 1
+    for j = i + 1 to min(i + k, n - 1)
+        if nums[i] == nums[j]
+            return true
+
+return false
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n * k)
+```
+
+Why?
+
+- There are `n = len(nums)` starting indices `i`.
+- For each one, the inner loop checks up to `k` following elements.
+- Total: `O(n * k)`, which hits `~10^10` operations at the given constraint (`n, k` up to `10^5`) — too slow.
+
+#### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- No extra data structure is used — just the two loop indices.
+
+### Why this isn't good enough
+
+Every index `i` re-scans up to `k` elements ahead of it, even though the elements between `i` and `i + k` were mostly already looked at from a previous `i`. That repeated look-ahead is exactly what the sliding-window `set` eliminates.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Checking every pair `(i, j)` for equal values within distance `k` is an `O(n * k)` brute force — too slow when both `n` and `k` can reach `10^5`. We need to recognize a duplicate the moment it appears, without re-scanning the array around every index.
 
-## Key Observation
+### Key Observation
 
 Only the **last `k` elements** ever matter for a valid match at the current position — anything farther back is already too far away to satisfy `|i - j| <= k`. So instead of remembering the whole array, keep a sliding window of at most `k` recent values in a set. If the current value is already in that set, a valid duplicate exists.
 
@@ -69,13 +118,13 @@ window after index 1: {0, 1}   (index 0 falls out once window exceeds size k)
 index 2: nums[2] = 1 is in window -> duplicate within distance k
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 The set membership check is `O(1)` on average, and the window is maintained incrementally — one insert and at most one removal per step — so the whole scan stays `O(n)` instead of re-checking a range for every index.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -93,7 +142,7 @@ If a value is ever seen while still in memory, it must be within `k` positions o
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -139,7 +188,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Initialize an empty set `window` and `left = 0`.
 2. For each `right` from `0` to `len(nums) - 1`:
@@ -150,7 +199,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 window = {}
@@ -171,7 +220,7 @@ return false
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -194,7 +243,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -213,7 +262,7 @@ Result: `true`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

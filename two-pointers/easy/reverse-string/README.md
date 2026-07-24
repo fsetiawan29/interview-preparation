@@ -59,13 +59,60 @@ Middle index (2) has no partner left — stop
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Build a new list holding the characters in reverse order, then copy it back into `s`.
+
+### Pseudocode
+
+```text
+n = length(s)
+reversed_chars = []
+
+for i = n - 1 down to 0
+    reversed_chars.append(s[i])
+
+for i = 0 to n - 1
+    s[i] = reversed_chars[i]
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- One pass builds `reversed_chars`, one pass copies it back.
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- `reversed_chars` is a full second array — exactly the extra space the problem forbids.
+
+### Why this isn't good enough
+
+A full reversed copy is unnecessary: reversing is just swapping mirrored positions (`0` with `n-1`, `1` with `n-2`, ...). Two pointers walking inward from both ends can perform every swap directly on `s`, with `O(1)` extra space instead of a second array.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 A naive reversal might build a brand-new array by reading `s` back to front, but that costs `O(n)` extra space — the problem explicitly forbids it.
 
-## Key Observation
+### Key Observation
 
 Reversing an array is just **swapping mirrored positions**: index `0` with index `n-1`, index `1` with index `n-2`, and so on, until the two positions meet or cross.
 
@@ -83,13 +130,13 @@ Swap l and r
 [o, e, l, l, h]
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Because every swap only touches two positions at a time, we never need a second array — the array reverses itself from the outside in, using two pointers that walk toward each other.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -125,7 +172,7 @@ The two pointers never look outside the segment between them — once `l` is no 
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -158,7 +205,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Point `l` at the first index and `r` at the last index.
 2. While `l` is still to the left of `r`:
@@ -168,7 +215,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 l = 0
@@ -182,7 +229,7 @@ while l < r
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -200,7 +247,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -216,7 +263,7 @@ s = ["h","e","l","l","o"]
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

@@ -50,13 +50,63 @@ Mismatch -> false
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Repeatedly find and remove any adjacent matched pair (`"()"`, `"[]"`, or `"{}"`) from the string. If nothing but an empty string remains once no more pairs can be removed, the string was valid.
+
+### Pseudocode
+
+```text
+str = s
+changed = true
+
+while changed
+    changed = false
+    for pair in ["()", "[]", "{}"]
+        if pair in str
+            str = replace first occurrence of pair in str with ""
+            changed = true
+
+return str == ""
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- `n = len(s)`; up to `n / 2` pairs can be removed, and each removal requires an `O(n)` scan to find the pair and rebuild the string.
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- A new string is built on every replacement.
+
+### Why this isn't good enough
+
+Every removal re-scans the entire string from scratch looking for the next collapsible pair, even though a close bracket only ever needs to check against the single most recently opened bracket. A stack exposes exactly that "most recent open bracket" at its top, so each character can be pushed or matched-and-popped in `O(1)`, with the whole string scanned only once.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 It's tempting to just count brackets of each type, but counts alone ignore both **order** and **nesting**. `"([)]"` has one of each bracket type, yet it's invalid — the close brackets arrive in the wrong order relative to the opens.
 
-## Key Observation
+### Key Observation
 
 A close bracket must always resolve the **most recently seen, still-unresolved** open bracket — never an older one. That "most recent first" behavior is exactly what a stack's top gives you for free.
 
@@ -68,13 +118,13 @@ Example:
     the next close bracket MUST match this '['
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 By pushing every open bracket and popping on every close bracket, the top of the stack always tells us exactly which open bracket the current close bracket must match. A mismatch (or an empty stack when a close arrives) means the string is invalid immediately.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -92,7 +142,7 @@ Once the whole string is scanned, if any plates are still stacked, some open bra
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -144,7 +194,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Build a mapping from each open bracket to its matching close bracket.
 2. Initialize an empty stack.
@@ -157,7 +207,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 mapping = { '(': ')', '{': '}', '[': ']' }
@@ -179,7 +229,7 @@ return stack is empty
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -206,7 +256,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -225,7 +275,7 @@ Result: `false`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

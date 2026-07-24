@@ -55,13 +55,63 @@ and no two characters share a word -> true
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Without building any maps, directly verify the bijection property between every pair of positions: `pattern[i] == pattern[j]` must hold exactly when `words[i] == words[j]` holds, for every pair `(i, j)`.
+
+### Pseudocode
+
+```text
+words = split(s, " ")
+if length(pattern) != length(words)
+    return false
+
+n = length(pattern)
+for i = 0 to n - 1
+    for j = 0 to n - 1
+        if (pattern[i] == pattern[j]) != (words[i] == words[j])
+            return false
+
+return true
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- For each of the `n` positions, comparing it against every other position costs `O(n)` (plus the cost of comparing two words, which this ignores for simplicity).
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- `words`, needed regardless of approach, holds `n` entries; no other extra structure is used.
+
+### Why this isn't good enough
+
+Every position is checked against *every other* position individually. A map (`char -> word`) plus a `seen` set of claimed words let each position be checked against its single recorded mapping in `O(1)`, replacing the `O(n)` per-position comparison with a constant-time lookup.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 This is isomorphism, but between a string of characters and a sequence of words, and it must hold in both directions: the same character must always produce the same word, and no two different characters may produce the same word (e.g., `pattern="aa"`, `s="dog dog"` is fine, but `pattern="ab"`, `s="dog dog"` is not, since `a` and `b` would both map to "dog").
 
-## Key Observation
+### Key Observation
 
 First, splitting `s` on spaces gives a list of words the same length as `pattern` (otherwise a bijection is impossible immediately). Then a single map (`char -> word`) plus a `seen` set of already-used words can catch both kinds of violation in one pass: a character remapping to a different word, or two characters claiming the same word.
 
@@ -76,13 +126,13 @@ i=1: char='b', word='dog' -> 'b' unmapped, but 'dog' IS already in seen (claimed
      -> conflict! -> false
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Checking `mapping` for an existing (and different) value, and checking `seen` for an already-claimed word, together guarantee a true bijection — a single left-to-right pass through `pattern` and `words` together is enough, no need for a second reverse-direction map.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -102,7 +152,7 @@ No conflicts -> true
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -157,7 +207,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Split `s` into a list of `words` on spaces.
 2. If `len(pattern) != len(words)`, return `false` immediately.
@@ -169,7 +219,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 words = split(s, " ")
@@ -196,7 +246,7 @@ return true
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -225,7 +275,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -247,7 +297,7 @@ Result: `true`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

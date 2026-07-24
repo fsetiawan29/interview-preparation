@@ -62,13 +62,60 @@ bucket[1]: "t", "r"
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Count each character's frequency, then sort every character in the string using a comparator based on that frequency.
+
+### Pseudocode
+
+```text
+freq = {}
+for char in s
+    freq[char] = freq.get(char, 0) + 1
+
+chars = list(s)
+sort chars using key = -freq[char]   // comparison sort over all n characters
+
+return join(chars)
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n log n)
+```
+
+Why?
+
+- `n = len(s)`; counting frequencies is `O(n)`, but sorting all `n` characters by a comparator dominates at `O(n log n)`.
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- `freq` holds at most one entry per distinct character; `chars` is a full copy of `s`.
+
+### Why this isn't good enough
+
+A comparison sort spends `O(n log n)` deciding an ordering, but frequencies are bounded by `len(s)`, so they can be used directly as bucket indices instead of compared pairwise. Counting sort — dropping each character into `bucket[frequency]` and reading the buckets from highest to lowest — produces the same decreasing-frequency order in `O(n)`, with no comparisons at all.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 A direct approach would sort characters by frequency using a comparison sort, which costs `O(n log n)` and requires first counting frequencies anyway. Since frequencies are bounded by the length of the string, a comparison sort is more work than necessary.
 
-## Key Observation
+### Key Observation
 
 A character's frequency can never exceed `len(s)`, so frequencies live in a small, known range: `0` to `len(s)`. That means frequencies can be used directly as **bucket indices** — a form of counting sort — instead of comparing frequencies against each other.
 
@@ -87,13 +134,13 @@ index 3: []
 index 4: []
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Placing each character straight into `bucket[count]` avoids any comparison between frequencies. Reading the buckets from the highest index down to the lowest naturally yields characters in decreasing frequency order, all in linear time.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -115,7 +162,7 @@ No comparisons between characters are ever made — only bucket placement and a 
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -157,7 +204,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Count how many times each character appears in `s`, storing the result in `freq`.
 2. Create `len(s) + 1` empty buckets, indexed `0` through `len(s)`.
@@ -168,7 +215,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 freq = {}
@@ -190,7 +237,7 @@ return join(result)
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -213,7 +260,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -238,7 +285,7 @@ Result: `"".join(result) = "eetr"` — a valid answer (frequencies appear in dec
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

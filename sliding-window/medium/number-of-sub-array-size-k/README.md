@@ -56,13 +56,66 @@ arr: 2 2 2 2 5 5 5 8
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+For every possible start index, sum that window of length `k` from scratch and compare it against `k * threshold` (avoiding repeated division), counting it if the sum qualifies.
+
+### Pseudocode
+
+```text
+n = length(arr)
+limit = k * threshold
+count = 0
+
+for i = 0 to n - k
+    window_sum = 0
+    for j = i to i + k - 1
+        window_sum += arr[j]
+    if window_sum >= limit
+        count += 1
+
+return count
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n * k)
+```
+
+Why?
+
+- There are roughly `n = len(arr)` starting positions to try.
+- For each one, summing the window from scratch costs `O(k)`.
+- Total: `O(n * k)`, which hits `~10^10` operations at the given constraint (`n` up to `10^5`) — too slow.
+
+#### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- Only `window_sum`, `limit`, and `count` are used; no additional array or data structure is created.
+
+### Why this isn't good enough
+
+Every window re-adds `k` elements even though consecutive windows share `k - 1` of them. Sliding the sum incrementally — dropping one element, adding one element — is what removes that repeated work.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Computing a fresh average (with a division) for every one of the `O(n)` windows works, but floating-point division per window is unnecessary overhead, and recomputing each window's sum from scratch would make it `O(n * k)`.
 
-## Key Observation
+### Key Observation
 
 `window_sum / k >= threshold` is mathematically equivalent to `window_sum >= k * threshold`. So instead of dividing on every window, multiply `k` and `threshold` together **once** into a fixed integer `limit`, and just compare sums against it.
 
@@ -73,13 +126,13 @@ k = 3, threshold = 4 -> limit = 12
 window [2,5,5] sum = 12 -> 12 >= 12 -> counts
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 The comparison becomes pure integer arithmetic with no repeated division, and the window sum itself is maintained incrementally (drop the outgoing element, add the incoming one), so each slide is `O(1)` and the whole scan is `O(n)`.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -100,7 +153,7 @@ arr:  2  2  2  2  5  5  5  8
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -152,7 +205,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Set `left = 0` and `right = k - 1` — the first window covers indices `0` through `k - 1`.
 2. Compute `window_sum` as the sum of that first window, and `limit = k * threshold`.
@@ -164,7 +217,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 left = 0
@@ -191,7 +244,7 @@ return count
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -220,7 +273,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -243,7 +296,7 @@ Result: `count = 3`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

@@ -55,13 +55,59 @@ true
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Build a fully cleaned copy of the string (lowercased, non-alphanumeric characters removed), then compare it to its own reverse.
+
+### Pseudocode
+
+```text
+cleaned = []
+for char in s
+    if isalnum(char)
+        cleaned.append(lower(char))
+
+cleaned = join(cleaned)
+return cleaned == reverse(cleaned)
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- One pass to build `cleaned`, one more to reverse and compare it.
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- `cleaned` is a full extra copy of the relevant characters, plus another copy for its reverse.
+
+### Why this isn't good enough
+
+Materializing a cleaned copy (and then a reversed copy of *that*) costs `O(n)` extra space. Two pointers starting from both ends of the original string can skip non-alphanumeric characters and compare on the fly, checking the same property directly against `s` with `O(1)` extra space.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Punctuation, spaces, and casing get in the way of a direct comparison. Building a fully cleaned copy of the string works, but costs `O(n)` extra space — an `O(1)`-space solution needs to skip irrelevant characters *while* comparing, without ever materializing the cleaned string.
 
-## Key Observation
+### Key Observation
 
 Two pointers starting from both ends can each independently **skip past non-alphanumeric characters** before comparing — the cleaning and the comparing happen in the same pass, character by character.
 
@@ -77,13 +123,13 @@ s[r]='a' is alnum -> stop here
 compare 'a' == 'a' (case-insensitive) -> match, move both inward
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Instead of building a cleaned string up front, each pointer scans forward/backward *only as needed*, skipping punctuation and whitespace on the fly. The comparison happens directly on the original string, so no extra copy is ever created.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -103,7 +149,7 @@ Whenever a pointer lands on punctuation or whitespace, it simply steps past it w
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -154,7 +200,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Point `l` at the first index and `r` at the last index of `s`.
 2. While `l` is left of `r`:
@@ -166,7 +212,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 l = 0
@@ -192,7 +238,7 @@ return true
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -222,7 +268,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -242,7 +288,7 @@ Result: `false`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

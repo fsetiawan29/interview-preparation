@@ -49,13 +49,58 @@ Return [0, 1]
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Check every pair of indices directly for a sum matching `target`.
+
+### Pseudocode
+
+```text
+n = length(nums)
+
+for i = 0 to n - 1
+    for j = i + 1 to n - 1
+        if nums[i] + nums[j] == target
+            return [i, j]
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- There are `O(n^2)` pairs `(i, j)` with `i < j`, each checked in `O(1)`.
+
+#### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- No extra data structure is used — just the two loop indices.
+
+### Why this isn't good enough
+
+Every number is compared against every other number to find its partner. Remembering each number's index in a hash map as the array is scanned once lets each element's required complement (`target - num`) be looked up in `O(1)` average time, replacing the nested pairwise search.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Checking every pair of elements for a matching sum costs `O(n^2)`. It's tempting to loop over the array twice — once to pick a number, once to search for its partner — but that repeats work that could be remembered instead.
 
-## Key Observation
+### Key Observation
 
 For every number, its required partner (`target - num`) is a single fixed value. If we remember every number we've already visited (along with its index) in a hash map, we can check in `O(1)` average time whether the *current* number's partner has already appeared.
 
@@ -69,13 +114,13 @@ index 1, num=2: complement=6-2=4 -> not in seen -> remember 2 at index 1
 index 2, num=4: complement=6-4=2 -> 2 IS in seen (at index 1)! -> return [1, 2]
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 A single left-to-right pass suffices: for each number, first check if its complement was already seen (an `O(1)` average lookup), and only then store the current number. This turns the `O(n^2)` pairwise search into an `O(n)` pass.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -93,7 +138,7 @@ at 7: need partner 2 -> 2 IS in notebook (index 0)! -> pair found: [0, 1]
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -129,7 +174,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Create an empty hash map `seen` (value -> index).
 2. Scan `nums` left to right with index `i`. For each `num`:
@@ -140,7 +185,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 seen = empty map
@@ -156,7 +201,7 @@ for i, num in enumerate(nums)
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -171,7 +216,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -188,7 +233,7 @@ Result: `[0,1]`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

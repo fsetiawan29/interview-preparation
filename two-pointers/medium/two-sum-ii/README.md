@@ -57,13 +57,58 @@ Try opposite ends:
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Check every pair of indices directly for a sum matching `target`.
+
+### Pseudocode
+
+```text
+n = length(numbers)
+
+for i = 0 to n - 1
+    for j = i + 1 to n - 1
+        if numbers[i] + numbers[j] == target
+            return [i + 1, j + 1]
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^2)
+```
+
+Why?
+
+- There are `O(n^2)` pairs `(i, j)` with `i < j`, each checked in `O(1)`.
+
+#### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- No extra data structure is used — just the two loop indices.
+
+### Why this isn't good enough
+
+Every pair is checked individually, ignoring the fact that `numbers` is already sorted. Because moving the left pointer right can only increase the sum and moving the right pointer left can only decrease it, a single opposite-ends scan can be steered directly toward `target`, replacing the nested search with a linear one.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 The classic hash-map "complement lookup" solves this in `O(n)` time but uses `O(n)` extra space. Since `numbers` is already sorted, the problem is really asking whether there's a way to solve it in `O(n)` time **and** `O(1)` extra space by exploiting that order.
 
-## Key Observation
+### Key Observation
 
 In a sorted array, a pair's sum only moves in one predictable direction when a pointer moves: shifting the left pointer right strictly increases the sum, shifting the right pointer left strictly decreases it. That means the two-pointer scan can be steered directly by comparing the current sum to `target`.
 
@@ -77,13 +122,13 @@ left        right
 numbers[left] + numbers[right] = 2 + 15 = 17 > 9 -> sum too big, need smaller
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 If the current sum is too big, the only way to shrink it is to retreat `right` (advancing `left` could only make it bigger). If the sum is too small, the only way to grow it is to advance `left`. If the sum matches exactly, the answer is found. This lets the search finish in a single linear pass with no extra memory.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -108,7 +153,7 @@ Picture two readers standing at opposite ends of the sorted array. Whenever thei
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -157,7 +202,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Point `left` at index `0` and `right` at the last index.
 2. While `left` is left of `right`:
@@ -168,7 +213,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 left = 0
@@ -188,7 +233,7 @@ while left < right
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -209,7 +254,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -228,7 +273,7 @@ Result: `[1,2]` — matches the expected output.
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

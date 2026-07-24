@@ -61,15 +61,66 @@ Keep only the first 8 elements.
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Build a new "expanded" array by walking `arr` and appending each value (or two zeros, for a zero), then keep only the first `len(arr)` entries and copy them back.
+
+### Pseudocode
+
+```text
+n = length(arr)
+expanded = []
+
+for x in arr
+    if x == 0
+        expanded.append(0)
+        expanded.append(0)
+    else
+        expanded.append(x)
+
+for i = 0 to n - 1
+    arr[i] = expanded[i]
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- One pass builds `expanded`, one pass copies the first `n` entries back into `arr`.
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- `expanded` can grow up to roughly `2n` entries before being trimmed — a full second array, which the problem's in-place constraint explicitly forbids.
+
+### Why this isn't good enough
+
+This works, but it allocates a second array the problem says not to use. Counting the zeros up front and writing from the back of the *same* array — using a virtual "expanded index" instead of an actual expanded array — achieves the same result with `O(1)` extra space.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Duplicating a zero shifts every element to the right.
 
 If we process from left to right, we overwrite values that haven't been processed yet.
 
-## Key Observation
+### Key Observation
 
 Every zero increases the **virtual length** of the array by one.
 
@@ -91,7 +142,7 @@ The virtual array doesn't actually exist.
 
 We only use it to determine where values should be written.
 
-## Why does this observation help?
+### Why does this observation help?
 
 Instead of shifting elements one by one, we process the array **from right to left**.
 
@@ -104,7 +155,7 @@ This avoids overwriting unprocessed values while using only O(1) extra space.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -152,7 +203,7 @@ Explanation:
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -196,7 +247,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Count the number of zeros.
 2. Let `i` point to the last element of the original array.
@@ -210,7 +261,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 count = number of zeros
@@ -244,7 +295,7 @@ while i >= 0
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -275,7 +326,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -298,7 +349,7 @@ Virtual array:
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

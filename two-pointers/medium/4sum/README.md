@@ -59,13 +59,64 @@ i=0, j=0: no pair left sums to 0
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Check every quadruplet of indices directly, using a set to drop duplicate quadruplets.
+
+### Pseudocode
+
+```text
+n = length(nums)
+res = empty set of sorted tuples
+
+for i = 0 to n - 1
+    for j = i + 1 to n - 1
+        for k = j + 1 to n - 1
+            for l = k + 1 to n - 1
+                if nums[i] + nums[j] + nums[k] + nums[l] == target
+                    quad = sorted([nums[i], nums[j], nums[k], nums[l]])
+                    res.add(tuple(quad))
+
+return list(res)
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(n^4)
+```
+
+Why?
+
+- There are `O(n^4)` quadruplets `(i, j, k, l)` with `i < j < k < l`, each checked in `O(1)`.
+
+#### Space Complexity
+
+```text
+O(n)
+```
+
+Why?
+
+- `res`, a set of sorted tuples used to drop duplicates, holds at most `O(n)` unique quadruplets in the worst case.
+
+### Why this isn't good enough
+
+Every quadruplet is checked individually, and duplicates are only caught after the fact by hashing sorted tuples. Sorting `nums` first and fixing just two numbers (`i` and `j`) reduces the remaining search to a linear two-pointer scan, and lets duplicate values be skipped directly — dropping the whole search from `O(n^4)` to `O(n^3)`.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 4Sum is one dimension bigger than 3Sum — a brute-force check of every quadruplet is `O(n^4)`. It also carries the same duplicate-triplet trap as 3Sum, but now with **two** fixed indices instead of one, so duplicates must be skipped independently for each fixed slot.
 
-## Key Observation
+### Key Observation
 
 3Sum reduces to "fix one number, two-pointer the rest." 4Sum reduces the same way one level further: **fix two numbers** (`i` and `j`, both walked forward over the sorted array) and two-pointer the remaining two slots. Sorting again keeps duplicate values adjacent so they can be skipped cheaply, and it makes pointer narrowing predictable.
 
@@ -80,13 +131,13 @@ nums[left] + nums[right] = 1 + 2 = 3
 needed = target - nums[i] - nums[j] = 0 - (-2) - (-1) = 3 -> match!
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Two nested loops (`i`, `j`) plus an inner two-pointer scan give `O(n^2)` for the fixed pair and `O(n)` for the scan, so the whole algorithm is `O(n^3)` instead of `O(n^4)`. Skipping repeated `nums[i]` and repeated `nums[j]` (relative to the current `i`), plus skipping repeated `left`/`right` values after a match, guarantees each distinct quadruplet is recorded only once.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -106,7 +157,7 @@ Whenever `i` or `j` repeats a value already tried (for the current outer context
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -184,7 +235,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Sort `nums`.
 2. For each index `i` from `0` to `len(nums) - 4`:
@@ -201,7 +252,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 sort(nums)
@@ -240,7 +291,7 @@ return res
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -279,7 +330,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -306,7 +357,7 @@ Result: `[[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]` — matches the expected output.
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 

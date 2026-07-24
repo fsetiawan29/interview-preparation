@@ -45,13 +45,62 @@ Reached 1 -> happy -> true
 
 ---
 
-# 2. Key Insight
+## 2. Brute Force Approach
 
-## What makes this problem difficult?
+### Idea
+
+Run the same "sum of squared digits, repeat until 1 or a repeat" process, but track visited numbers in a plain list instead of a hash set, checking membership by scanning the list each time.
+
+### Pseudocode
+
+```text
+seen = empty list
+
+while n != 1
+    if n in seen        // linear scan through seen
+        return false
+    seen.append(n)
+    n = next_number(n)
+
+return true
+```
+
+### Complexity Analysis
+
+#### Time Complexity
+
+```text
+O(k^2)
+```
+
+Why?
+
+- `k` is the number of steps taken before reaching `1` or hitting a repeat.
+- Each membership check (`n in seen`) scans the entire list built so far, costing up to `O(k)`, done across `k` steps.
+
+#### Space Complexity
+
+```text
+O(k)
+```
+
+Why?
+
+- `seen` stores every distinct intermediate value visited, same as the optimized version.
+
+### Why this isn't good enough
+
+Checking "have I seen this number before?" by scanning a growing list gets slower with every step. A hash set answers the exact same question in `O(1)` average time, which is the only thing that changes — it turns the total work from `O(k^2)` into `O(k)`.
+
+---
+
+## 3. Key Insight
+
+### What makes this problem difficult?
 
 Repeatedly applying "sum of squared digits" could, in theory, run forever. Without some way to detect that we're going in circles, there's no obvious stopping condition besides reaching `1`.
 
-## Key Observation
+### Key Observation
 
 If a number ever repeats during this process, it's guaranteed to repeat forever from that point on — the sequence is deterministic, so revisiting a number means we've entered an unhappy cycle. Tracking every value seen so far in a hash set lets us detect that repeat immediately.
 
@@ -65,13 +114,13 @@ n=2  -> 4 -> 16 -> 37 -> 58 -> 89 -> 145 -> 42 -> 20 -> 4  (4 repeats!)
                                                  already seen -> cycle -> not happy
 ```
 
-## Why does this observation help?
+### Why does this observation help?
 
 Instead of guessing how long to run the process, a `seen` set gives a clean, guaranteed stopping condition: either we hit `1` (happy) or we hit a number we've already visited (not happy, since it will cycle forever). The set turns an open-ended "does this loop forever?" question into a concrete check — "have I computed this exact value before?" — which always terminates.
 
 ---
 
-# 3. Mental Model
+## 4. Mental Model
 
 > What picture should I imagine in my head?
 
@@ -87,7 +136,7 @@ Picture following a trail of numbers, dropping a marker at every number you visi
 
 ---
 
-# 4. Decision Tree
+## 5. Decision Tree
 
 ```text
 (Start)
@@ -126,7 +175,7 @@ Explanation of each decision:
 
 ---
 
-# 5. Plain English Algorithm
+## 6. Plain English Algorithm
 
 1. Create an empty hash set `seen`.
 2. While `n` is not `1`:
@@ -138,7 +187,7 @@ Explanation of each decision:
 
 ---
 
-# 6. Pseudocode
+## 7. Pseudocode
 
 ```text
 seen = empty set
@@ -162,7 +211,7 @@ function next_number(n)
 
 ---
 
-# 7. Python Solution
+## 8. Python Solution
 
 ```python
 class Solution:
@@ -188,7 +237,7 @@ class Solution:
 
 ---
 
-# 8. Dry Run
+## 9. Dry Run
 
 Example:
 
@@ -208,7 +257,7 @@ Result: `true`
 
 ---
 
-# 9. Complexity Analysis
+## 10. Complexity Analysis
 
 ### Time Complexity
 
