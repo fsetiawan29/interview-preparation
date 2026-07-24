@@ -182,5 +182,13 @@ for i, ch in enumerate(s):
   skip a `'('` that takes depth `0 → 1` and a `')'` that takes depth
   `1 → 0`, keep every other character.
 
+### Medium
+
+- [build-array-with-stack-operations](./medium/build-array-with-stack-operations) —
+  since both the stream and `target` are strictly increasing, a real
+  stack is never needed: a single pointer into `target` tracks what's
+  still wanted, every stream value gets `"Push"`ed, and anything that
+  doesn't match the pointer is immediately `"Pop"`ped back off.
+
 See [PROGRESS.md](./PROGRESS.md) for the full curriculum (7 levels, 30
 problems) and the recommended learning order.
