@@ -1,71 +1,261 @@
-# Problem
+# Problem: Two Sum Less Than K
 
-Name: Two Sum Less Than K
+## 1. Problem Understanding
 
-Difficulty: Easy
+### Problem Summary
 
-----------------------------------------
+Given an array of integers `nums` and an integer `k`, find two different indices `i < j` such that `nums[i] + nums[j] < k`, and return the **maximum possible sum** among all such pairs. If no such pair exists, return `-1`.
 
-# Statement
+### Input
 
-Given an array `nums` of integers and an integer `k`, return the maximum sum such that there exists `i < j` with `nums[i] + nums[j] == sum` and `sum < k`. If no `i, j` exist satisfying this equation, return `-1`.
+- An integer array `nums`
+- An integer `k`
 
-## Examples
+### Output
 
-**Example 1:**
+- The maximum sum of a pair strictly less than `k`, or `-1` if no valid pair exists.
 
-```
-Input: nums = [34,23,1,24,75,33,54,8], k = 60
-Output: 58
-Explanation: We can use 34 and 24 to sum 58 which is less than 60.
-```
-
-**Example 2:**
-
-```
-Input: nums = [10,20,30], k = 15
-Output: -1
-Explanation: In this case it is not possible to get a pair sum less than 15.
-```
-
-## Constraints
+### Constraints
 
 - `1 <= nums.length <= 100`
 - `1 <= nums[i] <= 1000`
 - `1 <= k <= 2000`
 
-----------------------------------------
+### Example
 
-# Pattern
-Two Pointer (sort + opposite ends)
+Input:
 
-----------------------------------------
+```text
+nums = [34,23,1,24,75,33,54,8], k = 60
+```
 
-# Recognition
+Output:
 
-Idea
-- Sort `nums` first — the array isn't sorted going in, but once sorted, the classic two-pointer trick applies
-- Use `left`/`right` pointers from opposite ends: if the pair sum is `< k`, it's a valid candidate — record it and move `left` right to try a larger sum; otherwise move `right` left to shrink the sum
+```text
+58
+```
 
-Steps
+Manual walkthrough:
 
-- SORT: sort `nums` in place
-- INIT: `left = 0`, `right = len(nums) - 1`, `max_sum = -1`
-- SCAN: while `left < right`
-- CHECK: compute `current_sum = nums[left] + nums[right]`
-- VALID: if `current_sum < k`, update `max_sum = max(max_sum, current_sum)` and advance `left` — try to find a bigger valid sum
-- INVALID: else, decrement `right` — the sum is too big, need a smaller value
-- RETURN: `max_sum` (`-1` if no valid pair was found)
+```text
+Original
 
-Mistakes
-- Forget to solve this need to sort first
-- Because it's already sorted, then can add from opposite both end pointer
+[34,23,1,24,75,33,54,8], k = 60
 
+Sort first
 
+↓
 
-----------------------------------------
+[1,8,23,24,33,34,54,75]
 
-# Complexity
+Try pairs from opposite ends, keeping only sums < 60,
+tracking the largest one seen:
 
-- Time: `O(n log n)` — n = len(nums), dominated by the sort; the two-pointer scan itself is `O(n)`
-- Space: `O(1)` extra — excluding the space used by the sort itself, only two pointers and a running `max_sum` are needed
+34 + 24 = 58 < 60 -> candidate, best so far
+
+↓
+
+58
+```
+
+---
+
+# 2. Key Insight
+
+## What makes this problem difficult?
+
+Checking every pair directly is `O(n^2)`, and simply looking for *any* valid pair isn't enough — we specifically need the **largest** sum under `k`, so the search has to be steered toward bigger sums without missing the true maximum.
+
+## Key Observation
+
+Once `nums` is **sorted**, a pair's sum only moves in one predictable direction when a pointer moves: shifting the left pointer right increases the sum, shifting the right pointer left decreases it. That means a classic opposite-ends two-pointer scan can be steered directly by whether the current sum is valid or not.
+
+Example:
+
+```text
+[1, 8, 23, 24, 33, 34, 54, 75], k = 60
+ ↑                            ↑
+left                        right
+
+nums[left] + nums[right] = 1 + 75 = 76 >= 60 -> too big, need a smaller sum
+```
+
+## Why does this observation help?
+
+If the current pair's sum is `< k`, it's a valid candidate — record it, then push `left` forward to *try for an even bigger* valid sum (moving `right` instead could only make the sum smaller, never bigger, so it would waste the opportunity). If the sum is `>= k`, the only way to shrink it is to pull `right` left.
+
+---
+
+# 3. Mental Model
+
+> What picture should I imagine in my head?
+
+Picture two readers on a sorted line, starting at opposite ends. Whenever their combined value is a legal (under-`k`) sum, the left reader steps inward to chase an even bigger legal sum. Whenever it's too big, the right reader steps inward to bring the sum down.
+
+```text
+[1, 8, 23, 24, 33, 34, 54, 75], k = 60
+ left                        right
+
+1 + 75 = 76, too big -> right moves left
+
+[1, 8, 23, 24, 33, 34, 54, 75]
+ left                     right
+
+1 + 54 = 55, valid! record 55, chase bigger -> left moves right
+
+[1, 8, 23, 24, 33, 34, 54, 75]
+    left                  right
+
+8 + 54 = 62, too big -> right moves left
+
+... continue until left meets right
+```
+
+Every valid sum encountered along the way is compared against the running best.
+
+---
+
+# 4. Decision Tree
+
+```text
+(Start)
+   │
+   ▼
+Sort nums
+Initialize left = 0, right = len(nums) - 1, max_sum = -1
+   │
+   ▼
+Is left < right ?
+   │
+ ┌─┴─────────────────┐
+ │                    │
+Yes                   No
+ │                    │
+ ▼                    ▼
+current_sum = nums[left] + nums[right]   Return max_sum
+   │
+   ▼
+Is current_sum < k ?
+   │
+ ┌─┴────────┐
+ │          │
+Yes         No
+ │          │
+ ▼          ▼
+max_sum = max(max_sum, current_sum)   right -= 1
+left += 1                             (sum too big, shrink it)
+ │          │
+ └────┬─────┘
+      ▼
+(back to "Is left < right ?")
+```
+
+Explanation of each decision:
+
+- Sorting first is what makes the pointer movement predictable — without it, moving a pointer wouldn't reliably increase or decrease the sum.
+- A valid sum (`< k`) advances `left`, since that's the only direction that can produce a *bigger* valid sum next.
+- An invalid sum (`>= k`) retreats `right`, since that's the only direction that can shrink the sum.
+
+---
+
+# 5. Plain English Algorithm
+
+1. Sort `nums`.
+2. Point `left` at the first index and `right` at the last index. Set `max_sum = -1`.
+3. While `left` is left of `right`:
+   - Compute `current_sum = nums[left] + nums[right]`.
+   - If `current_sum < k`, it's a valid candidate — update `max_sum` if it's bigger, then advance `left` to look for a larger valid sum.
+   - Otherwise, the sum is too big — retreat `right` to shrink it.
+4. Return `max_sum`.
+
+---
+
+# 6. Pseudocode
+
+```text
+sort(nums)
+
+left = 0
+right = length(nums) - 1
+max_sum = -1
+
+while left < right
+    current_sum = nums[left] + nums[right]
+
+    if current_sum < k
+        max_sum = max(max_sum, current_sum)
+        left++
+    else
+        right--
+
+return max_sum
+```
+
+---
+
+# 7. Python Solution
+
+```python
+class Solution:
+    def twoSumLessThanK(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        left = 0
+        right = len(nums) - 1
+
+        max_sum = -1
+
+        while left < right:
+            current_sum = nums[left] + nums[right]
+            if current_sum < k:
+                max_sum = max(max_sum, current_sum)
+                left += 1
+            else:
+                right -= 1
+
+        return max_sum
+```
+
+---
+
+# 8. Dry Run
+
+Example:
+
+```text
+nums = [10,20,30], k = 15
+```
+
+Sorted: `[10,20,30]`
+
+| Step | Pointer(s) | Current Values | current_sum | Action | Why? |
+|------|------------|-----------------|--------------|--------|------|
+| 1 | left=0, right=2 | 10, 30 | 40 | 40 >= 15, right=1 | Sum too big |
+| 2 | left=0, right=1 | 10, 20 | 30 | 30 >= 15, right=0 | Sum too big |
+| 3 | left=0, right=0 | — | — | Stop | `left < right` is false |
+
+Result: `max_sum = -1` (no valid pair found)
+
+---
+
+# 9. Complexity Analysis
+
+### Time Complexity
+
+```text
+O(n log n)
+```
+
+Why?
+
+- `n = len(nums)`; dominated by the sort.
+- The two-pointer scan itself is `O(n)`, since `left` and `right` together cross the array once.
+
+### Space Complexity
+
+```text
+O(1)
+```
+
+Why?
+
+- Excluding whatever space the sort implementation uses internally, only `left`, `right`, and `max_sum` are tracked.
