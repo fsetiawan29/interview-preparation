@@ -33,7 +33,7 @@
 | Buddy Strings | Character Mapping | Easy | Done |
 | Bulls and Cows | Multiple Frequency Maps | Medium | |
 | Encode and Decode TinyURL | Hash Map Design | Medium | |
-| Roman to Integer | Character Mapping | Easy | |
+| Roman to Integer | Character Mapping | Easy | Done |
 | Integer to Roman | Mapping Rules | Medium | Done |
 
 - [x] Longest Palindrome
@@ -44,7 +44,7 @@
 - [x] Buddy Strings
 - [ ] Bulls and Cows
 - [ ] Encode and Decode TinyURL
-- [ ] Roman to Integer
+- [x] Roman to Integer
 - [x] Integer to Roman
 
 ## Level 4: Sliding Window + Hash Map
@@ -80,14 +80,14 @@
 | LRU Cache | Hash Map + Linked List | Medium | |
 | Insert Delete GetRandom O(1) | Hash Map + Array | Medium | |
 | Time Based Key Value Store | Hash Map | Medium | |
-| Design HashMap | Data Structure | Easy | |
-| Design HashSet | Data Structure | Easy | |
+| Design HashMap | Data Structure | Easy | Done |
+| Design HashSet | Data Structure | Easy | Done |
 
 - [ ] LRU Cache
 - [ ] Insert Delete GetRandom O(1)
 - [ ] Time Based Key Value Store
-- [ ] Design HashMap
-- [ ] Design HashSet
+- [x] Design HashMap
+- [x] Design HashSet
 
 ## Top 20 Recommended
 
@@ -105,7 +105,7 @@ If I had to choose just 20, I'd pick:
 - [x] Happy Number (Easy)
 - [x] First Unique Character in a String (Easy)
 - [x] Longest Palindrome (Easy)
-- [ ] Roman to Integer (Easy)
+- [x] Roman to Integer (Easy)
 - [x] Find All Anagrams in a String (Medium) — solved in sliding-window's
       [find-all-anagrams-in-a-string](../sliding-window/medium/find-all-anagrams-in-a-string)
 - [x] Longest Substring Without Repeating Characters (Medium) — solved in

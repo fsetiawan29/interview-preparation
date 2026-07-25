@@ -93,15 +93,21 @@ Problems solved so far, by topic and difficulty:
 
 | Topic | Easy | Medium | Hard | Total |
 |---|---|---|---|---|
-| [arrays-hashing](./arrays-hashing) | 15 | 8 | 0 | 23 |
+| [arrays-hashing](./arrays-hashing) | 18 | 8 | 0 | 26 |
 | [two-pointers](./two-pointers) | 13 | 6 | 1 | 20 |
 | [sliding-window](./sliding-window) | 2 | 7 | 0 | 9 |
 | [stack](./stack) | 4 | 1 | 0 | 5 |
 | [dfs](./dfs) | 2 | 1 | 0 | 3 |
 | [binary-search](./binary-search) | 0 | 0 | 0 | 0 |
-| **Total** | **36** | **23** | **1** | **60** |
+| **Total** | **39** | **23** | **1** | **63** |
 
-### Solved Today (2026-07-24)
+### Solved Today (2026-07-25)
+
+- Roman to Integer — [arrays-hashing/easy/roman-to-integer](./arrays-hashing/easy/roman-to-integer)
+- Design HashMap — [arrays-hashing/easy/design-hashmap](./arrays-hashing/easy/design-hashmap)
+- Design HashSet — [arrays-hashing/easy/design-hashset](./arrays-hashing/easy/design-hashset)
+
+### Solved Previously (2026-07-24)
 
 - Remove Outermost Parentheses — [stack/easy/remove-outermost-parentheses](./stack/easy/remove-outermost-parentheses)
 - Duplicate Zeros — [two-pointers/easy/duplicate-zeros](./two-pointers/easy/duplicate-zeros)

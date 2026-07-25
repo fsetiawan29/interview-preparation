@@ -19,7 +19,7 @@ Use this pattern when the problem is about:
 ## The general shape
 
 Almost every problem here is a variation of this skeleton:
-*(used by: [contains-duplicate](./easy/contains-duplicate), [two-sum](./easy/two-sum), [valid-anagram](./easy/valid-anagram), [intersection-of-two-arrays](./easy/intersection-of-two-arrays), [intersection-of-two-arrays-2](./easy/intersection-of-two-arrays-2), [happy-number](./easy/happy-number), [isomorphic-strings](./easy/isomorphic-strings), [word-pattern](./easy/word-pattern), [find-the-difference](./easy/find-the-difference), [first-unique-character-in-a-string](./easy/first-unique-character-in-a-string), [longest-palindrome](./easy/longest-palindrome), [majority-element](./easy/majority-element), [ransom-note](./easy/ransom-note), [buddy-strings](./easy/buddy-strings), [group-anagrams](./medium/group-anagrams), [top-k-frequent-elements](./medium/top-k-frequent-elements), [determine-if-two-strings-are-close](./medium/determine-if-two-strings-are-close), [custom-sort-string](./medium/custom-sort-string), [valid-sudoku](./medium/valid-sudoku), [longest-consecutive-sequence](./medium/longest-consecutive-sequence); not [best-time-to-buy-and-sell-stock](./easy/best-time-to-buy-and-sell-stock), [product-of-array-except-self](./medium/product-of-array-except-self), or [integer-to-roman](./medium/integer-to-roman) — those don't hash)*
+*(used by: [contains-duplicate](./easy/contains-duplicate), [two-sum](./easy/two-sum), [valid-anagram](./easy/valid-anagram), [intersection-of-two-arrays](./easy/intersection-of-two-arrays), [intersection-of-two-arrays-2](./easy/intersection-of-two-arrays-2), [happy-number](./easy/happy-number), [isomorphic-strings](./easy/isomorphic-strings), [word-pattern](./easy/word-pattern), [find-the-difference](./easy/find-the-difference), [first-unique-character-in-a-string](./easy/first-unique-character-in-a-string), [longest-palindrome](./easy/longest-palindrome), [majority-element](./easy/majority-element), [ransom-note](./easy/ransom-note), [buddy-strings](./easy/buddy-strings), [group-anagrams](./medium/group-anagrams), [top-k-frequent-elements](./medium/top-k-frequent-elements), [determine-if-two-strings-are-close](./medium/determine-if-two-strings-are-close), [custom-sort-string](./medium/custom-sort-string), [valid-sudoku](./medium/valid-sudoku), [longest-consecutive-sequence](./medium/longest-consecutive-sequence); not [best-time-to-buy-and-sell-stock](./easy/best-time-to-buy-and-sell-stock), [product-of-array-except-self](./medium/product-of-array-except-self), [roman-to-integer](./easy/roman-to-integer), or [integer-to-roman](./medium/integer-to-roman) — those don't hash)*
 
 ```python
 def solve(nums):
@@ -180,6 +180,18 @@ for n in nums_set:
   letter when the strings are already equal (a swap of two equal letters
   is a no-op), otherwise track the two mismatch indices/pairs directly and
   check they're each other's mirror.
+- [roman-to-integer](./easy/roman-to-integer) — not hashing in the
+  check-then-store sense, but a fixed symbol-to-value lookup table; the
+  reverse of [integer-to-roman](./medium/integer-to-roman), comparing each
+  symbol's value against the next symbol's to decide add vs. subtract
+  instead of walking a descending value table.
+- [design-hashmap](./easy/design-hashmap) — implements the hash map itself:
+  a fixed-size array of buckets (separate chaining) with `key % size` as
+  the hash function, each bucket a small list scanned linearly for
+  collisions.
+- [design-hashset](./easy/design-hashset) — the same bucketed/chained
+  design as design-hashmap, minus the stored value; each bucket just holds
+  the keys that hashed into it.
 
 ### Medium
 
