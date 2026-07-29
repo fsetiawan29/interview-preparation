@@ -58,10 +58,13 @@ Dynamic Programming
 - [x] Stack — [stack](./stack)
 - [ ] Binary Search — [binary-search](./binary-search)
 - [ ] Linked List
+- [ ] DFS Fundamentals (Decision Tree) — see
+      [dfs/PROGRESS.md](./dfs/PROGRESS.md) Level 1 (Subsets, Combinations,
+      Combination Sum, Combination Sum II, Permutations)
 - [ ] Trees — early traversal problems started in [dfs](./dfs)
-- [ ] Heap / Priority Queue
 - [ ] Backtracking — early problems started in [dfs](./dfs)
 - [ ] Graphs — early problems started in [dfs](./dfs)
+- [ ] Heap / Priority Queue
 - [ ] Intervals
 - [ ] Greedy
 - [ ] Dynamic Programming
@@ -139,6 +142,7 @@ interview-preparation/
 │   └── easy|medium|hard/<problem-name>/
 └── dfs/
     ├── README.md
+    ├── PROGRESS.md
     └── <problem-name>/
 ```
 

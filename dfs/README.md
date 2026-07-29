@@ -152,5 +152,13 @@ class Solution:
 
 ## Problems in this folder
 
+- [binary-tree-inorder-traversal](./binary-tree-inorder-traversal) — the
+  canonical recursive tree traversal (left, node, right).
 - [binary-tree-paths](./binary-tree-paths) — classic root-to-leaf path
   enumeration; the canonical "choose / explore / un-choose" DFS.
+- [word-search](./word-search) — grid DFS with backtracking; explores all
+  four directions and un-marks each cell on the way back up so sibling
+  paths can reuse it.
+
+See [PROGRESS.md](./PROGRESS.md) for the full DFS/backtracking curriculum
+and what's solved vs. still queued.
