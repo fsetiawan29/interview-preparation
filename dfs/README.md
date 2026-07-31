@@ -162,6 +162,9 @@ class Solution:
 - [subsets](./subsets) — the canonical "take / skip" decision-tree DFS;
   every index makes a binary include-or-exclude choice, and every
   root-to-leaf path is a valid subset.
+- [subsets-ii](./subsets-ii) — same take/skip template, but `nums` is
+  sorted first and a sibling duplicate at the same recursion depth is
+  skipped, so the same numeral value isn't included twice at one level.
 
 See [PROGRESS.md](./PROGRESS.md) for the full DFS/backtracking curriculum
 and what's solved vs. still queued.
