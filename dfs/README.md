@@ -159,6 +159,9 @@ class Solution:
 - [word-search](./word-search) — grid DFS with backtracking; explores all
   four directions and un-marks each cell on the way back up so sibling
   paths can reuse it.
+- [subsets](./subsets) — the canonical "take / skip" decision-tree DFS;
+  every index makes a binary include-or-exclude choice, and every
+  root-to-leaf path is a valid subset.
 
 See [PROGRESS.md](./PROGRESS.md) for the full DFS/backtracking curriculum
 and what's solved vs. still queued.

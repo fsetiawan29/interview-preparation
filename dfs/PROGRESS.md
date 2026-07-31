@@ -7,7 +7,7 @@
 | #94 Binary Tree Inorder Traversal | Easy | Recursive tree traversal | Done |
 | #257 Binary Tree Paths | Easy | Root-to-leaf path enumeration (choose/explore/un-choose) | Done |
 | #79 Word Search | Medium | Grid DFS + backtracking | Done |
-| #78 Subsets | Easy | Basic DFS template (take/skip) | |
+| #78 Subsets | Easy | Basic DFS template (take/skip) | Done |
 | #90 Subsets II | Medium | Handle duplicates | |
 | #77 Combinations | Medium | Choose k items | |
 | #216 Combination Sum III | Medium | Fixed size + target | |
@@ -43,14 +43,14 @@ These problems teach "take or skip".
 
 | # | Problem | Difficulty | Learn | Status |
 |---|---|---|---|---|
-| 1 | #78 Subsets | Easy | Basic DFS template | |
+| 1 | #78 Subsets | Easy | Basic DFS template | Done |
 | 2 | #90 Subsets II | Medium | Handle duplicates | |
 | 3 | #77 Combinations | Medium | Choose k items | |
 | 4 | #216 Combination Sum III | Medium | Fixed size + target | |
 | 5 | #39 Combination Sum | Medium | Reuse items | |
 | 6 | #40 Combination Sum II | Medium | No reuse (close to interview questions) | |
 
-- [ ] #78 Subsets
+- [x] #78 Subsets — [subsets](./subsets)
 - [ ] #90 Subsets II
 - [ ] #77 Combinations
 - [ ] #216 Combination Sum III
@@ -203,10 +203,11 @@ Week 4
 
 **Starting point:** since tree DFS was already learned interactively
 ([binary-tree-inorder-traversal](./binary-tree-inorder-traversal),
-[binary-tree-paths](./binary-tree-paths)) and [word-search](./word-search) is done, the next
-four problems to build deep DFS/backtracking intuition before moving on to DP are:
+[binary-tree-paths](./binary-tree-paths)), [word-search](./word-search) is done, and
+[subsets](./subsets) is done (the take/skip DFS template), the next four problems to
+build deep DFS/backtracking intuition before moving on to DP are:
 
-1. #78 Subsets — learn the DFS template.
+1. #90 Subsets II — handle duplicates.
 2. #77 Combinations — practice choosing items.
 3. #39 Combination Sum — learn when items can be reused.
 4. #40 Combination Sum II — no reuse, close to a typical interview question.
