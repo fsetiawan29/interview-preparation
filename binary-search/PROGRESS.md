@@ -4,7 +4,7 @@
 
 | Problem | Difficulty | Status |
 |---|---|---|
-| #704 Binary Search | Easy | |
+| #704 Binary Search | Easy | Done |
 | #33 Search in Rotated Sorted Array | Medium | |
 | #153 Find Minimum in Rotated Sorted Array | Medium | |
 | #34 Find First and Last Position of Element in Sorted Array | Medium | |
@@ -23,7 +23,7 @@ same problem as `Koko Eating Bananas`, #875).
 | #1011 Capacity To Ship Packages Within D Days | Medium | |
 | #81 Search in Rotated Sorted Array II | Medium | |
 | #162 Find Peak Element | Medium | |
-| #35 Search Insert Position | Easy | |
+| #35 Search Insert Position | Easy | Done |
 
 ## Level 1 — Master the Fundamentals
 
@@ -31,15 +31,15 @@ Goal: learn the invariant, interval representation, and pointer movement.
 
 | # | Problem | Difficulty | Blind 75 | Status |
 |---|---|---|---|---|
-| 1 | #704 Binary Search | Easy | ✅ | |
-| 2 | #35 Search Insert Position | Easy | | |
+| 1 | #704 Binary Search | Easy | ✅ | Done |
+| 2 | #35 Search Insert Position | Easy | | Done |
 | 3 | #374 Guess Number Higher or Lower | Easy | | |
 | 4 | #367 Valid Perfect Square | Easy | | |
 | 5 | #69 Sqrt(x) | Easy | | |
 | 6 | #441 Arranging Coins | Easy | | |
 
-- [ ] #704 Binary Search (Blind 75)
-- [ ] #35 Search Insert Position
+- [x] #704 Binary Search (Blind 75) — [easy/binary-search](./easy/binary-search)
+- [x] #35 Search Insert Position — [easy/search-insert-position](./easy/search-insert-position)
 - [ ] #374 Guess Number Higher or Lower
 - [ ] #367 Valid Perfect Square
 - [ ] #69 Sqrt(x)
@@ -145,8 +145,8 @@ and value-space search over a matrix.
 If short on time before interviews, prioritize these:
 
 **Beginner**
-- [ ] #704 Binary Search (Blind 75)
-- [ ] #35 Search Insert Position
+- [x] #704 Binary Search (Blind 75)
+- [x] #35 Search Insert Position
 
 **Core**
 - [ ] #34 Find First and Last Position of Element in Sorted Array (Blind 75)

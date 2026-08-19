@@ -5,6 +5,7 @@
 | Problem | Difficulty | Main Concept | Status |
 |---|---|---|---|
 | #94 Binary Tree Inorder Traversal | Easy | Recursive tree traversal | Done |
+| #144 Binary Tree Preorder Traversal | Easy | Recursive tree traversal | Done |
 | #257 Binary Tree Paths | Easy | Root-to-leaf path enumeration (choose/explore/un-choose) | Done |
 | #79 Word Search | Medium | Grid DFS + backtracking | Done |
 | #78 Subsets | Easy | Basic DFS template (take/skip) | Done |
@@ -203,6 +204,7 @@ Week 4
 
 **Starting point:** since tree DFS was already learned interactively
 ([binary-tree-inorder-traversal](./binary-tree-inorder-traversal),
+[binary-tree-preorder-traversal](./binary-tree-preorder-traversal),
 [binary-tree-paths](./binary-tree-paths)), [word-search](./word-search) is done, and
 [subsets](./subsets) and [subsets-ii](./subsets-ii) are done (the take/skip DFS
 template plus duplicate handling), the next three problems to build deep

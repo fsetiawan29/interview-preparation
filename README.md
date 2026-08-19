@@ -100,11 +100,17 @@ Problems solved so far, by topic and difficulty:
 | [two-pointers](./two-pointers) | 13 | 6 | 1 | 20 |
 | [sliding-window](./sliding-window) | 2 | 7 | 0 | 9 |
 | [stack](./stack) | 4 | 1 | 0 | 5 |
-| [dfs](./dfs) | 2 | 1 | 0 | 3 |
-| [binary-search](./binary-search) | 0 | 0 | 0 | 0 |
-| **Total** | **39** | **23** | **1** | **63** |
+| [dfs](./dfs) | 3 | 1 | 0 | 4 |
+| [binary-search](./binary-search) | 2 | 0 | 0 | 2 |
+| **Total** | **42** | **23** | **1** | **66** |
 
-### Solved Today (2026-07-25)
+### Solved Today (2026-08-19)
+
+- Binary Search — [binary-search/easy/binary-search](./binary-search/easy/binary-search)
+- Search Insert Position — [binary-search/easy/search-insert-position](./binary-search/easy/search-insert-position)
+- Binary Tree Preorder Traversal — [dfs/binary-tree-preorder-traversal](./dfs/binary-tree-preorder-traversal)
+
+### Solved Previously (2026-07-25)
 
 - Roman to Integer — [arrays-hashing/easy/roman-to-integer](./arrays-hashing/easy/roman-to-integer)
 - Design HashMap — [arrays-hashing/easy/design-hashmap](./arrays-hashing/easy/design-hashmap)
@@ -149,7 +155,11 @@ interview-preparation/
 ## Conventions
 
 - Solutions are Python, following the LeetCode `class Solution` method
-  signature convention.
+  signature convention; some problems also carry a Go implementation
+  (`solution.go` + `solution_test.go`, `package solution`) added afterward
+  for language practice. New problems may be solved in Go first — the
+  per-problem `README.md`'s solution section documents whichever language
+  the walkthrough was written in.
 - New patterns get their own top-level folder with the same
   `README.md` + `PROGRESS.md` + `easy/medium/hard` layout.
 - Every problem subfolder has a single `README.md` covering the problem

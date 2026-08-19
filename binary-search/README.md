@@ -161,5 +161,15 @@ while lo < hi:
 
 ## Problems in this folder
 
-No problems solved yet in this folder — see [PROGRESS.md](./PROGRESS.md)
-for the full problem queue and recommended order.
+### Easy
+
+- [binary-search](./easy/binary-search) — the canonical exact-match binary
+  search: halve the `[lo, hi]` range until `nums[mid] == target` or the
+  range is empty.
+- [search-insert-position](./easy/search-insert-position) — same halving
+  loop, but converging on a lower-bound boundary (`nums[i] >= target`)
+  instead of an exact match; `left` lands on the insertion index whether
+  or not `target` is actually present.
+
+See [PROGRESS.md](./PROGRESS.md) for the full problem queue and
+recommended order.

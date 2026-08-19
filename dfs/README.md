@@ -154,6 +154,9 @@ class Solution:
 
 - [binary-tree-inorder-traversal](./binary-tree-inorder-traversal) — the
   canonical recursive tree traversal (left, node, right).
+- [binary-tree-preorder-traversal](./binary-tree-preorder-traversal) — same
+  recursive shape as inorder, but the visit happens before either
+  recursive call (node, left, right) instead of between them.
 - [binary-tree-paths](./binary-tree-paths) — classic root-to-leaf path
   enumeration; the canonical "choose / explore / un-choose" DFS.
 - [word-search](./word-search) — grid DFS with backtracking; explores all
