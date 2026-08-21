@@ -224,3 +224,8 @@ for n in nums_set:
   descending `(value, symbol)` table (including subtractive forms like
   `900/CM`) walked greedily instead of searching for the largest fitting
   value on every step.
+- [strings-differ-by-one-character](./medium/strings-differ-by-one-character)
+  — instead of comparing every pair of strings directly, mask each index
+  in turn (replace it with a wildcard) and hash-set the result per column;
+  two strings that ever produce the same masked key are identical
+  everywhere except that one index.

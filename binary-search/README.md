@@ -184,6 +184,10 @@ while lo < hi:
   — two boundary searches over the same array: a lower-bound scan that
   keeps narrowing left on a match to find the first occurrence, and an
   upper-bound scan that keeps narrowing right to find the last.
+- [search-in-rotated-sorted-array](./medium/search-in-rotated-sorted-array)
+  — comparing `nums[left]` to `nums[mid]` reveals which half of the split
+  is still a clean, seam-free sorted run; check that half's range first,
+  otherwise the seam (and the answer, if any) must be on the other side.
 
 See [PROGRESS.md](./PROGRESS.md) for the full problem queue and
 recommended order.

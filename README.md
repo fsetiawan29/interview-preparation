@@ -96,18 +96,20 @@ Problems solved so far, by topic and difficulty:
 
 | Topic | Easy | Medium | Hard | Total |
 |---|---|---|---|---|
-| [arrays-hashing](./arrays-hashing) | 18 | 8 | 0 | 26 |
+| [arrays-hashing](./arrays-hashing) | 18 | 9 | 0 | 27 |
 | [two-pointers](./two-pointers) | 13 | 6 | 1 | 20 |
 | [sliding-window](./sliding-window) | 2 | 7 | 0 | 9 |
 | [stack](./stack) | 4 | 1 | 0 | 5 |
 | [dfs](./dfs) | 3 | 1 | 0 | 4 |
-| [binary-search](./binary-search) | 3 | 1 | 0 | 4 |
-| **Total** | **43** | **24** | **1** | **68** |
+| [binary-search](./binary-search) | 3 | 2 | 0 | 5 |
+| **Total** | **43** | **26** | **1** | **70** |
 
 ### Solved Today (2026-08-21)
 
 - Guess Number Higher or Lower — [binary-search/easy/guess-number-higher-or-lower](./binary-search/easy/guess-number-higher-or-lower)
 - Find First and Last Position of Element in Sorted Array — [binary-search/medium/find-first-and-last-sorted-array](./binary-search/medium/find-first-and-last-sorted-array)
+- Search in Rotated Sorted Array — [binary-search/medium/search-in-rotated-sorted-array](./binary-search/medium/search-in-rotated-sorted-array)
+- Strings Differ by One Character — [arrays-hashing/medium/strings-differ-by-one-character](./arrays-hashing/medium/strings-differ-by-one-character)
 
 ### Solved Previously (2026-08-19)
 

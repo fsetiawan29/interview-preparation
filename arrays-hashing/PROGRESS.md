@@ -12,6 +12,7 @@
 | First Unique Character in a String | Frequency Count | Easy | Done |
 | Determine if Two Strings Are Close | Frequency Comparison | Medium | Done |
 | Custom Sort String | Character Mapping | Medium | Done |
+| Strings Differ by One Character | Masked-Key Hash Set | Medium | Done |
 
 - [x] Group Anagrams
 - [x] Top K Frequent Elements
@@ -22,6 +23,7 @@
 - [x] First Unique Character in a String
 - [x] Determine if Two Strings Are Close
 - [x] Custom Sort String
+- [x] Strings Differ by One Character — [medium/strings-differ-by-one-character](./medium/strings-differ-by-one-character)
 
 ## Level 3: String Hashing & Mapping
 

@@ -5,7 +5,7 @@
 | Problem | Difficulty | Status |
 |---|---|---|
 | #704 Binary Search | Easy | Done |
-| #33 Search in Rotated Sorted Array | Medium | |
+| #33 Search in Rotated Sorted Array | Medium | Done |
 | #153 Find Minimum in Rotated Sorted Array | Medium | |
 | #34 Find First and Last Position of Element in Sorted Array | Medium | Done |
 | #74 Search a 2D Matrix | Medium | |
@@ -75,13 +75,13 @@ Goal: binary search when order changes.
 
 | # | Problem | Difficulty | Blind 75 | Status |
 |---|---|---|---|---|
-| 12 | #33 Search in Rotated Sorted Array | Medium | ✅ | |
+| 12 | #33 Search in Rotated Sorted Array | Medium | ✅ | Done |
 | 13 | #81 Search in Rotated Sorted Array II | Medium | | |
 | 14 | #153 Find Minimum in Rotated Sorted Array | Medium | ✅ | |
 | 15 | #154 Find Minimum in Rotated Sorted Array II | Hard | | |
 | 16 | #74 Search a 2D Matrix | Medium | ✅ | |
 
-- [ ] #33 Search in Rotated Sorted Array (Blind 75)
+- [x] #33 Search in Rotated Sorted Array (Blind 75) — [medium/search-in-rotated-sorted-array](./medium/search-in-rotated-sorted-array)
 - [ ] #81 Search in Rotated Sorted Array II
 - [ ] #153 Find Minimum in Rotated Sorted Array (Blind 75)
 - [ ] #154 Find Minimum in Rotated Sorted Array II
@@ -151,7 +151,7 @@ If short on time before interviews, prioritize these:
 
 **Core**
 - [x] #34 Find First and Last Position of Element in Sorted Array (Blind 75)
-- [ ] #33 Search in Rotated Sorted Array (Blind 75)
+- [x] #33 Search in Rotated Sorted Array (Blind 75) — [medium/search-in-rotated-sorted-array](./medium/search-in-rotated-sorted-array)
 - [ ] #153 Find Minimum in Rotated Sorted Array (Blind 75)
 - [ ] #74 Search a 2D Matrix (Blind 75)
 
