@@ -7,7 +7,7 @@
 | #704 Binary Search | Easy | Done |
 | #33 Search in Rotated Sorted Array | Medium | |
 | #153 Find Minimum in Rotated Sorted Array | Medium | |
-| #34 Find First and Last Position of Element in Sorted Array | Medium | |
+| #34 Find First and Last Position of Element in Sorted Array | Medium | Done |
 | #74 Search a 2D Matrix | Medium | |
 | #981 Time Based Key-Value Store | Medium | |
 | #4 Median of Two Sorted Arrays | Hard | |
@@ -33,14 +33,14 @@ Goal: learn the invariant, interval representation, and pointer movement.
 |---|---|---|---|---|
 | 1 | #704 Binary Search | Easy | ✅ | Done |
 | 2 | #35 Search Insert Position | Easy | | Done |
-| 3 | #374 Guess Number Higher or Lower | Easy | | |
+| 3 | #374 Guess Number Higher or Lower | Easy | | Done |
 | 4 | #367 Valid Perfect Square | Easy | | |
 | 5 | #69 Sqrt(x) | Easy | | |
 | 6 | #441 Arranging Coins | Easy | | |
 
 - [x] #704 Binary Search (Blind 75) — [easy/binary-search](./easy/binary-search)
 - [x] #35 Search Insert Position — [easy/search-insert-position](./easy/search-insert-position)
-- [ ] #374 Guess Number Higher or Lower
+- [x] #374 Guess Number Higher or Lower — [easy/guess-number-higher-or-lower](./easy/guess-number-higher-or-lower)
 - [ ] #367 Valid Perfect Square
 - [ ] #69 Sqrt(x)
 - [ ] #441 Arranging Coins
@@ -54,13 +54,13 @@ Goal: understand first occurrence, last occurrence, lower_bound, upper_bound.
 
 | # | Problem | Difficulty | Blind 75 | Status |
 |---|---|---|---|---|
-| 7 | #34 Find First and Last Position of Element in Sorted Array | Medium | ✅ | |
+| 7 | #34 Find First and Last Position of Element in Sorted Array | Medium | ✅ | Done |
 | 8 | #744 Find Smallest Letter Greater Than Target | Easy | | |
 | 9 | #162 Find Peak Element | Medium | | |
 | 10 | #852 Peak Index in a Mountain Array | Medium | | |
 | 11 | #540 Single Element in a Sorted Array | Medium | | |
 
-- [ ] #34 Find First and Last Position of Element in Sorted Array (Blind 75)
+- [x] #34 Find First and Last Position of Element in Sorted Array (Blind 75) — [medium/find-first-and-last-sorted-array](./medium/find-first-and-last-sorted-array)
 - [ ] #744 Find Smallest Letter Greater Than Target
 - [ ] #162 Find Peak Element
 - [ ] #852 Peak Index in a Mountain Array
@@ -147,9 +147,10 @@ If short on time before interviews, prioritize these:
 **Beginner**
 - [x] #704 Binary Search (Blind 75)
 - [x] #35 Search Insert Position
+- [x] #374 Guess Number Higher or Lower
 
 **Core**
-- [ ] #34 Find First and Last Position of Element in Sorted Array (Blind 75)
+- [x] #34 Find First and Last Position of Element in Sorted Array (Blind 75)
 - [ ] #33 Search in Rotated Sorted Array (Blind 75)
 - [ ] #153 Find Minimum in Rotated Sorted Array (Blind 75)
 - [ ] #74 Search a 2D Matrix (Blind 75)
@@ -161,7 +162,7 @@ If short on time before interviews, prioritize these:
 
 ## Recommended Order
 
-1. **Stage 1 – Learn the invariant:** #704, #35
+1. **Stage 1 – Learn the invariant:** #704, #35, #374
 2. **Stage 2 – Learn boundaries:** #34, #162
 3. **Stage 3 – Rotated arrays:** #33, #153, #74
 4. **Stage 4 – Binary search on answer:** #875, #1011, #410

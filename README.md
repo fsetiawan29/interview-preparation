@@ -101,10 +101,15 @@ Problems solved so far, by topic and difficulty:
 | [sliding-window](./sliding-window) | 2 | 7 | 0 | 9 |
 | [stack](./stack) | 4 | 1 | 0 | 5 |
 | [dfs](./dfs) | 3 | 1 | 0 | 4 |
-| [binary-search](./binary-search) | 2 | 0 | 0 | 2 |
-| **Total** | **42** | **23** | **1** | **66** |
+| [binary-search](./binary-search) | 3 | 1 | 0 | 4 |
+| **Total** | **43** | **24** | **1** | **68** |
 
-### Solved Today (2026-08-19)
+### Solved Today (2026-08-21)
+
+- Guess Number Higher or Lower — [binary-search/easy/guess-number-higher-or-lower](./binary-search/easy/guess-number-higher-or-lower)
+- Find First and Last Position of Element in Sorted Array — [binary-search/medium/find-first-and-last-sorted-array](./binary-search/medium/find-first-and-last-sorted-array)
+
+### Solved Previously (2026-08-19)
 
 - Binary Search — [binary-search/easy/binary-search](./binary-search/easy/binary-search)
 - Search Insert Position — [binary-search/easy/search-insert-position](./binary-search/easy/search-insert-position)

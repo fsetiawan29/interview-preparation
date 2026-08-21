@@ -24,7 +24,8 @@ Use this pattern when the problem is about:
 ## The general shape
 
 **Standard binary search** — find an exact target:
-*(used by: [binary-search](./easy/binary-search))*
+*(used by: [binary-search](./easy/binary-search),
+[guess-number-higher-or-lower](./easy/guess-number-higher-or-lower))*
 
 ```python
 def solve(nums, target):
@@ -43,7 +44,8 @@ def solve(nums, target):
 **Lower bound / upper bound** — find the first index where a condition
 becomes true (works because the condition is monotonic: `False...False
 True...True`):
-*(used by: [search-insert-position](./easy/search-insert-position))*
+*(used by: [search-insert-position](./easy/search-insert-position),
+[find-first-and-last-sorted-array](./medium/find-first-and-last-sorted-array))*
 
 ```python
 def lower_bound(nums, target):
@@ -85,7 +87,8 @@ while lo <= hi:
 ```
 
 **Boundary search** (first/last occurrence, insert position)
-*(no solutions yet)*
+*(problems: [search-insert-position](./easy/search-insert-position),
+[find-first-and-last-sorted-array](./medium/find-first-and-last-sorted-array))*
 ```python
 lo, hi = 0, len(nums)
 while lo < hi:
@@ -170,6 +173,17 @@ while lo < hi:
   loop, but converging on a lower-bound boundary (`nums[i] >= target`)
   instead of an exact match; `left` lands on the insertion index whether
   or not `target` is actually present.
+- [guess-number-higher-or-lower](./easy/guess-number-higher-or-lower) —
+  classic exact-match binary search over `[1, n]`, but the three-way
+  comparison comes from a `guess(num)` oracle instead of comparing against
+  an array element directly.
+
+### Medium
+
+- [find-first-and-last-sorted-array](./medium/find-first-and-last-sorted-array)
+  — two boundary searches over the same array: a lower-bound scan that
+  keeps narrowing left on a match to find the first occurrence, and an
+  upper-bound scan that keeps narrowing right to find the last.
 
 See [PROGRESS.md](./PROGRESS.md) for the full problem queue and
 recommended order.
