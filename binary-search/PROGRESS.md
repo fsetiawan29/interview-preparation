@@ -6,9 +6,9 @@
 |---|---|---|
 | #704 Binary Search | Easy | Done |
 | #33 Search in Rotated Sorted Array | Medium | Done |
-| #153 Find Minimum in Rotated Sorted Array | Medium | |
+| #153 Find Minimum in Rotated Sorted Array | Medium | Done |
 | #34 Find First and Last Position of Element in Sorted Array | Medium | Done |
-| #74 Search a 2D Matrix | Medium | |
+| #74 Search a 2D Matrix | Medium | Done |
 | #981 Time Based Key-Value Store | Medium | |
 | #4 Median of Two Sorted Arrays | Hard | |
 
@@ -34,16 +34,16 @@ Goal: learn the invariant, interval representation, and pointer movement.
 | 1 | #704 Binary Search | Easy | ✅ | Done |
 | 2 | #35 Search Insert Position | Easy | | Done |
 | 3 | #374 Guess Number Higher or Lower | Easy | | Done |
-| 4 | #367 Valid Perfect Square | Easy | | |
-| 5 | #69 Sqrt(x) | Easy | | |
-| 6 | #441 Arranging Coins | Easy | | |
+| 4 | #367 Valid Perfect Square | Easy | | Done |
+| 5 | #69 Sqrt(x) | Easy | | Done |
+| 6 | #441 Arranging Coins | Easy | | Done |
 
 - [x] #704 Binary Search (Blind 75) — [easy/binary-search](./easy/binary-search)
 - [x] #35 Search Insert Position — [easy/search-insert-position](./easy/search-insert-position)
 - [x] #374 Guess Number Higher or Lower — [easy/guess-number-higher-or-lower](./easy/guess-number-higher-or-lower)
-- [ ] #367 Valid Perfect Square
-- [ ] #69 Sqrt(x)
-- [ ] #441 Arranging Coins
+- [x] #367 Valid Perfect Square — [easy/valid-perfect-square](./easy/valid-perfect-square)
+- [x] #69 Sqrt(x) — [easy/sqrt](./easy/sqrt)
+- [x] #441 Arranging Coins — [easy/arranging-coins](./easy/arranging-coins)
 
 **Patterns learned:** basic binary search, lower bound, binary search on
 values.
@@ -77,17 +77,18 @@ Goal: binary search when order changes.
 |---|---|---|---|---|
 | 12 | #33 Search in Rotated Sorted Array | Medium | ✅ | Done |
 | 13 | #81 Search in Rotated Sorted Array II | Medium | | |
-| 14 | #153 Find Minimum in Rotated Sorted Array | Medium | ✅ | |
+| 14 | #153 Find Minimum in Rotated Sorted Array | Medium | ✅ | Done |
 | 15 | #154 Find Minimum in Rotated Sorted Array II | Hard | | |
-| 16 | #74 Search a 2D Matrix | Medium | ✅ | |
+| 16 | #74 Search a 2D Matrix | Medium | ✅ | Done |
 
 - [x] #33 Search in Rotated Sorted Array (Blind 75) — [medium/search-in-rotated-sorted-array](./medium/search-in-rotated-sorted-array)
 - [ ] #81 Search in Rotated Sorted Array II
-- [ ] #153 Find Minimum in Rotated Sorted Array (Blind 75)
+- [x] #153 Find Minimum in Rotated Sorted Array (Blind 75) — [medium/find-minimum-in-sorted-rotated-array](./medium/find-minimum-in-sorted-rotated-array)
 - [ ] #154 Find Minimum in Rotated Sorted Array II
-- [ ] #74 Search a 2D Matrix (Blind 75)
+- [x] #74 Search a 2D Matrix (Blind 75) — [medium/search-2d-matrix](./medium/search-2d-matrix)
 
-**Patterns learned:** deciding which half is sorted, duplicate fallback.
+**Patterns learned:** deciding which half is sorted, duplicate fallback,
+flattening a row-major matrix into one virtual sorted array.
 
 ## Level 4 — Binary Search on Answer
 
@@ -152,8 +153,8 @@ If short on time before interviews, prioritize these:
 **Core**
 - [x] #34 Find First and Last Position of Element in Sorted Array (Blind 75)
 - [x] #33 Search in Rotated Sorted Array (Blind 75) — [medium/search-in-rotated-sorted-array](./medium/search-in-rotated-sorted-array)
-- [ ] #153 Find Minimum in Rotated Sorted Array (Blind 75)
-- [ ] #74 Search a 2D Matrix (Blind 75)
+- [x] #153 Find Minimum in Rotated Sorted Array (Blind 75) — [medium/find-minimum-in-sorted-rotated-array](./medium/find-minimum-in-sorted-rotated-array)
+- [x] #74 Search a 2D Matrix (Blind 75) — [medium/search-2d-matrix](./medium/search-2d-matrix)
 
 **Advanced**
 - [ ] #875 Koko Eating Bananas

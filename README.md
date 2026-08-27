@@ -101,10 +101,23 @@ Problems solved so far, by topic and difficulty:
 | [sliding-window](./sliding-window) | 2 | 7 | 0 | 9 |
 | [stack](./stack) | 4 | 1 | 0 | 5 |
 | [dfs](./dfs) | 3 | 1 | 0 | 4 |
-| [binary-search](./binary-search) | 3 | 2 | 0 | 5 |
-| **Total** | **43** | **26** | **1** | **70** |
+| [binary-search](./binary-search) | 6 | 3 | 0 | 9 |
+| **Total** | **46** | **27** | **1** | **74** |
 
-### Solved Today (2026-08-21)
+### Solved Today (2026-08-27)
+
+- Arranging Coins — [binary-search/easy/arranging-coins](./binary-search/easy/arranging-coins)
+
+### Solved Previously (2026-08-26)
+
+- Valid Perfect Square — [binary-search/easy/valid-perfect-square](./binary-search/easy/valid-perfect-square)
+- Sqrt(x) — [binary-search/easy/sqrt](./binary-search/easy/sqrt)
+
+### Solved Previously (2026-08-24)
+
+- Find Minimum in Rotated Sorted Array — [binary-search/medium/find-minimum-in-sorted-rotated-array](./binary-search/medium/find-minimum-in-sorted-rotated-array)
+
+### Solved Previously (2026-08-21)
 
 - Guess Number Higher or Lower — [binary-search/easy/guess-number-higher-or-lower](./binary-search/easy/guess-number-higher-or-lower)
 - Find First and Last Position of Element in Sorted Array — [binary-search/medium/find-first-and-last-sorted-array](./binary-search/medium/find-first-and-last-sorted-array)
