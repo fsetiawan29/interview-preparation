@@ -62,7 +62,8 @@ def lower_bound(nums, target):
 **Binary search on answer** — search the space of *possible answers*, not
 the array itself; requires a `feasible(x)` check that is monotonic (once
 true, stays true as `x` grows, or vice versa):
-*(used by: [koko-eating-bananas](./medium/koko-eating-bananas))*
+*(used by: [koko-eating-bananas](./medium/koko-eating-bananas),
+[arranging-coins](./easy/arranging-coins))*
 
 ```python
 def solve(nums, condition):
@@ -101,7 +102,8 @@ while lo < hi:
 
 **Rotated sorted array** (one half is always sorted — decide which half,
 then decide whether the target lies inside it)
-*(no solutions yet)*
+*(used by: [search-in-rotated-sorted-array](./medium/search-in-rotated-sorted-array),
+[find-minimum-in-sorted-rotated-array](./medium/find-minimum-in-sorted-rotated-array))*
 ```python
 lo, hi = 0, len(nums) - 1
 while lo <= hi:
@@ -177,6 +179,16 @@ while lo < hi:
   classic exact-match binary search over `[1, n]`, but the three-way
   comparison comes from a `guess(num)` oracle instead of comparing against
   an array element directly.
+- [valid-perfect-square](./easy/valid-perfect-square) — binary search over
+  the implicit, monotonically increasing sequence of squares `1, 4, 9,
+  16, ...` instead of a stored array; `mid * mid` (or an equivalent
+  division check) stands in for `nums[mid]`.
+- [sqrt](./easy/sqrt) — same implicit-sequence-of-squares search as valid
+  perfect square, but instead of an exact match it converges on the
+  largest `mid` whose square doesn't exceed `x`, returning `floor(sqrt(x))`.
+- [arranging-coins](./easy/arranging-coins) — binary search on answer: the
+  candidates are row counts `k`, and `k*(k+1)/2 <= n` is the monotonic
+  feasibility check that replaces comparing against `nums[mid]`.
 
 ### Medium
 
@@ -188,6 +200,10 @@ while lo < hi:
   — comparing `nums[left]` to `nums[mid]` reveals which half of the split
   is still a clean, seam-free sorted run; check that half's range first,
   otherwise the seam (and the answer, if any) must be on the other side.
+- [find-minimum-in-sorted-rotated-array](./medium/find-minimum-in-sorted-rotated-array)
+  — comparing `nums[mid]` to `nums[right]` reveals which side the rotation
+  seam is on; narrow toward it (`right = mid`, keeping `mid` in play) until
+  `left == right` lands on the minimum.
 
 See [PROGRESS.md](./PROGRESS.md) for the full problem queue and
 recommended order.
